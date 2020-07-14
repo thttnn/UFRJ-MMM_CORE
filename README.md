@@ -18,19 +18,19 @@ Coded by Matheus Vianna as part of his Ph.D Thesis.
 
 What was introduced in the "2.0" version:
 
---The intire code, including element names, was translated to english
+  --The intire code, including element names, was translated to english
 
---The intire code was translated to LSD Macros, instead of C++ writing
+  --The intire code was translated to LSD Macros, instead of C++ writing
 
---The intire code was padronized (see below)
+  --The intire code was padronized (see below)
 
---Names are now descriptive and intuitive
+  --Names are now descriptive and intuitive
 
---Income classes were transformed into objects
+  --Income classes were transformed into objects
 
---Government and External Sector were transformed into objects
-
---Variables were grouped by objects in additional files
+  --Government and External Sector were transformed into objects
+  
+  --Variables were grouped by objects in additional files
 
 Then, the "2.0_core" Version made some simplifications and stylizations of the model. 
 
@@ -38,10 +38,11 @@ The goal was to reduce the code as much as possible, in term of lines, number of
 
 The idea was to turn the model more user friendly, so some names were changed and the code is as clear and descriptive as possible.
 
+********************************************************************************************************************************************
+
 Main simplifications and modifications of the "_core" version:
 
 --A considerable number of parameters and variables were eliminated or incorporated into another variable, for not beeing in use. Also, many were renamed.
-
 
 --The Government object was simplified: simple primary budget rule, two types of taxes (income and indirect) and only one type of expenditure (government wages).
 
@@ -69,7 +70,7 @@ Main simplifications and modifications of the "_core" version:
 
 --Entry and exit variables were revised, rewritten and most of them, eliminated.
 
-Version 2.9:
+VERSION 2.9:
 
 --All essential parameters were moved to MACRO object. (Strong hypothesis: all sectors are equal, except for specific differences already in the code. This is done for a initial sensitivity analysis on those parameters.)
 
@@ -82,17 +83,25 @@ Version 2.9:
 HOW TO READ THE CODE:
 
 --All objects use full capital letters
+
 --All variables begin with capital letters
+
 --All parameters begin with small letters (in this version most of them located at MACRO object).
 
 --All functions are variables with the word "_Function" in the end, located at MACRO object
+
 --Most MACRO variable names begin with "Total_"
+
 --Most SECTOR variable names begin with "Sector_"
+
 --Most FIRM variable names begin with "Firm_"
+
 --Most CLASS variable names begin with "Class_"
+
 --Most GOVERNMENT variable names begin with "Government_"
 
 --Variables are grouped in additional files. 
+
 --Most of the variables, except the trivial ones, have line-by-line description
 
 --Frequency Parameters: 
