@@ -216,11 +216,12 @@ Label Root
 		Label EXTERNAL_SECTOR
 		{
 			Param: exchange_rate_growth
-			Param: external_income_growth
+			Param: external_income_growth_adjustment
 			Var: Exchange_Rate
 			Var: External_Income
 			Param: International_Reserves
 			Var: Trade_Balance
+			Param: external_income_fixed_growth
 
 		}
 
@@ -344,8 +345,6 @@ Label Root
 		Var: C_r
 		Var: I_r
 		Var: CON_G
-		Var: DEBT
-		Var: DEBT_G
 		Var: GDP_G
 		Var: GOV_G
 		Var: INV_G
@@ -393,6 +392,16 @@ Label Root
 		Var: W_C
 		Var: W_I
 		Var: W_K
+		Var: CGDP
+		Var: EMP_G
+		Var: GGDP
+		Var: IGDP
+		Var: INVGDP
+		Var: KGDP
+		Var: KL
+		Var: NXGDP
+		Var: PCU
+		Var: PR
 
 	}
 
@@ -662,8 +671,8 @@ Param: class_direct_tax 0 n + n n	0	0
 Param: class_interest_payment_share 0 n + n n	1	0
 Param: class_max_debt_ratio 0 n + n n	0.7	0.7
 Param: class_profit_share 0 n + n n	1	0
-Param: class_propensity_to_consume 0 n + n n	0.85	0.95
-Param: class_propensity_to_import 0 n + n n	0.1	0.01
+Param: class_propensity_to_consume 0 n + n n	0.85	1
+Param: class_propensity_to_import 0 n + n n	0.1	0
 Param: class_wage_share 0 n + n n	0	1
 Var: Class_Autonomous_Consumption 1 s + n n	5	4
 Var: Class_Debt 1 s + n n	0	0
@@ -705,11 +714,12 @@ Param: initial_taxes 0 n + n n	0
 
 Object: EXTERNAL_SECTOR C	1
 Param: exchange_rate_growth 0 n + n n	0
-Param: external_income_growth 0 n + n n	1
+Param: external_income_growth_adjustment 0 n + n n	0
 Var: Exchange_Rate 1 n + n n	1
 Var: External_Income 1 s + n n	100
 Param: International_Reserves 1 n + n n	10000
 Var: Trade_Balance 0 s + n n
+Param: external_income_fixed_growth 0 n + n n	0.01
 
 Object: ANALYSIS C	1
 Var: C 0 s + n n
@@ -721,8 +731,6 @@ Var: P 0 s + n n
 Var: C_r 1 s + n n	0
 Var: I_r 1 s + n n	0
 Var: CON_G 0 s + n n
-Var: DEBT 1 s + n n	0
-Var: DEBT_G 0 s + n n
 Var: GDP_G 0 s + n n
 Var: GOV_G 0 s + n n
 Var: INV_G 0 s + n n
@@ -737,7 +745,7 @@ Var: PROFITS 1 s + n n	0
 Var: PROFITS_G 0 s + n n
 Var: WAGE 1 s + n n	0
 Var: WAGE_G 0 s + n n
-Var: EMP 0 s + n n
+Var: EMP 1 s + n n	0
 Var: INVE_G 0 s + n n
 Var: INVE_r 1 s + n n	0
 Var: K_G 0 s + n n
@@ -770,11 +778,21 @@ Var: U_K 0 s + n n
 Var: W_C 0 s + n n
 Var: W_I 0 s + n n
 Var: W_K 0 s + n n
+Var: CGDP 0 s + n n
+Var: EMP_G 0 s + n n
+Var: GGDP 0 s + n n
+Var: IGDP 0 s + n n
+Var: INVGDP 0 s + n n
+Var: KGDP 0 s + n n
+Var: KL 0 s + n n
+Var: NXGDP 0 s + n n
+Var: PCU 0 s + n n
+Var: PR 0 n + n n
 
-SIM_NUM 100
+SIM_NUM 1
 SEED 1
 MAX_STEP 500
-EQUATION fun_micro_macro_v.2.1.cpp
+EQUATION fun_MMM_CORE.cpp
 MODELREPORT report_Sim1.html
 
 DESCRIPTION
@@ -2544,10 +2562,10 @@ _INIT_
 
 END_DESCRIPTION
 
-Parameter_external_income_growth
+Parameter_external_income_growth_adjustment
 (no description available)
 _INIT_
-
+All 1 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Exchange_Rate
@@ -2572,6 +2590,12 @@ Variable_Trade_Balance
 (no description available)
 _INIT_
 
+END_DESCRIPTION
+
+Parameter_external_income_fixed_growth
+(no description available)
+_INIT_
+All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Object_ANALYSIS
@@ -2629,18 +2653,6 @@ _INIT_
 END_DESCRIPTION
 
 Variable_CON_G
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_DEBT
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_DEBT_G
 (no description available)
 _INIT_
 
@@ -2733,7 +2745,7 @@ END_DESCRIPTION
 Variable_EMP
 Employment
 _INIT_
-
+All 1 instances equal to 0.
 END_DESCRIPTION
 
 Variable_INVE_G
@@ -2928,9 +2940,80 @@ _INIT_
 
 END_DESCRIPTION
 
+Variable_CGDP
+Real Consumption share of GDP
+Real Consumption share of GDP
+_INIT_
+
+END_DESCRIPTION
+
+Variable_EMP_G
+Quarterly Employment Growth rate
+Quarterly Employment Growth rate
+_INIT_
+
+END_DESCRIPTION
+
+Variable_GGDP
+Real Government Expenses share of GDP
+Real Government Expenses share of GDP
+_INIT_
+
+END_DESCRIPTION
+
+Variable_IGDP
+Real Investment share of GDP
+Real Investment share of GDP
+_INIT_
+
+END_DESCRIPTION
+
+Variable_INVGDP
+Real inventories share of GDP
+Real inventories share of GDP
+_INIT_
+
+END_DESCRIPTION
+
+Variable_KGDP
+Real stock of capital share of GDP, or capital-output ratio
+Real stock of capital share of GDP, or capital-output ratio
+_INIT_
+
+END_DESCRIPTION
+
+Variable_KL
+Capital labour ratio
+Capital labour ratio
+_INIT_
+
+END_DESCRIPTION
+
+Variable_NXGDP
+Real net exports share of GDP
+Real net exports share of GDP
+_INIT_
+
+END_DESCRIPTION
+
+Variable_PCU
+Productive Capacity Utilization Rate
+Productive Capacity Utilization Rate
+_INIT_
+
+END_DESCRIPTION
+
+Variable_PR
+Profit Rate
+Profit Rate
+_INIT_
+
+END_DESCRIPTION
+
 
 DOCUOBSERVE
 Root
+CGDP
 
 END_DOCUOBSERVE
 

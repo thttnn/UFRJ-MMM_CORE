@@ -10,17 +10,14 @@ MODELBEGIN
 /*****EQUATION FILES*****/
 
 #include "fun_time_step.h"          				// Time Step Variable
-//#include "fun_init_2.h"               				// Initialization Variables
-//#include "fun_initialization.h"               		// Initialization Variables
-#include "fun_initialization_2.h"               		// Initialization Variables
+#include "fun_initialization.h"               		// Initialization Variables
 #include "fun_functions.h"          				// Macro Functions
 #include "fun_macro.h"              				// Macro Object Variables and Functions
 #include "fun_macro_sfc.h"          				// Macro Object Variables for Stock-Flow Consistency
 	#include "fun_classes.h"            			// Income Classes Object Variables
 	#include "fun_government.h"         			// Government Object Variables
 	#include "fun_external_sector.h"    			// External Sector Object Variables
-		//#include "fun_entry_exit.h"       			// Entry and Exit Variables (inside Sector Object)
-		#include "fun_entry_exit_2.h"       			// Entry and Exit Variables (inside Sector Object)
+		#include "fun_entry_exit.h"       			// Entry and Exit Variables (inside Sector Object)
 		#include "fun_sector_external.h"			// Sector Variables related to External Sector
 		#include "fun_sector_demand.h"				// Sector Variables for Demand Calculations
 		#include "fun_sector_aggregates.h"			// Sector Agreggates and Averages Variables
