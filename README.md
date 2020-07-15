@@ -19,6 +19,8 @@ Possas stablishes a multisectoral model where basic units are the sectors and in
 As highligthed by the author, the model was already very complex and it would require a solution by computer simulation. However, due to the inexistent computation and processing power at that time, he opted for analytical solution. Only at the end of 90's the author started to work again in the model, now with enough computational power to use numeric solution. 
 Possas and Dweck (2004) presented the consolidated MMM model for the first time while Dweck (2006) did an extensive analysis of the dynamic properties.
 
+![Model Representation](model_flows.jpg)
+
 *********************************************************************************************************************************************
 
 # VERSION 2.0:
