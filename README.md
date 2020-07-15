@@ -1,7 +1,15 @@
 # MMM_CORE
 Multisectoral Micro-Macro Model - Core version(ver. 2.9_core)
 
-THE MODEL:
+# THE PROJECT:
+
+This is a new simplified and stylized version of the model created by Dweck (2006) and used in Dweck, Vianna and Barbosa (2018). 
+
+Coded by Matheus Vianna as part of his Ph.D Thesis.
+
+Available as Example Model in Laboratory for Simulation Development (LSD ver.7.2)
+
+# THE MODEL:
 
 The MMM model is a multisectoral micro-macro dynamic model of simulation, that combines theorectical foundations from pos-keynesian, kaleckian and schumpeterian
 approaches, useful to investigate general dynamic properties of capitalist economies.
@@ -13,10 +21,7 @@ Possas and Dweck (2004) presented the consolidated MMM model for the first time 
 
 *********************************************************************************************************************************************
 
-This is a new simplified and stylized version of the model created by Dweck (2006) and used in Dweck, Vianna and Barbosa (2018). 
-Coded by Matheus Vianna as part of his Ph.D Thesis.
-
-What was introduced in the "2.0" version:
+# VERSION 2.0:
 
   --The intire code, including element names, was translated to english
 
@@ -32,13 +37,15 @@ What was introduced in the "2.0" version:
   
   --Variables were grouped by objects in additional files
 
+*******************************************************************************************************************************************
+
+# CORE VERSION
+
 Then, the "2.0_core" Version made some simplifications and stylizations of the model. 
 
 The goal was to reduce the code as much as possible, in term of lines, number of variable and parameters, without losing too much properties and main results of the 2.0 model.
 
 The idea was to turn the model more user friendly, so some names were changed and the code is as clear and descriptive as possible.
-
-********************************************************************************************************************************************
 
 Main simplifications and modifications of the "_core" version:
 
@@ -70,7 +77,7 @@ Main simplifications and modifications of the "_core" version:
 
 --Entry and exit variables were revised, rewritten and most of them, eliminated.
 
-VERSION 2.9:
+ # VERSION 2.9_core:
 
 --All essential parameters were moved to MACRO object. (Strong hypothesis: all sectors are equal, except for specific differences already in the code. This is done for a initial sensitivity analysis on those parameters.)
 
@@ -80,7 +87,7 @@ VERSION 2.9:
 
 *********************************************************************************************************************************************
 
-HOW TO READ THE CODE:
+# HOW TO READ THE CODE:
 
 --All objects use full capital letters
 
