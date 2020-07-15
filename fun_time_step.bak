@@ -170,7 +170,6 @@ V("I_r");
 V("G_r");
 V("M_r");
 V("PDEBT");
-V("DEBT");
 V("PROD");                                       
 V("PROFITS");
 V("Firm_Wage");
@@ -182,7 +181,6 @@ V("GOV_G");
 V("PROFITS_G");
 V("WAGE_G");
 V("PDEBT_G");
-V("DEBT_G");
 V("PROD_G");
 
 RESULT(t)
