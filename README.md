@@ -1,6 +1,6 @@
 # MMM_CORE
 Multisectoral Micro-Macro Model - Core version(ver. 2.9_core)
-![Model Flows](model_flows.jpg)
+logo:model_flows.jpg
 
 THE MODEL:
 
