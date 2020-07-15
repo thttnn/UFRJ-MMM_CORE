@@ -1,4 +1,4 @@
-# MMM_CORE
+
 Multisectoral Micro-Macro Model - Core version(ver. 2.9_core)
 
 # THE PROJECT:
@@ -41,7 +41,7 @@ Possas and Dweck (2004) presented the consolidated MMM model for the first time 
 
 *******************************************************************************************************************************************
 
-# CORE VERSION
+# CORE VERSION:
 
 Then, the "2.0_core" Version made some simplifications and stylizations of the model. 
 
