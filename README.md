@@ -1,8 +1,6 @@
 # MMM_CORE
 Multisectoral Micro-Macro Model - Core version(ver. 2.9_core)
 
-logo:model_flows.jpg
-
 THE MODEL:
 
 The MMM model is a multisectoral micro-macro dynamic model of simulation, that combines theorectical foundations from pos-keynesian, kaleckian and schumpeterian
