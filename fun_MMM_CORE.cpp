@@ -31,7 +31,8 @@ MODELBEGIN
 			#include "fun_firm_finance.h"			// Firm's Finance Variables
 			#include "fun_firm_inputs.h" 			// Firm's Input Variable      
 				#include "fun_capital_goods.h"  	// Capital Goods Object Variables
-#include "fun_analysis.h"           				// Variables for Analysis
+//#include "fun_analysis.h"           				// Variables for Analysis
+#include "fun_analysis_2.h"           				// Variables for Analysis Long
 #include "fun_sector_analysis.h"					// Sector Variables for Analysis
 
 MODELEND

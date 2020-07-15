@@ -80,7 +80,7 @@ V("Firm_Retained_Profits");                                 //firm variable
 V("Firm_Distributed_Profits");                              //firm variable
 
 /*****INCOME GENERATION*****/
-V("Total_Distributed_Profits");                              		//macro variable
+V("Total_Distributed_Profits");                             //macro variable
 V("Total_Profits");                                    		//macro variable
 V("Total_Wages");                                      		//macro variable
 V("Sector_Demand_Met");                                		//sector variable
@@ -138,12 +138,12 @@ V("Sector_Productive_Capacity_Entry");
 V("Sector_Productive_Capacity_Available"); 
 
 /*****MACRO RESULTS*****/
-V("Total_Inventories");                             	//macro variable
+V("Total_Inventories");                             		//macro variable
 V("Gross_Value_Production");                            	//macro variable
-V("Avg_Rate_Capacity_Utilization");               	//macro variable
-V("Total_Consumption");                                    		//macro variable                 
-V("Total_Investment");                                     		//macro variable
-V("Total_Intermediate");											//macro variable
+V("Avg_Rate_Capacity_Utilization");               			//macro variable
+V("Total_Consumption");                                    	//macro variable                 
+V("Total_Investment");                                     	//macro variable
+V("Total_Intermediate");									//macro variable
 V("Sector_Participation");									//sector variable
 V("Total_Indirect_Taxes");                                  //government variable
 V("Profit_Share");                                      	//macro variable
@@ -170,10 +170,8 @@ V("I_r");
 V("G_r");
 V("M_r");
 V("PDEBT");
-V("DEBT");
 V("PROD");                                       
 V("PROFITS");
-V("Firm_Wage");
 
 V("GDP_G");
 V("CON_G");
@@ -182,7 +180,6 @@ V("GOV_G");
 V("PROFITS_G");
 V("WAGE_G");
 V("PDEBT_G");
-V("DEBT_G");
 V("PROD_G");
 
 RESULT(t)

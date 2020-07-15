@@ -1,13 +1,13 @@
 # Model compilation options
 TARGET=lsd
 FUN=fun_MMM_CORE
-FUN_EXTRA= fun_time_step.h fun_initialization.h fun_analysis.h fun_functions.h fun_macro.h fun_macro_sfc.h fun_classes.h fun_external_sector.h fun_government.h fun_sector_external.h fun_sector_aggregates.h fun_sector_demand.h fun_entry_exit.h fun_firm_capital.h fun_firm_finance.h fun_firm_investment.h fun_firm_price.h fun_firm_production.h fun_firm_profit.h fun_firm_rnd.h fun_firm_sales.h fun_firm_inputs.h fun_capital_goods.h fun_sector_analysis.h 
+FUN_EXTRA= fun_time_step.h fun_initialization.h fun_analysis.h fun_functions.h fun_macro.h fun_macro_sfc.h fun_classes.h fun_external_sector.h fun_government.h fun_sector_external.h fun_sector_aggregates.h fun_sector_demand.h fun_entry_exit.h fun_firm_capital.h fun_firm_finance.h fun_firm_investment.h fun_firm_price.h fun_firm_production.h fun_firm_profit.h fun_firm_rnd.h fun_firm_sales.h fun_firm_inputs.h fun_capital_goods.h fun_sector_analysis.h  fun_analysis_2.h
 SWITCH_CC=-Og -ggdb3
 SWITCH_CC_LNK=
 
 
 # System compilation options
-LSDROOT=C:/Lsd
+LSDROOT=C:/Lsd-7.2-stable
 SRC=src
 EXT=.exe
 
@@ -28,7 +28,7 @@ CC=x86_64-w64-mingw32-g++
 CC_CROSS=x86_64-w64-mingw32-
 GLOBAL_CC=-march=native -std=gnu++14 -w
 SSWITCH_CC=-mthreads -mwindows -O3
-LSDROOT=C:/Lsd
+LSDROOT=C:/Lsd-7.2-stable
 
 # Body of makefile (from src/makefile_base.txt)
 # specify where are the sources of LSD
