@@ -43,13 +43,7 @@ Possas and Dweck (2004) presented the consolidated MMM model for the first time 
 
 # CORE VERSION:
 
-Then, the "2.0_core" Version made some simplifications and stylizations of the model. 
-
-The goal was to reduce the code as much as possible, in term of lines, number of variable and parameters, without losing too much properties and main results of the 2.0 model.
-
-The idea was to turn the model more user friendly, so some names were changed and the code is as clear and descriptive as possible.
-
-Main simplifications and modifications of the "_core" version:
+Then, the "2.0_core" Version made some simplifications and stylizations of the model. The goal was to reduce the code as much as possible, in term of lines, number of variable and parameters, without losing too much properties and main results of the 2.0 model. The idea was to turn the model more user friendly, so some names were changed and the code is as clear and descriptive as possible.
 
 --A considerable number of parameters and variables were eliminated or incorporated into another variable, for not beeing in use. Also, many were renamed.
 
