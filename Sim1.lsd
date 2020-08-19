@@ -450,7 +450,7 @@ Param: market_share_expansion 0 n + n n	1
 Param: markup_period 0 n + n n	8
 Param: minimum_passthrough 0 n + n n	0.5
 Param: number_object_firms 0 n + n n	20
-Param: profits_distribution_rate 0 n + n n	0.8
+Param: profits_distribution_rate 0 n + n n	0.9
 Param: rnd_revenue_proportion 0 n + n n	0.01
 Param: std_dev_innovation 0 n + n n	0.005
 Param: strategic_price_weight 0 n + n n	0.5
@@ -525,14 +525,14 @@ Param: survival_period 0 n + n n	0
 Param: class_autonomous_consumption_adjustment 0 n + n n	1
 
 Object: SECTORS C	3
-Param: markup_apropriation 0 n + n n	0.5	0.5	0
+Param: markup_apropriation 0 n + n n	0.5	1	0
 Param: sector_initial_demand 0 n + n n	0	0	0
 Param: sector_exports_coefficient 0 n + n n	0	0	0
 Param: id_capital_goods_sector 0 n + n n	0	1	0
 Param: id_consumption_goods_sector 0 n + n n	1	0	0
 Param: id_intermediate_goods_sector 0 n + n n	0	0	1
-Param: sector_passthrough_inflation 0 s + n n	0.99	0.99	0.99
-Param: sector_passthrough_productivity 0 s + n n	0.99	0.99	0.99
+Param: sector_passthrough_inflation 0 s + n n	1	1	1
+Param: sector_passthrough_productivity 0 s + n n	1	1	1
 Param: sector_possible_entry 0 n + n n	0	0	0
 Var: Domestic_Capital_Demand 0 n + n n
 Var: Domestic_Consumption_Demand 0 n + n n
@@ -787,7 +787,7 @@ Var: KGDP 0 s + n n
 Var: KL 0 s + n n
 Var: NXGDP 0 s + n n
 Var: PCU 0 s + n n
-Var: PR 0 n + n n
+Var: PR 0 s + n n
 
 SIM_NUM 1
 SEED 1
@@ -1495,13 +1495,13 @@ END_DESCRIPTION
 Parameter_sector_passthrough_inflation
 (no description available)
 _INIT_
-All 1 instances equal to 1.
+All 3 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_sector_passthrough_productivity
 (no description available)
 _INIT_
-
+All 3 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_sector_possible_entry

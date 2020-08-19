@@ -10,20 +10,15 @@
 #
 #******************************************************************
 
-folder   <- "./experiments"                 # data files folder
-baseName <- "experiment"                    # data files base name (same as .lsd file)
-nExp <- 5                             # number of experiments
+folder   <- "./Res_Baseline2"                 # data files folder
+baseName <- "Sim1"                    # data files base name (same as .lsd file)
+nExp <- 1                             # number of experiments
 iniDrop <- 0                          # initial time steps to drop from analysis (0=none)
 nKeep <- -1                           # number of time steps to keep (-1=all)
 cores <- 0                            # maximum number of cores to allocate (0=all)
 savDat <- TRUE                        # save processed data files and re-use if available?
 
-expVal <- c( "Baseline",
-             "No Aut. Con.",
-             "High Tech Op.",
-             "High Debt Rate",
-             "Base High Tech Op."
-)      
+expVal <- c( "Baseline")      
 
 aggrVars <- c(  "Real_GDP",     # Real GDP
                 "GDP_G",        # Real GDP Growth
@@ -271,9 +266,9 @@ invisible( gc( verbose = FALSE ) )
 
 bCase     <- 1      # experiment to be used as base case
 CI        <- 0.95   # desired confidence interval
-warmUpPlot<- 200    # number of "warm-up" runs for plots
+warmUpPlot<- 100    # number of "warm-up" runs for plots
 nTplot    <- -1     # last period to consider for plots (-1=all)
-warmUpStat<- 200    # warm-up runs to evaluate all statistics
+warmUpStat<- 100    # warm-up runs to evaluate all statistics
 nTstat    <- -1     # last period to consider for statistics (-1=all)
 bPlotCoef <- 1.5    # boxplot whiskers extension from the box (0=extremes)
 bPlotNotc <- FALSE  # use boxplot notches
@@ -387,10 +382,12 @@ tryCatch({    # enter error handling mode so PDF can be closed in case of error/
   time_plots_sector( mcData, Adata, mdata, Mdata, Sdata, nExp, nSize, nTsteps, TmaskPlot,
               CI, legends, colors, lTypes, transMk, smoothing )
   
-  
+  if(nExp>1)
+  {
   box_plots_sector( mcData, nExp, nSize, TmaxStat, TmaskStat, warmUpStat,
              nTstat, legends, legendList, sDigits, bPlotCoef,
              bPlotNotc, folder, outDir, repName )
+  }
   
   #
   # ====== STATISTICS GENERATION ======

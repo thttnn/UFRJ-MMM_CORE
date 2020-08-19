@@ -450,7 +450,7 @@ Param: market_share_expansion 0 n + n n	1
 Param: markup_period 0 n + n n	8
 Param: minimum_passthrough 0 n + n n	0.5
 Param: number_object_firms 0 n + n n	20
-Param: profits_distribution_rate 0 n + n n	0.8
+Param: profits_distribution_rate 0 n + n n	0.9
 Param: rnd_revenue_proportion 0 n + n n	0.01
 Param: std_dev_innovation 0 n + n n	0.005
 Param: strategic_price_weight 0 n + n n	0.5
@@ -714,7 +714,7 @@ Param: initial_taxes 0 n + n n	0
 
 Object: EXTERNAL_SECTOR C	1
 Param: exchange_rate_growth 0 n + n n	0
-Param: external_income_growth_adjustment 0 n + n n	0
+Param: external_income_growth_adjustment 0 n + n n	1
 Var: Exchange_Rate 1 n + n n	1
 Var: External_Income 1 s + n n	100
 Param: International_Reserves 1 n + n n	10000
