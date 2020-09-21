@@ -7,7 +7,7 @@ SWITCH_CC_LNK=
 
 
 # System compilation options
-LSDROOT=C:/Lsd-7.2-stable
+LSDROOT=C:/Lsd
 SRC=src
 EXT=.exe
 
@@ -28,7 +28,7 @@ CC=x86_64-w64-mingw32-g++
 CC_CROSS=x86_64-w64-mingw32-
 GLOBAL_CC=-march=native -std=gnu++14 -w
 SSWITCH_CC=-mthreads -mwindows -O3
-LSDROOT=C:/Lsd-7.2-stable
+LSDROOT=C:/Lsd
 
 # Body of makefile (from src/makefile_base.txt)
 # specify where are the sources of LSD
