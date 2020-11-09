@@ -430,7 +430,7 @@ Object: MACRO C	1
 Param: annual_period 0 n + n n	4
 Param: bargain_power_adjustment 0 n + n n	0
 Param: basic_percent_spread 0 n + n n	0.5
-Param: capital_output_ratio 0 n + n n	2
+Param: capital_output_ratio 0 n + n n	1.5
 Param: crisis_threshold 0 n + n n	0
 Param: depreciation_period 0 n + n n	60
 Param: desired_debt_rate 0 n + n n	0.5
@@ -530,7 +530,7 @@ Var: Exit 0 n + n n
 Var: Exit_Defaulted_Loans 0 n + n n
 Var: Exit_Deposits_Distributed 0 n + n n
 Var: Exit_Productive_Capacity 0 n + n n
-Param: survival_period 0 n + n n	0
+Param: survival_period 0 n + n n	7
 Param: class_autonomous_consumption_adjustment 0 n + n n	2
 Var: Total_Domestic_Capital_Goods_Demand 0 n + n n
 Var: Total_Domestic_Consumption_Demand 0 n + n n
@@ -858,7 +858,7 @@ END_DESCRIPTION
 Parameter_capital_output_ratio
 Capital/good relation for every sector related to a specific capital good sector
 _INIT_
-All 1 instances equal to 2.
+All 1 instances equal to 1.5.
 END_DESCRIPTION
 
 Parameter_crisis_threshold

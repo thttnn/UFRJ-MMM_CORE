@@ -43,11 +43,11 @@ Class autonomous consumption depends on the average quality growth of the consum
 		
 		v[6]=V("class_autonomous_consumption_adjustment");				//autonomous consumption adjustment parameter
 		if(v[5]>0) 														//if quality growth was positive
-			v[7]=v[0]*(1+v[6]*v[5]); 											//increase autonomous consumption by the adjustment parameter
+			v[7]=v[0]*(1+v[6]*v[5]); 									//increase autonomous consumption by the adjustment parameter
 		if(v[5]==0)														//if quality grwoth was zero
 			v[7]=v[0];													//use last period autonomous consumption
 		if(v[5]<0)														//if quality growth was negative
-			v[7]=v[0]*(1+v[6]*v[5]);												//decrease autonomous consumption by the adjustment parameter
+			v[7]=v[0]*(1+v[6]*v[5]);									//decrease autonomous consumption by the adjustment parameter
 		}
 else																	//if it is not class adjustment period
 	v[7]=v[0]; 															//use lase period autonomous consumption                                                                       		

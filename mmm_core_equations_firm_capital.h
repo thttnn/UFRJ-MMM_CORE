@@ -26,8 +26,8 @@ Sum up the firm's productive capacity that was depreciated in each time step, no
 				WRITES(cur1, "Capital_Good_Productivity", 0);
 				}
 			else
-				v[0]=v[0];																	//do not sum the capital good productive capacity to the total to be depreiated
-			}																	//do not sum the capital good productive capacity to the total to be depreiated
+				v[0]=v[0];																//do not sum the capital good productive capacity to the total to be depreiated
+			}																			//do not sum the capital good productive capacity to the total to be depreiated
 	}                                                                          
 RESULT(v[0])
 
@@ -83,7 +83,7 @@ In this variable, the firm receive the new capital goods ordered in the last inv
 	v[2]=VL("Firm_Demand_Capital_Goods_Expansion",v[0]);	
 	v[3]=VL("Firm_Demand_Capital_Goods_Replacement",v[0]);	
 	v[4]=v[2]+v[3];	
-	v[5]=V("capital_output_ratio");															//amount of Capital Goods bought
+	v[5]=V("capital_output_ratio");												//amount of Capital Goods bought
 	v[6]=COUNT("CAPITALS");
 	v[7]=V("Firm_Investment_Period");											//if it is investment period for the firm
 	v[8]=V("depreciation_period");
@@ -112,7 +112,7 @@ In this variable, the firm receive the new capital goods ordered in the last inv
      		if(v[10]==1)
      			{
      			WRITES(cur, "capital_good_productivity_initial", v[1]);				//writes the new capital productivity as the frontier productivity when it was ordered
-				WRITES(cur, "capital_good_date_birth", t);					//writes the new capital date of birth as the current time period
+				WRITES(cur, "capital_good_date_birth", t);							//writes the new capital date of birth as the current time period
 				WRITES(cur, "capital_good_to_replace", 0);							//writes the parameter that identifies the capital goods to be replaced as zero
 				WRITES(cur, "capital_good_depreciation_period", (t+v[8]));
 				WRITELS(cur, "Capital_Good_Acumulated_Production", 0, 1);			//writes the past acumulated production of the current new capital as zero
@@ -120,10 +120,9 @@ In this variable, the firm receive the new capital goods ordered in the last inv
   			}
   		}										
 	if (v[6]!=0)																																					//if it is not zero
-		v[15] = SUM("capital_good_productive_capacity");						//sum uo their productive capacity
+		v[15] = SUM("capital_good_productive_capacity");							//sum uo their productive capacity
 	else																																							//if its zero
-		v[15]=0;
-																																		//firm's productive capacity will be zero
+		v[15]=0;																																	//firm's productive capacity will be zero
 RESULT(v[15])
 
 

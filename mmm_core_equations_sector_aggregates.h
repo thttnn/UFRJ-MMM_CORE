@@ -155,7 +155,7 @@ Sum up firm's employment, given by firm's effective production over firm's avg p
 		v[1]=VS(cur, "Firm_Effective_Production");      //firm's effective production
 		v[2]=VS(cur, "Firm_Avg_Productivity");   		//firm's productivity in the last period
 		if(v[2]!=0)
-			v[0]=v[0]+(v[1]/v[2]);                       	//sums up the ratio between effective production and productivity
+			v[0]=v[0]+(v[1]/v[2]);                      //sums up the ratio between effective production and productivity
 		else
 			v[0]=v[0];
 	}

@@ -2,7 +2,9 @@
 EQUATION("Time_Step")
 /*
 Root Variable
-Determines the order in which the variables will be calculated in each time step. It is the logical sequence of the model in each time step.
+Determines the order in which the variables will be calculated in each time step. 
+It is the logical sequence of the model in each time step.
+Comments indicate the level of each variable. 
 */
 
 /*****GOVERNMENT EXPENSES (AUTONOMOUS)*****/
@@ -30,16 +32,13 @@ V("Firm_Demand_Capital_Goods");
 V("Sector_Capital_Demand");                          		                  		
 V("Firm_Effective_Orders_Capital_Goods");              		//firm variable
 
-/*****PLANNED PRODUCTION*****/
+/*****PRODUCTION*****/
 V("Firm_Expected_Sales");                                   //firm variable
 V("Firm_Planned_Production");                               //firm variable
-
-/*****EFFECTIVE PRODUCTION AND INPUT DEMAND*****/
 V("Firm_Available_Inputs_Ratio");                       	//firm variable
 V("Capital_Good_Productivity");                        		//capital variable
 V("Firm_Competitiveness");                                  //firm variable
 V("Firm_Market_Share");                                     //firm variable
-
 V("Firm_Required_Inputs");                                  //firm variable 
 V("Firm_Input_Demand_Next_Period");                         //firm variable
 V("Sector_Intermediate_Demand");                      		//macro variable
@@ -56,7 +55,7 @@ V("Sector_Unemployment");									//sector variable
 
 /*****CONSUMPTION DEMAND*****/
 V("Sector_Consumption_Demand");                       		//macro variable
-V("Sector_Effective_Orders");                          		//sector variable               		//sector variable
+V("Sector_Effective_Orders");                          		//sector variable               		
 
 /*****EFFECTIVE ORDERS, SALES AND PROFITS*****/
 V("Firm_Effective_Orders");                                 //firm variable 
@@ -125,13 +124,13 @@ V("Firm_Avg_Debt_Rate");							   		//firm variable
 V("Sector_Productive_Capacity");
 V("Sector_Avg_Quality");                         			//sector variable
 V("Sector_Max_Quality");                        			//sector variable
-V("Exit"); 
-V("Exit_Deposits_Distributed"); 
-V("Exit_Defaulted_Loans");                     			
-V("Sector_Entry_Condition");                                
-V("Sector_Productive_Capacity_Exit");						
-V("Sector_Productive_Capacity_Entry");						
-V("Sector_Productive_Capacity_Available"); 
+V("Exit"); 													//sector variable
+V("Exit_Deposits_Distributed"); 							//sector variable
+V("Exit_Defaulted_Loans");    								//sector variable                 			
+V("Sector_Entry_Condition"); 								//sector variable                               
+V("Sector_Productive_Capacity_Exit");						//sector variable						
+V("Sector_Productive_Capacity_Entry");						//sector variable					
+V("Sector_Productive_Capacity_Available"); 					//sector variable
 
 /*****MACRO RESULTS*****/
 V("Total_Inventories");                             		//macro variable

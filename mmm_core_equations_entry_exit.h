@@ -118,7 +118,7 @@ In this variable a new firm enters if there is market space available and the en
 */
 
    v[1]=V("Sector_Entry_Condition");									//value of entry conditions
-   v[34]=VL("Sector_Productive_Capacity_Available",1);				//productive capacity available in the last period
+   v[34]=VL("Sector_Productive_Capacity_Available",1);					//productive capacity available in the last period
    v[6]=SUM("Firm_Market_Share");										//sum of firm's market share 
       if(v[1]>0&&v[6]<1)												//if entry conditions are met and there are market space 
       {
@@ -179,11 +179,11 @@ In this variable a new firm enters if there is market space available and the en
 			 
 			  
 			  v[50]=COUNTS(cur,"CAPITALS");
-			  CYCLE_SAFES(cur, cur1, "CAPITALS")								//CYCLE trough firm's capitals
+			  CYCLE_SAFES(cur, cur1, "CAPITALS")										//CYCLE trough firm's capitals
 				{
 					if(v[50]>1)
 						{
-						DELETE(cur1);												//delete the current capital
+						DELETE(cur1);													//delete the current capital
 						v[50]=v[50]-1;
 						}
 					else	
@@ -193,21 +193,21 @@ In this variable a new firm enters if there is market space available and the en
 			CYCLES(cur, cur1, "CAPITALS")
 			{
 			WRITES(cur1, "capital_good_productive_capacity",(1/v[35]));
-			WRITES(cur1, "capital_good_date_birth",t);					//write the new date of birth
-			WRITES(cur1, "capital_good_depreciation_period",(t+v[38])); //write the new date of birth
-			WRITES(cur1, "capital_good_to_replace",0);					//write current capital goods as not to replace
-			WRITES(cur1, "capital_good_productivity_initial",v[39]);	//write current capital initial productivity
-			WRITELS(cur1, "Capital_Good_Acumulated_Production",0,t);	//write current capital acumulated production as zero
+			WRITES(cur1, "capital_good_date_birth",t);									//write the new date of birth
+			WRITES(cur1, "capital_good_depreciation_period",(t+v[38])); 				//write the new date of birth
+			WRITES(cur1, "capital_good_to_replace",0);									//write current capital goods as not to replace
+			WRITES(cur1, "capital_good_productivity_initial",v[39]);					//write current capital initial productivity
+			WRITELS(cur1, "Capital_Good_Acumulated_Production",0,t);					//write current capital acumulated production as zero
 			}         
        }
        else
        v[4]=0;
    
-	v[60]=SUM("Firm_Market_Share");												//sum of firms market share 
-	CYCLE(cur, "FIRMS")															//cycle trough firms to normalize market shares
+	v[60]=SUM("Firm_Market_Share");														//sum of firms market share 
+	CYCLE(cur, "FIRMS")																	//cycle trough firms to normalize market shares
 	{
-	v[61]=VS(cur,"Firm_Market_Share");											//current firm's market share
-	WRITES(cur, "Firm_Market_Share", (v[61]/v[60]));							//divide firm's market share by the sum of market shares
+	v[61]=VS(cur,"Firm_Market_Share");													//current firm's market share
+	WRITES(cur, "Firm_Market_Share", (v[61]/v[60]));									//divide firm's market share by the sum of market shares
 	}
    
 RESULT(v[4])
