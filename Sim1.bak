@@ -115,12 +115,6 @@ Label Root
 			Param: sector_passthrough_inflation
 			Param: sector_passthrough_productivity
 			Param: sector_possible_entry
-			Var: Domestic_Capital_Demand
-			Var: Domestic_Consumption_Demand
-			Var: Domestic_Intermediate_Demand
-			Var: Effective_Orders_Capital_Firm
-			Var: Effective_Orders_Consumption_Firm
-			Var: Intermediate_Production
 			Var: Sector_Avg_Competitiveness
 			Var: Sector_Avg_Debt_Rate
 			Var: Sector_Avg_Markup
@@ -155,6 +149,10 @@ Label Root
 			Var: Sector_Unemployment
 			Var: Sector_Normalized_HHI
 			Param: sector_initial_price
+			Var: Sector_Capital_Demand
+			Var: Sector_Consumption_Demand
+			Var: Sector_Intermediate_Demand
+			Var: Sector_Quality_Growth
 
 		}
 
@@ -445,9 +443,9 @@ Param: initial_quality 0 n + n n	1
 Param: innovation_proportion 0 n + n n	0.5
 Param: input_tech_coefficient 0 n + n n	0.4
 Param: investment_period 0 n + n n	6
-Param: learning_adjustment 0 n + n n	0.2
-Param: market_share_expansion 0 n + n n	1
-Param: markup_period 0 n + n n	8
+Param: learning_adjustment 0 n + n n	0
+Param: market_share_expansion 0 n + n n	0
+Param: markup_period 0 n + n n	4
 Param: minimum_passthrough 0 n + n n	0.5
 Param: number_object_firms 0 n + n n	20
 Param: profits_distribution_rate 0 n + n n	0.9
@@ -525,21 +523,15 @@ Param: survival_period 0 n + n n	0
 Param: class_autonomous_consumption_adjustment 0 n + n n	1
 
 Object: SECTORS C	3
-Param: markup_apropriation 0 n + n n	0.5	0.5	0
+Param: markup_apropriation 0 n + n n	0	0	0
 Param: sector_initial_demand 0 n + n n	0	0	0
 Param: sector_exports_coefficient 0 n + n n	0	0	0
 Param: id_capital_goods_sector 0 n + n n	0	1	0
 Param: id_consumption_goods_sector 0 n + n n	1	0	0
 Param: id_intermediate_goods_sector 0 n + n n	0	0	1
-Param: sector_passthrough_inflation 0 s + n n	0.99	0.99	0.99
-Param: sector_passthrough_productivity 0 s + n n	0.99	0.99	0.99
+Param: sector_passthrough_inflation 0 s + n n	0.9	0.9	0.9
+Param: sector_passthrough_productivity 0 s + n n	1	1	1
 Param: sector_possible_entry 0 n + n n	0	0	0
-Var: Domestic_Capital_Demand 0 n + n n
-Var: Domestic_Consumption_Demand 0 n + n n
-Var: Domestic_Intermediate_Demand 0 n + n n
-Var: Effective_Orders_Capital_Firm 0 n + n n
-Var: Effective_Orders_Consumption_Firm 0 n + n n
-Var: Intermediate_Production 0 n + n n
 Var: Sector_Avg_Competitiveness 1 n + n n	1	1	1
 Var: Sector_Avg_Debt_Rate 0 s + n n
 Var: Sector_Avg_Markup 0 s + n n
@@ -574,6 +566,10 @@ Var: Sector_Turbulence 0 s + n n
 Var: Sector_Unemployment 0 s + n n
 Var: Sector_Normalized_HHI 0 n + n n
 Param: sector_initial_price 0 n + n n	0	0	0
+Var: Sector_Capital_Demand 0 n + n n
+Var: Sector_Consumption_Demand 0 n + n n
+Var: Sector_Intermediate_Demand 0 n + n n
+Var: Sector_Quality_Growth 0 n + n n
 
 Object: FIRMS C	1	1	1
 Param: capital_goods_effective_orders_firm_temporary 0 n + n n	0	0	0
@@ -714,12 +710,12 @@ Param: initial_taxes 0 n + n n	0
 
 Object: EXTERNAL_SECTOR C	1
 Param: exchange_rate_growth 0 n + n n	0
-Param: external_income_growth_adjustment 0 n + n n	1
+Param: external_income_growth_adjustment 0 n + n n	0
 Var: Exchange_Rate 1 n + n n	1
 Var: External_Income 1 s + n n	100
 Param: International_Reserves 1 n + n n	10000
 Var: Trade_Balance 0 s + n n
-Param: external_income_fixed_growth 0 n + n n	0.01
+Param: external_income_fixed_growth 0 n + n n	0.001
 
 Object: ANALYSIS C	1
 Var: C 0 s + n n
@@ -787,7 +783,7 @@ Var: KGDP 0 s + n n
 Var: KL 0 s + n n
 Var: NXGDP 0 s + n n
 Var: PCU 0 s + n n
-Var: PR 0 n + n n
+Var: PR 0 s + n n
 
 SIM_NUM 1
 SEED 1
@@ -840,7 +836,7 @@ END_DESCRIPTION
 Parameter_capital_output_ratio
 Capital/good relation for every sector related to a specific capital good sector
 _INIT_
-All 1 instances equal to 2.
+All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_crisis_threshold
@@ -1459,7 +1455,7 @@ END_DESCRIPTION
 Parameter_markup_apropriation
 (no description available)
 _INIT_
-All 50 instances equal to 0.5.
+All 3 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_sector_initial_demand
@@ -1495,55 +1491,19 @@ END_DESCRIPTION
 Parameter_sector_passthrough_inflation
 (no description available)
 _INIT_
-All 1 instances equal to 1.
+All 3 instances equal to 0.9.
 END_DESCRIPTION
 
 Parameter_sector_passthrough_productivity
 (no description available)
 _INIT_
-
+All 3 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_sector_possible_entry
 (no description available)
 _INIT_
 All 3 instances equal to 0.
-END_DESCRIPTION
-
-Variable_Domestic_Capital_Demand
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Domestic_Consumption_Demand
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Domestic_Intermediate_Demand
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Effective_Orders_Capital_Firm
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Effective_Orders_Consumption_Firm
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Intermediate_Production
-(no description available)
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Sector_Avg_Competitiveness
@@ -1750,6 +1710,31 @@ Parameter_sector_initial_price
 (no description available)
 _INIT_
 All 3 instances equal to 0.
+END_DESCRIPTION
+
+Variable_Sector_Capital_Demand
+Calls the Capital_Goods_Demand Function and calculates the demand of other sectors.
+
+
+END_DESCRIPTION
+
+Variable_Sector_Consumption_Demand
+Stores the value of the Demand Function if it is a consumption goods sector
+
+
+END_DESCRIPTION
+
+Variable_Sector_Intermediate_Demand
+This stores the value of the "Dom_Intermediate_Demand_Function" for each sector.
+
+
+END_DESCRIPTION
+
+Variable_Sector_Quality_Growth
+Sector Avg Quality Annual Growth
+Sector Avg Quality Annual Growth
+
+
 END_DESCRIPTION
 
 Object_FIRMS
@@ -2595,7 +2580,7 @@ END_DESCRIPTION
 Parameter_external_income_fixed_growth
 (no description available)
 _INIT_
-All 1 instances equal to 0.01.
+All 1 instances equal to 0.001.
 END_DESCRIPTION
 
 Object_ANALYSIS

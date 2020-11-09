@@ -265,7 +265,8 @@ CYCLE(cur, "SECTORS")
 				v[72]=VS(cur5, "id_capital_good_number");
 				v[73]=(-v[5]+v[71]+1)+(v[72]-1)*v[0];                                  			//calculates the capital good date of birth based on the firm number and the number of the capital good
 				WRITES(cur5, "capital_good_date_birth", v[73]);									//write the capital good date of birth
-				WRITES(cur5, "capital_good_depreciation_period", (v[73]+v[5]));
+//				WRITES(cur5, "capital_good_depreciation_period", (v[73]+v[5]));
+				WRITES(cur5, "capital_good_depreciation_period", 600);
 				}
 			}					
 }			

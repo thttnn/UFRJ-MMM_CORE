@@ -26,9 +26,8 @@ V("Sector_Avg_Price");                                      //sector variable
 V("Sector_Exports");                                   		//sector variable 
 
 /*****CAPITAL GOODS DEMAND*****/
-V("Firm_Demand_Capital_Goods");                             //firm variable
-V("Domestic_Capital_Demand");                          		//macro variable
-V("Effective_Orders_Capital_Firm");                    		//sector variable
+V("Firm_Demand_Capital_Goods");                             
+V("Sector_Capital_Demand");                          		                  		
 V("Firm_Effective_Orders_Capital_Goods");              		//firm variable
 
 /*****PLANNED PRODUCTION*****/
@@ -43,9 +42,7 @@ V("Firm_Market_Share");                                     //firm variable
 
 V("Firm_Required_Inputs");                                  //firm variable 
 V("Firm_Input_Demand_Next_Period");                         //firm variable
-V("Domestic_Intermediate_Demand");                     		//macro variable
-V("Intermediate_Production");                          		//macro variable
-V("Firm_Intermediate_Production");                     		//firm variable
+V("Sector_Intermediate_Demand");                      		//macro variable
 V("Firm_Effective_Production");                             //firm variable
 V("Capital_Good_Production");                           	//capital variable
 V("Capital_Good_Acumulated_Production");					//capital variable
@@ -58,9 +55,8 @@ V("Sector_Potential_Employment");					    	//sector variable
 V("Sector_Unemployment");									//sector variable
 
 /*****CONSUMPTION DEMAND*****/
-V("Domestic_Consumption_Demand");                      		//macro variable
-V("Sector_Effective_Orders");                          		//sector variable
-V("Effective_Orders_Consumption_Firm");                		//sector variable
+V("Sector_Consumption_Demand");                       		//macro variable
+V("Sector_Effective_Orders");                          		//sector variable               		//sector variable
 
 /*****EFFECTIVE ORDERS, SALES AND PROFITS*****/
 V("Firm_Effective_Orders");                                 //firm variable 

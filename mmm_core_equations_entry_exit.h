@@ -178,33 +178,27 @@ In this variable a new firm enters if there is market space available and the en
 				WRITELLS(cur,"Firm_Demand_Capital_Goods", 0, t, i);
 			 
 			  
-			  v[50]=COUNTS(cur, "CAPITALS");
+			  v[50]=COUNTS(cur,"CAPITALS");
 			  CYCLE_SAFES(cur, cur1, "CAPITALS")								//CYCLE trough firm's capitals
 				{
-				if(v[50]>1)
-					{
-					DELETE(cur1);												//delete the current capital
-					v[50]=v[50]-1;
-					}
+					if(v[50]>1)
+						{
+						DELETE(cur1);												//delete the current capital
+						v[50]=v[50]-1;
+						}
+					else	
+						v[50]=v[50];
 				}
-				cur1=SEARCHS(cur, "CAPITALS");	
-				WRITES(cur1, "capital_good_productive_capacity",0);
-				WRITES(cur1, "capital_good_depreciation_period",t+12); 
-				WRITES(cur1, "capital_good_productivity_initial",0);
-				WRITES(cur1, "capital_good_to_replace",1);
-				WRITELS(cur1, "Capital_Good_Acumulated_Production",0,1);
-			
-			for(i=0; i<=v[7]; i++)										//for the amount of new capital goods
-				{
-				cur2=ADDOBJS(cur,"CAPITALS");				
-				WRITES(cur2, "capital_good_productive_capacity",(1/v[35]));
-				WRITES(cur2, "capital_good_depreciation_period",(t+v[38])); 
-				WRITES(cur2, "capital_good_productivity_initial",v[39]);	//write current capital initial productivity
-				WRITES(cur2, "capital_good_date_birth",t);					//write the new date of birth
-				WRITES(cur2, "capital_good_to_replace",0);					//write current capital goods as not to replace
-				WRITES(cur2, "capital_good_to_depreciate",0);				//write current capital goods as not to replace
-				WRITELS(cur2, "Capital_Good_Acumulated_Production",0,t);	//write current capital acumulated production as zero
-				}           
+			cur2=ADDNOBJS(cur, "CAPITALS", v[7]);
+			CYCLES(cur, cur1, "CAPITALS")
+			{
+			WRITES(cur1, "capital_good_productive_capacity",(1/v[35]));
+			WRITES(cur1, "capital_good_date_birth",t);					//write the new date of birth
+			WRITES(cur1, "capital_good_depreciation_period",(t+v[38])); //write the new date of birth
+			WRITES(cur1, "capital_good_to_replace",0);					//write current capital goods as not to replace
+			WRITES(cur1, "capital_good_productivity_initial",v[39]);	//write current capital initial productivity
+			WRITELS(cur1, "Capital_Good_Acumulated_Production",0,t);	//write current capital acumulated production as zero
+			}         
        }
        else
        v[4]=0;

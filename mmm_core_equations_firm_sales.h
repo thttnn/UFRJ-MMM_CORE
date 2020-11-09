@@ -33,26 +33,6 @@ Firm's inventories variation in current nominal values
 RESULT(v[3])
 
 
-EQUATION("Firm_Effective_Orders")
-/*
-Firm Variable
-*/
-	v[0]=V("id_intermediate_goods_sector");
-	v[1]=V("id_consumption_goods_sector");
-	v[2]=V("id_capital_goods_sector");
-
-	if (v[0]==1)
-		v[3]=V("intermediate_effective_orders_firm_temporary");
-	if (v[1]==1)
-		v[3]=V("consumption_effective_orders_firm_temporary");
-	if (v[2]==1)
-		v[3]=V("Firm_Effective_Orders_Capital_Goods");
-
-	WRITE("intermediate_effective_orders_firm_temporary", 0);
-	WRITE("consumption_effective_orders_firm_temporary", 0);
-RESULT(v[3])
-
-
 EQUATION("Firm_Market_Share")
 /*
 Firm Variable
