@@ -433,7 +433,7 @@ Param: basic_percent_spread 0 n + n n	0.5
 Param: capital_output_ratio 0 n + n n	1.5
 Param: crisis_threshold 0 n + n n	0
 Param: depreciation_period 0 n + n n	60
-Param: desired_debt_rate 0 n + n n	1
+Param: desired_debt_rate 0 n + n n	0.5
 Param: desired_degree_capacity_utilization 0 n + n n	0.9
 Param: desired_financial_rate 0 n + n n	0.05
 Param: desired_inventories_proportion 0 n + n n	0.1
@@ -557,7 +557,7 @@ Var: Sector_Avg_Productivity 1 s + n n	0	0	0
 Var: Sector_Avg_Quality 5 s + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Avg_Wage 0 s + n n
 Var: Sector_Bargain_Power 0 n + n n
-Var: Sector_Demand_Met 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: Sector_Demand_Met 6 s + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Demand_Met_By_Imports 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Effective_Orders 8 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Sector_Effective_Production 0 s + n n
@@ -737,7 +737,7 @@ Var: Exchange_Rate 1 n + n n	1
 Var: External_Income 1 s + n n	100
 Param: International_Reserves 1 n + n n	10000
 Var: Trade_Balance 0 s + n n
-Param: external_income_fixed_growth 0 n + n n	0
+Param: external_income_fixed_growth 0 n + n n	0.01
 
 Object: ANALYSIS C	1
 Var: C 0 s + n n
@@ -876,7 +876,7 @@ END_DESCRIPTION
 Parameter_desired_debt_rate
 (no description available)
 _INIT_
-All 1 instances equal to 1.
+All 1 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_desired_degree_capacity_utilization
@@ -2681,7 +2681,7 @@ END_DESCRIPTION
 Parameter_external_income_fixed_growth
 (no description available)
 _INIT_
-All 1 instances equal to 0.
+All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Object_ANALYSIS
