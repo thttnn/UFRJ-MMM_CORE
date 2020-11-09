@@ -74,8 +74,8 @@ v[39]=v[35]+v[35]*v[38];																		//sector effective direct and indirect
 v[40]=v[37]+v[37]*v[38];																		//sector effective direct and indirect capital exports propensity
 
 //Begin Aggregate Calculations
-v[41]=v[6]/(1-v[39]-(v[39]*v[40])/(1-v[40]));					//consumption sector initial demand
-v[42]=(v[41]*v[40])/(1-v[40]);													//capital sector initial demand
+v[41]=v[6]/(1-v[39]-(v[39]*v[40])/(1-v[40]));													//consumption sector initial demand
+v[42]=(v[41]*v[40])/(1-v[40]);																	//capital sector initial demand
 v[43]=v[41]*v[38]+v[42]*v[38];																	//intermediate sector initial demand
 
 v[44]=v[33]*(v[41]+v[42]+v[43]);							 									//total taxes

@@ -3,27 +3,25 @@
 
 EQUATION("Total_Domestic_Intermediate_Demand")
 /*
-Calculates the domestic demand for inputs.
-Must be called by the sectors.
+Calculates the domestic demand for inputs, cycling trough firms and sectors.
 */
-		v[2]=0;                                                      		//initializes the value for thr CYCLE
+		v[0]=0;                                                      		//initializes the value for thr CYCLE
 		CYCLE(cur, "SECTORS")                                        		//CYCLE trought all sectors
 		{
-			v[3]=0;                                                    		//initializes the value for the CYCLE
+			v[1]=0;                                                    		//initializes the value for the CYCLE
 			CYCLES(cur, cur1, "FIRMS")                                 		//CYCLE trought all firms inside the sectors
 			{    
-				v[4]=VS(cur1, "Firm_Input_Demand_Next_Period");             //gives the demand for imputs of each firm
-				v[3]=v[3]+v[4];                                          	//sums up the demand for imputs of all firms
+				v[2]=VS(cur1, "Firm_Input_Demand_Next_Period");             //gives the demand for imputs of each firm
+				v[1]=v[1]+v[2];                                          	//sums up the demand for imputs of all firms
 			} 
-		v[2]=v[2]+v[3];                                              		//sums up the demand for imputs of all setors
+		v[0]=v[0]+v[1];                                              		//sums up the demand for imputs of all setors
 		}
-RESULT(v[2])
+RESULT(v[0])
 
 
 EQUATION("Total_Domestic_Consumption_Demand")
 /*
-Calculates the domestic demand for consumption goods.
-Must be called by the sector.
+Calculates the domestic demand for consumption goods, summing up the consumption of each class.
 */
 	v[0]=0;                                                 		//initializes the CYCLE
 	CYCLE(cur, "CLASSES")                                   		//CYCLE trought all income classes
@@ -36,21 +34,20 @@ RESULT(v[0])
 
 EQUATION("Total_Domestic_Capital_Goods_Demand")
 /*
-The demand for capital goods is calculated by summing up the demand for capital goods from all sectors with government spending on investment.
-Must be called by the sectors.
+The demand for capital goods is calculated by summing up the demand for capital goods from all firms and sectors.
 */
-	v[1]=0;                                                 	//initializes the CYCLE
-	CYCLE(cur, "SECTORS")                                   	//CYCLE trought the sectors
+	v[1]=0;                                                 			//initializes the CYCLE
+	CYCLE(cur, "SECTORS")                                   			//CYCLE trought the sectors
 	{	
-		v[2]=0;                                               	//initializes the second CYCLE
-		CYCLES(cur, cur1, "FIRMS")                            	//CYCLE trought the firms
+		v[2]=0;                                               			//initializes the second CYCLE
+		CYCLES(cur, cur1, "FIRMS")                            			//CYCLE trought the firms
 		{
-			v[3]=VS(cur1, "Firm_Demand_Capital_Goods");         //gives the demand for capital goods of each firm
-			v[10]=VLS(cur1, "Firm_Demand_Capital_Goods_Expansion", 1);
-			v[11]=VLS(cur1, "Firm_Demand_Capital_Goods_Replacement", 1);
-			v[2]=v[2]+v[10]+v[11];                                     //sums up all capital goods demand
+			v[3]=VS(cur1, "Firm_Demand_Capital_Goods");         		//gives the demand for capital goods of each firm
+			v[4]=VLS(cur1, "Firm_Demand_Capital_Goods_Expansion", 1);	//firm's capital good demand for expantion investment
+			v[5]=VLS(cur1, "Firm_Demand_Capital_Goods_Replacement", 1); //firm's capital good demand for replacement investment
+			v[2]=v[2]+v[4]+v[5];                                    	//sums up all capital goods demand
 		}
-		v[1]=v[1]+v[2];                                       	//sums up all firm's capital goods demand
+		v[1]=v[1]+v[2];                                       			//sums up all firm's capital goods demand
 	}
 RESULT(v[1])
 
@@ -85,7 +82,7 @@ RESULT(v[0])
 
 EQUATION("Total_Profits")
 /*
-Total Surplus of the Economy. Is the sum of all firms net profits. Will be used to calculate GDP
+Total Profits of the Economy. Is the sum of all firms net profits. Will be used to calculate GDP
 */
 	v[0]=0;                                                    		//initializes the CYCLE
 	CYCLE(cur, "SECTORS")                                      		//CYCLE trought all sectors
@@ -103,7 +100,7 @@ RESULT(v[0])
 
 EQUATION("Total_Wages")
 /*
-The total wage is calculated by the sum of the wages paid by the sectors with government wages. The wage per unit of production is a predetermined parameter, and the total salary is calculated by multiplying this unit wage by the actual production of each sector.
+The total wage is calculated by the sum of the wages paid by the sectors with government wages.
 */
 	v[0]=0;                                                    		//initializes the CYCLE
 	CYCLE(cur, "SECTORS")                                      		//CYCLE trought all sectors
@@ -116,7 +113,7 @@ The total wage is calculated by the sum of the wages paid by the sectors with go
 			v[4]=VS(cur1, "Firm_Avg_Productivity");            		//firm's productivity 
 			v[5]=VS(cur1, "Firm_RND_Expenses");                     //firm's rnd expeses, returned as salary to researchers
 			if (v[4]!=0)
-				v[1]=v[1]+v[3]*(v[2]/v[4])+v[5];                       	//sums up all firms' wage, determined by a unitary wage (sectorial wage divided by firm's productivity) multiplied by firm's effective production plus RND expenses
+				v[1]=v[1]+v[3]*(v[2]/v[4])+v[5];                    //sums up all firms' wage, determined by a unitary wage (sectorial wage divided by firm's productivity) multiplied by firm's effective production plus RND expenses
 			else
 				v[1]=v[1]+v[5];
 		}
@@ -144,7 +141,8 @@ Aggeregate Investment Expenses is calculated summing up the demand of capital go
 		}
 	v[0]=v[0]+v[1];
 	}
-RESULT(v[0])
+	v[5]=v[0]*v[4];
+RESULT(v[5])
 
 
 EQUATION("Profit_Share")
@@ -219,22 +217,22 @@ Annual Nominal GDP growth rate.
 
 	v[0]=V("annual_period");
 	v[1]=0;
-	for (v[2]=0; v[2]<=(v[0]-1); v[2]=v[2]+1)
+	for (i=0; i<=(v[0]-1); i++)
 		{
-		v[3]=VL("GDP", v[2]);
-		v[1]=v[1]+v[3];
+		v[2]=VL("GDP", i);
+		v[1]=v[1]+v[2];
 		}
-	v[4]=0;
-	for (v[5]=v[0]; v[5]<=(2*v[0]-1); v[5]=v[5]+1)
+	v[3]=0;
+	for (i=v[0]; i<=(2*v[0]-1); i++)
 		{
-		v[6]=VL("GDP", v[5]);
-		v[4]=v[4]+v[6];
+		v[4]=VL("GDP", i);
+		v[3]=v[3]+v[4];
 		}
-	if (v[4]!=0)
-		v[7]=(v[1]-v[4])/v[4];
+	if (v[3]!=0)
+		v[5]=(v[1]-v[3])/v[3];
 	else
-		v[7]=1;
-RESULT(v[7])
+		v[5]=1;
+RESULT(v[5])
 
 
 EQUATION("Annual_Real_Growth")
@@ -244,22 +242,22 @@ Annual Real GDP Growth rate.
 
 	v[0]=V("annual_period");
 	v[1]=0;
-	for (v[2]=0; v[2]<=(v[0]-1); v[2]=v[2]+1)
+	for (i=0; i<=(v[0]-1); i++)
 		{
-		v[3]=VL("Real_GDP", v[2]);
-		v[1]=v[1]+v[3];
+		v[2]=VL("Real_GDP", i);
+		v[1]=v[1]+v[2];
 		}
-	v[4]=0;
-	for (v[5]=v[0]; v[5]<=(2*v[0]-1); v[5]=v[5]+1)
+	v[3]=0;
+	for (i=v[0]; i<=(2*v[0]-1); i++)
 		{
-		v[6]=VL("Real_GDP", v[5]);
-		v[4]=v[4]+v[6];
+		v[4]=VL("Real_GDP", i);
+		v[3]=v[3]+v[4];
 		}
-	if (v[4]!=0)
-		v[7]=(v[1]-v[4])/v[4];
+	if (v[3]!=0)
+		v[5]=(v[1]-v[3])/v[3];
 	else
-	v[7]=1;
-RESULT(v[7])
+		v[5]=1;
+RESULT(v[5])
 
 
 EQUATION("Likelihood_Crisis")

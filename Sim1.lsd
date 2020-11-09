@@ -430,13 +430,13 @@ Object: MACRO C	1
 Param: annual_period 0 n + n n	4
 Param: bargain_power_adjustment 0 n + n n	0
 Param: basic_percent_spread 0 n + n n	0.5
-Param: capital_output_ratio 0 n + n n	1
+Param: capital_output_ratio 0 n + n n	1.5
 Param: crisis_threshold 0 n + n n	0
 Param: depreciation_period 0 n + n n	60
 Param: desired_debt_rate 0 n + n n	0.5
 Param: desired_degree_capacity_utilization 0 n + n n	0.9
 Param: desired_financial_rate 0 n + n n	0.05
-Param: desired_inventories_proportion 0 n + n n	0.05
+Param: desired_inventories_proportion 0 n + n n	0.1
 Param: elascitity_delay 0 n + n n	0.25
 Param: elasticity_price 0 n + n n	1
 Param: elasticity_quality 0 n + n n	0.5
@@ -445,7 +445,7 @@ Param: exports_elasticity_income 0 n + n n	1
 Param: exports_elasticity_price 0 n + n n	0.5
 Param: external_price_competitiveness 0 n + n n	1
 Param: external_price_growth 0 n + n n	0
-Param: indirect_tax_rate 0 n + n n	0.1
+Param: indirect_tax_rate 0 n + n n	0
 Param: initial_avg_price 0 n + n n	1
 Param: initial_external_price 0 n + n n	1
 Param: initial_markup 0 n + n n	1.5
@@ -524,23 +524,23 @@ Var: Wage_Share 0 s + n n
 Param: class_period 0 n + n n	4
 Param: government_period 0 n + n n	4
 Param: initial_wage 0 n + n n	1
-Param: propensity_to_consume_profits 0 n + n n	0.85
-Param: propensity_to_consume_wages 0 n + n n	0.95
+Param: propensity_to_consume_profits 0 n + n n	0.8
+Param: propensity_to_consume_wages 0 n + n n	0.9
 Var: Exit 0 n + n n
 Var: Exit_Defaulted_Loans 0 n + n n
 Var: Exit_Deposits_Distributed 0 n + n n
 Var: Exit_Productive_Capacity 0 n + n n
 Param: survival_period 0 n + n n	0
-Param: class_autonomous_consumption_adjustment 0 n + n n	1
+Param: class_autonomous_consumption_adjustment 0 n + n n	2
 Var: Total_Domestic_Capital_Goods_Demand 0 n + n n
 Var: Total_Domestic_Consumption_Demand 0 n + n n
 Var: Total_Domestic_Intermediate_Demand 0 n + n n
-Param: inital_population 0 n + n n	700
+Param: inital_population 0 n + n n	800
 Param: population_growth 0 n + n n	0.0001
 Param: population_std_dev 0 n + n n	0
 
 Object: SECTORS C	3
-Param: markup_apropriation 0 n + n n	0	0	0
+Param: markup_apropriation 0 n + n n	0.5	0.5	0.5
 Param: sector_initial_demand 0 n + n n	0	0	0
 Param: sector_exports_coefficient 0 n + n n	0	0	0
 Param: id_capital_goods_sector 0 n + n n	0	1	0
@@ -687,11 +687,11 @@ Param: capital_good_to_depreciate 0 n + n n	0	0	0
 Object: CLASSES C	2
 Param: class_direct_tax 0 n + n n	0	0
 Param: class_interest_payment_share 0 n + n n	1	0
-Param: class_max_debt_ratio 0 n + n n	0.7	0.7
-Param: class_profit_share 0 n + n n	1	0
-Param: class_propensity_to_consume 0 n + n n	0.85	1
-Param: class_propensity_to_import 0 n + n n	0.1	0
-Param: class_wage_share 0 n + n n	0	1
+Param: class_max_debt_ratio 0 n + n n	1	1
+Param: class_profit_share 0 n + n n	0.9	0.1
+Param: class_propensity_to_consume 0 n + n n	0.8	0.9
+Param: class_propensity_to_import 0 n + n n	0.1	0.1
+Param: class_wage_share 0 n + n n	0.1	0.9
 Var: Class_Autonomous_Consumption 1 s + n n	5	4
 Var: Class_Debt 1 s + n n	0	0
 Var: Class_Debt_Payment 1 n + n n	0	0
@@ -713,7 +713,7 @@ Param: government_expectations 0 n + n n	0.3
 Param: government_surplus_rate_target 0 n + n n	0
 Param: inflation_sensitivity 0 n + n n	0
 Param: inflation_target 0 n + n n	0
-Param: interest_rate 0 n + n n	0
+Param: interest_rate 0 n + n n	0.01
 Param: interest_rate_adjustment 0 n + n n	0
 Param: unemployment_sensitivity 0 n + n n	0
 Param: unemployment_target 0 n + n n	0
@@ -737,7 +737,7 @@ Var: Exchange_Rate 1 n + n n	1
 Var: External_Income 1 s + n n	100
 Param: International_Reserves 1 n + n n	10000
 Var: Trade_Balance 0 s + n n
-Param: external_income_fixed_growth 0 n + n n	0.001
+Param: external_income_fixed_growth 0 n + n n	0
 
 Object: ANALYSIS C	1
 Var: C 0 s + n n
@@ -858,7 +858,7 @@ END_DESCRIPTION
 Parameter_capital_output_ratio
 Capital/good relation for every sector related to a specific capital good sector
 _INIT_
-All 1 instances equal to 1.
+All 1 instances equal to 1.5.
 END_DESCRIPTION
 
 Parameter_crisis_threshold
@@ -948,7 +948,7 @@ END_DESCRIPTION
 Parameter_indirect_tax_rate
 (no description available)
 _INIT_
-All 4 instances equal to 0.
+All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_initial_avg_price
@@ -966,7 +966,7 @@ END_DESCRIPTION
 Parameter_initial_markup
 (no description available)
 _INIT_
-
+All 1 instances equal to 1.5.
 END_DESCRIPTION
 
 Parameter_initial_productivity
@@ -1026,7 +1026,7 @@ END_DESCRIPTION
 Parameter_number_object_firms
 (no description available)
 _INIT_
-All 4 instances equal to 0.
+All 1 instances equal to 20.
 END_DESCRIPTION
 
 Parameter_profits_distribution_rate
@@ -1056,7 +1056,7 @@ END_DESCRIPTION
 Parameter_tech_opportunity
 (no description available)
 _INIT_
-
+All 1 instances equal to 0.001.
 END_DESCRIPTION
 
 Function_Capital_Goods_Demand_Function
@@ -1465,7 +1465,7 @@ END_DESCRIPTION
 Parameter_class_autonomous_consumption_adjustment
 (no description available)
 _INIT_
-All 1 instances equal to 0.1.
+All 1 instances equal to 2.
 END_DESCRIPTION
 
 Variable_Total_Domestic_Capital_Goods_Demand
@@ -1498,7 +1498,7 @@ END_DESCRIPTION
 Parameter_inital_population
 (no description available)
 _INIT_
-All 1 instances equal to 700.
+All 1 instances equal to 800.
 END_DESCRIPTION
 
 Parameter_population_growth
@@ -1522,7 +1522,7 @@ END_DESCRIPTION
 Parameter_markup_apropriation
 (no description available)
 _INIT_
-All 3 instances equal to 0.
+All 3 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_sector_initial_demand
@@ -2381,7 +2381,7 @@ END_DESCRIPTION
 Parameter_class_direct_tax
 (no description available)
 _INIT_
-All 4 instances equal to 0.
+All 2 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_class_interest_payment_share
@@ -2393,7 +2393,7 @@ END_DESCRIPTION
 Parameter_class_max_debt_ratio
 (no description available)
 _INIT_
-
+All 2 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_class_profit_share
@@ -2543,7 +2543,7 @@ END_DESCRIPTION
 Parameter_interest_rate
 (no description available)
 _INIT_
-All 1 instances equal to 0.04.
+All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Parameter_interest_rate_adjustment
@@ -2681,7 +2681,7 @@ END_DESCRIPTION
 Parameter_external_income_fixed_growth
 (no description available)
 _INIT_
-All 1 instances equal to 0.001.
+All 1 instances equal to 0.
 END_DESCRIPTION
 
 Object_ANALYSIS
