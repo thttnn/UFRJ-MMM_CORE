@@ -180,7 +180,7 @@ CYCLE(cur, "SECTORS")
 		WRITELLS(cur, "Sector_Max_Quality", v[10], 0,  1);
 		WRITELLS(cur, "Sector_Inventories", (v[60]*v[17]), 0, 1);                  				//Firms operate with desired level of inventories, thus, Current stock of inventories is the desired level times effective production
 		WRITELLS(cur, "Sector_Productive_Capacity", ((v[60]*(1+v[17]))/v[18]), 0, 1);			//All firms start operating at desired degree of utilization, thus, productive capacity is endogenous calculated based on effective production and desired degree
-		WRITELLS(cur, "Sector_Exports", (v[49]/3), 0, 1);										//Total exports are divided equally among sectors.
+		WRITELLS(cur, "Sector_Exports", (v[49]/3)/v[19], 0, 1);										//Total exports are divided equally among sectors.
 		v[75]=((v[49]/3)/(pow(v[50], v[16])));													//calculate sector exports coefficient
 		WRITES(cur, "sector_exports_coefficient", v[75]);										//write the exports coefficient, assuming external price and foreign price starts as 1, so the exchange rate
 	

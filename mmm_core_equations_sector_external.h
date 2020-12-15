@@ -32,7 +32,8 @@ Real exports are defined for each sector based on the application of an export c
 	v[5]=V("exports_elasticity_price");						//sector specific price elasticity
 	v[6]=V("Exchange_Rate");								//current exchange rate
 	v[7]=v[1]*pow((v[3]*v[6])/v[2],v[5])*pow(v[0],v[4]);	//sector exports will depend on the relative prices and external income, given the elasticities
-RESULT(v[7])
+	v[8]=v[7]/v[2];
+RESULT(v[8])
 
 
 EQUATION("Sector_Extra_Imports")
