@@ -6,22 +6,29 @@ Sum up the firm's productive capacity that was depreciated in each time step, no
 */
 	v[0]=0;																				//initializes the CYCLE on Capital. Will count the productiv capacity to depreciate
 	v[1]=V("depreciation_period");
-	CYCLE(cur1, "CAPITALS")
+	v[4]=COUNT("CAPITALS");
+	CYCLE_SAFE(cur1, "CAPITALS")
 	{
 		v[2]=VS(cur1, "capital_good_date_birth");										//capital good date of birth	
 		v[3]=VS(cur1, "capital_good_productive_capacity");								//capital good's prductive capacity
 		v[5]=VS(cur1, "capital_good_depreciation_period");
-		if((double)t>=v[5])														//if the current time step is higher than the date of birth of the capital good plus the depreciation period, this capital good must be depreciated
+		if((double)t>=v[5]&&v[4]>1)														//if the current time step is higher than the date of birth of the capital good plus the depreciation period, this capital good must be depreciated
 			{
 			v[0]=v[0]+v[3];																//sum up the capital good productive capacity to the total productive capacity to be depreciated
-			WRITES(cur1, "capital_good_to_depreciate", 1);
-			WRITES(cur1, "capital_good_productive_capacity", 0);
-			WRITES(cur1, "Capital_Good_Acumulated_Production", 0);
-			WRITES(cur1, "Capital_Good_Productivity", 0);
+			DELETE(cur1);																//delete the capital good
+			v[4]=v[4]-1;
 			}
 		else																			//if the current time step is not higher than the date of birth of the capital good plus the depreciation period, this capital good must remain
-			v[0]=v[0];																	//do not sum the capital good productive capacity to the total to be depreiated
-	}                                                                    
+			{
+			if((double)t>=v[5]&&v[4]<=1)
+				{
+				WRITES(cur1, "capital_good_productive_capacity", 0);
+				WRITES(cur1, "Capital_Good_Productivity", 0);
+				}
+			else
+				v[0]=v[0];																//do not sum the capital good productive capacity to the total to be depreiated
+			}																			//do not sum the capital good productive capacity to the total to be depreiated
+	}                                                                          
 RESULT(v[0])
 
 
@@ -34,19 +41,37 @@ Depends on the demand for productive capacity in the last investment period. Thi
 		{
 		v[1]=V("investment_period");													//investment period
 		cur=SEARCH_CNDS(root, "id_capital_goods_sector", 1);							//search the capital goods sector
-		v[2]=0;
-		for (v[3]=0; v[3]<=(v[1]-1); v[3]=v[3]+1)										//for the current production period until the last investment period -1
+		v[6]=v[7]=0;
+		for (i=1; i<=v[1]; i++)															//for the current production period until the last investment period -1
 			{
-			v[4]=VLS(cur, "Sector_Demand_Met", v[3]);									//computates the demand met by the sector in the current lag
-			v[5]=VLS(cur, "Sector_Demand_Met_By_Imports", v[3]);						//computates the demand met by imports in the current lag
-			v[6]=VL("Firm_Demand_Capital_Goods", v[3]);
-			v[7]=v[6]*(v[4]+(1-v[4])*v[5]);
-			v[2]=v[2]+v[7];
-			}	
+			v[4]=VLS(cur, "Sector_Demand_Met", i);										//computates the demand met by the sector in the current lag
+			v[5]=VLS(cur, "Sector_Demand_Met_By_Imports", i);							//computates the demand met by imports in the current lag
+			v[6]=v[6]+v[4];
+			v[7]=v[7]+v[5];
+			}
+		v[8]=v[6]/v[1];																	//average demand met
+		v[9]=v[7]/v[1];																	//average demand met by imports
+		
+		v[10]=VL("Firm_Demand_Capital_Goods_Expansion", v[1]);
+		v[11]=VL("Firm_Demand_Capital_Goods_Replacement", v[1]);
+			
+		v[12]=v[10]*(v[6]+(1-v[6])*v[7]);
+		v[13]=v[11]*(v[6]+(1-v[6])*v[7]);
+		v[14]=v[12]+v[13];
 		}
 	else
-		v[2]=0;
-RESULT(v[2])
+		{
+		v[12]=0;
+		v[13]=0;
+		v[14]=0;
+		}
+	WRITE("Firm_Effective_Capital_Goods_Expansion", v[12]);
+	WRITE("Firm_Effective_Capital_Goods_Replacement", v[13]);
+RESULT(v[14])
+
+EQUATION_DUMMY("Firm_Effective_Capital_Goods_Expansion", "Firm_Effective_Productive_Capacity_Variation")
+
+EQUATION_DUMMY("Firm_Effective_Capital_Goods_Replacement", "Firm_Effective_Productive_Capacity_Variation")
 
 
 EQUATION("Firm_Productive_Capacity")
@@ -55,40 +80,49 @@ In this variable, the firm receive the new capital goods ordered in the last inv
 */
 	v[0]=V("investment_period");												//investment period
 	v[1]=VL("Firm_Frontier_Productivity",v[0]);									//available technology when the capital good was ordered
-	v[2]=V("depreciation_period");
-	v[3]=V("Firm_Effective_Productive_Capacity_Variation");						//effective productive capacity variation
-	v[4]=V("capital_output_ratio");												//capital output ratio
-	v[5]=v[3]*v[4];																//amount of Capital Goods bought
+	v[2]=VL("Firm_Demand_Capital_Goods_Expansion",v[0]);	
+	v[3]=VL("Firm_Demand_Capital_Goods_Replacement",v[0]);	
+	v[4]=v[2]+v[3];	
+	v[5]=V("capital_output_ratio");												//amount of Capital Goods bought
 	v[6]=COUNT("CAPITALS");
-	v[7]=V("Firm_Investment_Period");											
-	if(v[7]==1 && v[3]>0)														//if it is investment period for the firm
-		{																		
-		for(i=0; i<=v[3]; i++)													//for the amount of new capital goods bought
+	v[7]=V("Firm_Investment_Period");											//if it is investment period for the firm
+	v[8]=V("depreciation_period");
+	v[9]=VL("Price_Capital_Goods",v[0]);
+	if(v[7]==1 && v[2]>0)
+		{
+		for(i=0; i<=v[2]; i++)													//for the amount of new capital goods bought
 			{
 			cur=ADDOBJ("CAPITALS");												//create new capital objects
 			WRITES(cur, "capital_good_productivity_initial", v[1]);				//writes the new capital productivity as the frontier productivity when it was ordered
-			WRITES(cur, "capital_good_productive_capacity", (1/v[4]));			//writes the productive capacity as the inverse of current capital output ratio of the sector
-			WRITES(cur, "capital_good_date_birth", (double)t);					//writes the new capital date of birth as the current time period
+			WRITES(cur, "capital_good_productive_capacity", (1/v[5]));			//writes the productive capacity as the inverse of current capital output ratio of the sector
+			WRITES(cur, "capital_good_date_birth", t);							//writes the new capital date of birth as the current time period
 			WRITES(cur, "capital_good_to_replace", 0);							//writes the parameter that identifies the capital goods to be replaced as zero
-			WRITES(cur, "capital_good_to_depreciate", 0);						//writes the parameter that identifies if the current capital good must be depreciated or not
-			WRITES(cur, "capital_good_depreciation_period", (t+v[2]));          //writes the time period the capital good will depreciate
+			WRITES(cur, "capital_good_depreciation_period", (t+v[8]));
 			WRITELS(cur, "Capital_Good_Acumulated_Production", 0, 1);			//writes the past acumulated production of the current new capital as zero
-			}
-			
-		CYCLE_SAFE(cur, "CAPITALS")												//CYCLE trought Capital for modernization															
-			{
-			v[11]=VS(cur, "capital_good_to_replace");							//parameter that identifies if the current capital good must be replaced or not
-			v[12]=VS(cur, "capital_good_to_depreciate");						//parameter that identifies if the current capital good must be depreciated or not
-			if (v[11]==1||v[12]==1)																																		//if the current capital good must be replaced (this in fact does not create new objects, it simply rewrites the current capital object with the values of a new one
-			DELETE(cur);
-			}					
+			v[6]=v[6]+1;
+			}																																		//end the CYCLE for modernization
 		}
 		
-	v[14]=COUNT("CAPITALS");														//count the number of capital goods
-	if (v[14]!=0)																																					//if it is not zero
-		v[15] = SUM("capital_good_productive_capacity");						//sum uo their productive capacity
+	if(v[7]==1&&v[3]>0)
+		{
+		SORT("CAPITALS","Capital_Good_Productivity","UP");
+		CYCLE(cur, "CAPITALS")																																					// CYCLE trought capital goods
+   			{
+     		v[10]=VS(cur, "capital_good_to_replace");
+     		if(v[10]==1)
+     			{
+     			WRITES(cur, "capital_good_productivity_initial", v[1]);				//writes the new capital productivity as the frontier productivity when it was ordered
+				WRITES(cur, "capital_good_date_birth", t);							//writes the new capital date of birth as the current time period
+				WRITES(cur, "capital_good_to_replace", 0);							//writes the parameter that identifies the capital goods to be replaced as zero
+				WRITES(cur, "capital_good_depreciation_period", (t+v[8]));
+				WRITELS(cur, "Capital_Good_Acumulated_Production", 0, 1);			//writes the past acumulated production of the current new capital as zero
+     			}																																							// do not sum replacement cost
+  			}
+  		}										
+	if (v[6]!=0)																																					//if it is not zero
+		v[15] = SUM("capital_good_productive_capacity");							//sum uo their productive capacity
 	else																																							//if its zero
-		v[15]=0;																																				//firm's productive capacity will be zero
+		v[15]=0;																																	//firm's productive capacity will be zero
 RESULT(v[15])
 
 

@@ -36,7 +36,7 @@ The sectors update their productive capacity from year to year, time it takes fo
 	v[8]=v[5]/v[0];											//average firm's effective orders of the investment period prior to the last
 		
 	v[9]=V("expectations");                                	//expectations parameter
-	if (v[8]!=0 && v[4]!=0)                                    		//if the average effective orders of the six periods prior to the last six is not zero
+	if (v[8]!=0 && v[4]!=0)                                 //if the average effective orders of the six periods prior to the last six is not zero
 		{
 		v[10]=v[4]*(1+2*v[9]*((v[4]-v[8])/v[8]));     		//expected orders for the next six periods will be the average effective orders of the last six periods multiplied by the growth rate between the averages and the double of the expectation parameter
 		v[11]=max(0,v[10]);                           		//expected orders for the next six periods can never be negative
@@ -73,7 +73,7 @@ Nominal value of desired new capital goods.
 		
    		v[2]=V("desired_inventories_proportion");																										
    		v[3]=V("desired_degree_capacity_utilization");
-		v[4]=((v[0]*(1+v[2]))/v[3])- v[1] + v[10];							//desired productive capacity will be the amount needed based on expected sales minus existing plus what will depreciate in the next investment period
+		v[4]=((v[0]*(1+v[2]))/v[3])- v[1] + v[10];					//desired productive capacity will be the amount needed based on expected sales minus existing plus what will depreciate in the next investment period
    		v[5]=max(0,v[4]);											//cannot be negative
    		
 		v[6]=V("Price_Capital_Goods");								//price of capital goods
@@ -206,6 +206,27 @@ Available funds after replacement investment will be the available funds for rep
 RESULT(v[3])
 
 
+
+EQUATION("Firm_Demand_Capital_Goods_Expansion")
+/*
+Number of capital goods demanded to expand productive capacity 
+*/
+	v[0]=V("Firm_Effective_Expansion_Investment_Expenses");
+	v[1]=V("Price_Capital_Goods");
+	v[2]=v[0]/v[1];
+RESULT(v[2])
+
+
+EQUATION("Firm_Demand_Capital_Goods_Replacement")
+/*
+Number of capital goods demanded to modernie productive capacity 
+*/
+	v[1]=V("Firm_Demand_Productive_Capacity_Replacement");
+	v[2]=V("capital_output_ratio");
+	v[3]=v[1]*v[2];
+RESULT(v[3])
+
+
 EQUATION("Firm_Demand_Capital_Goods")
 /*
 The demand for capital goods in each period will be determined by the sum of 1/6 of the variation of the productive capacity with modernization
@@ -214,14 +235,14 @@ The demand for capital goods in each period will be determined by the sum of 1/6
 	v[4]=0;																					//initializes the sum
 	for (v[1]=1; v[1]<=v[0]; v[1]=v[1]+1)													//from the last production period until the last investment period
 		{
-		v[2]=VL("Firm_Demand_Productive_Capacity_Replacement", v[1]);						//computates desired productive capacity to replace of the current lag
-		v[3]=VL("Firm_Demand_Productive_Capacity_Expansion", v[1]);							//computates desired productive capacity to expand of the current lag
+		v[2]=VL("Firm_Demand_Capital_Goods_Expansion", v[1]);								//computates desired productive capacity to replace of the current lag
+		v[3]=VL("Firm_Demand_Capital_Goods_Replacement", v[1]);								//computates desired productive capacity to expand of the current lag
 		v[4]=v[4]+v[2]+v[3];																//sum up firm's lagged  desired productive capacity to replace plus productive capacity to expand
 		}
 	v[5]=v[4]/v[0];																			//divides the total amount of demand by the invesmet period. This is because capital goods take a whole investment period to be produced. This distributed the demand for the capital goods firms equally during the investment period. It does not mean that each firm demands 1/6 of capital each period, it's just to distribute the production															
 	v[6]=V("capital_output_ratio");															//capital outrput ratio
 	v[7]=v[5]*v[6];																			//number of capital goods to be demanded (produced) in each production period inside the investment period
-RESULT(v[7])
+RESULT(v[5])
 
 
 EQUATION("Firm_Modernization_Rate")
