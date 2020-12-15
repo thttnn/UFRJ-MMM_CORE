@@ -74,8 +74,8 @@ v[39]=v[35]+v[35]*v[38];																		//sector effective direct and indirect
 v[40]=v[37]+v[37]*v[38];																		//sector effective direct and indirect capital exports propensity
 
 //Begin Aggregate Calculations
-v[41]=v[6]/(1-v[39]-(v[39]*v[40])/(1-v[40]));					//consumption sector initial demand
-v[42]=(v[41]*v[40])/(1-v[40]);													//capital sector initial demand
+v[41]=v[6]/(1-v[39]-(v[39]*v[40])/(1-v[40]));													//consumption sector initial demand
+v[42]=(v[41]*v[40])/(1-v[40]);																	//capital sector initial demand
 v[43]=v[41]*v[38]+v[42]*v[38];																	//intermediate sector initial demand
 
 v[44]=v[33]*(v[41]+v[42]+v[43]);							 									//total taxes
@@ -162,14 +162,14 @@ CYCLE(cur, "SECTORS")
 	v[62]=((v[61]*(1+v[17]))/v[18])*v[12];														//number of capital goods of each firm
 	v[63]=((v[19]/v[8])-v[11]*v[19])/v[7];                        								//sector initial wage
 	
-	for (v[106]=1 ; v[106]<=v[0] ; v[106]=v[106]+1)												//for (investment_period) lags 
+	for (i=1 ; i<=v[0] ; i++)																	//for (investment_period) lags 
 		{
-		WRITELLS(cur, "Sector_Demand_Met", 1, 0, v[106]); 										                            				//it is assumed that all demand is met initially. Equals 1 by definition
-		WRITELLS(cur, "Sector_Demand_Met_By_Imports", 1, 0, v[106]);                      		//it is assumed thatt all imports are met initially. Equals 1 by definition
-		WRITELLS(cur, "Sector_Effective_Orders", v[60], 0, v[107]);               				//Effective_Orders_Sectors equals demand_initial
+		WRITELLS(cur, "Sector_Demand_Met", 1, 0, i); 										    //it is assumed that all demand is met initially. Equals 1 by definition
+		WRITELLS(cur, "Sector_Demand_Met_By_Imports", 1, 0, i);                      			//it is assumed thatt all imports are met initially. Equals 1 by definition
+		WRITELLS(cur, "Sector_Effective_Orders", v[60], 0, i);               					//Effective_Orders_Sectors equals demand_initial
 		}		
-	for (v[108]=1 ; v[108]<=(v[2]+1) ; v[108]=v[108]+1)                        		 			//for (class_period+1) lags
-		WRITELLS(cur, "Sector_Avg_Quality", v[10], 0, v[108]);               					//Effective_Orders_Sectors equals demand_initial
+	for (i=1 ; i<=(v[2]+1) ; i++)                        		 								//for (class_period+1) lags
+		WRITELLS(cur, "Sector_Avg_Quality", v[10], 0, i);               						//Effective_Orders_Sectors equals demand_initial
 		WRITELLS(cur, "Sector_Productive_Capacity_Available", 0, 0, 1);                  		//it is assumed that there is no entry or exit initially. Equals 0 by definition
 		WRITELLS(cur, "Sector_Avg_Competitiveness", 1, 0, 1);                     				//if all firms are the same, equals 1 by definition
 		WRITELLS(cur, "Sector_Avg_Price", v[19], 0, 1);                                   		//Avg_Price equals avg_price initial
@@ -180,7 +180,7 @@ CYCLE(cur, "SECTORS")
 		WRITELLS(cur, "Sector_Max_Quality", v[10], 0,  1);
 		WRITELLS(cur, "Sector_Inventories", (v[60]*v[17]), 0, 1);                  				//Firms operate with desired level of inventories, thus, Current stock of inventories is the desired level times effective production
 		WRITELLS(cur, "Sector_Productive_Capacity", ((v[60]*(1+v[17]))/v[18]), 0, 1);			//All firms start operating at desired degree of utilization, thus, productive capacity is endogenous calculated based on effective production and desired degree
-		WRITELLS(cur, "Sector_Exports", (v[49]/3), 0, 1);										//Total exports are divided equally among sectors.
+		WRITELLS(cur, "Sector_Exports", (v[49]/3)/v[19], 0, 1);										//Total exports are divided equally among sectors.
 		v[75]=((v[49]/3)/(pow(v[50], v[16])));													//calculate sector exports coefficient
 		WRITES(cur, "sector_exports_coefficient", v[75]);										//write the exports coefficient, assuming external price and foreign price starts as 1, so the exchange rate
 	
@@ -194,41 +194,41 @@ CYCLE(cur, "SECTORS")
 		WRITES(cur1, "firm_date_birth", 0);                                   					//zero by definition
 	
 		//Begin Writting Independent Firm Variables
-	for (v[109]=1 ; v[109]<=v[0] ; v[109]=v[109]+1)                                				//for (investment_period) lags
+	for (i=1 ; i<=v[0] ; i++)                                									//for (investment_period) lags
 	  	{
-	  	WRITELLS(cur1, "Firm_Demand_Productive_Capacity_Replacement", 0, 0, v[109]);			//no replacement initially
-	  	WRITELLS(cur1, "Firm_Debt_Rate", 0, 0, v[109]);											//no debt initially
-	  	WRITELLS(cur1, "Firm_Demand_Capital_Goods", 0, 0, v[109]);
-	  	WRITELLS(cur1, "Firm_Frontier_Productivity", v[7], 0, v[109]);                 			//frontier productivity will be the initial frontier productivity
-	  	WRITELLS(cur1, "Firm_Max_Productivity", v[7], 0, v[109]);        						//max capital goods productivity will be the initial frontier productivity that will be the same for all capital goods
-	  	WRITELLS(cur1, "Firm_Avg_Productivity", v[7], 0, v[109]);								//firm's avg productivity will be the initial frontier productivity since all capital goods have the same productivity
+	  	WRITELLS(cur1, "Firm_Demand_Productive_Capacity_Replacement", 0, 0, i);					//no replacement initially
+	  	WRITELLS(cur1, "Firm_Debt_Rate", 0, 0, i);												//no debt initially
+	  	WRITELLS(cur1, "Firm_Demand_Capital_Goods", 0, 0, i);
+	  	WRITELLS(cur1, "Firm_Frontier_Productivity", v[7], 0, i);                 				//frontier productivity will be the initial frontier productivity
+	  	WRITELLS(cur1, "Firm_Max_Productivity", v[7], 0, i);        							//max capital goods productivity will be the initial frontier productivity that will be the same for all capital goods
+	  	WRITELLS(cur1, "Firm_Avg_Productivity", v[7], 0, i);									//firm's avg productivity will be the initial frontier productivity since all capital goods have the same productivity
 		}
-	for(v[110]=1; v[110]<=(v[0]+1); v[110]=v[110]+1)										 	//for (investment period+1) lags (7)
+	for(i=1; i<=(v[0]+1); i++)										 							//for (investment period+1) lags (7)
 		{
-		WRITELLS(cur1, "Firm_Productive_Capacity_Depreciation", 0, 0, v[110]);  				//write 0 
-		WRITELLS(cur1, "Firm_Demand_Productive_Capacity_Expansion", 0, 0, v[110]);     			//write 0 
+		WRITELLS(cur1, "Firm_Productive_Capacity_Depreciation", 0, 0, i);  						//write 0 
+		WRITELLS(cur1, "Firm_Demand_Productive_Capacity_Expansion", 0, 0, i);     				//write 0 
 		}
-	for (v[111]=1 ; v[111]<=(2*v[0]) ; v[111]=v[111]+1)											//for (2*investment period+1) lags
-	  	WRITELLS(cur1, "Firm_Effective_Orders", v[61], 0, v[111]);                     			//firm's effective orders will be sector's effective orders (given by demand_initial) divided by the number of firms
-	for (v[112]=1 ; v[112]<=(v[1]-1) ; v[112]=v[112]+1)											//for (markup_period-1) lags
+	for (i=1 ; i<=(2*v[0]) ; i++)																//for (2*investment period+1) lags
+	  	WRITELLS(cur1, "Firm_Effective_Orders", v[61], 0, i);                     				//firm's effective orders will be sector's effective orders (given by demand_initial) divided by the number of firms
+	for (i=1 ; i<=(v[1]-1) ; i++)																//for (markup_period-1) lags
 		{
-		WRITELLS(cur1, "Firm_Market_Share", (1/v[6]), 0, v[112]);             					//firm's market share will be the inverse of the number of firms in the sector (initial market share)
-	  	WRITELLS(cur1, "Firm_Potential_Markup", v[8], 0, v[112]);                      			//potential markup will be the initial markup
+		WRITELLS(cur1, "Firm_Market_Share", (1/v[6]), 0, i);             						//firm's market share will be the inverse of the number of firms in the sector (initial market share)
+	  	WRITELLS(cur1, "Firm_Potential_Markup", v[8], 0, i);                      				//potential markup will be the initial markup
 		}
 		WRITELLS(cur1, "Firm_Effective_Market_Share", (1/v[6]), 0, 1);                    		//firm's effective market share will be the initial market share       
 	  	WRITELLS(cur1, "Firm_Desired_Market_Share", (1/v[6]), 0, 1);                  			//firm's desired market share will be twice the initial market share  
 	  	WRITELLS(cur1, "Firm_Avg_Market_Share", (1/v[6]), 0, 1);                     			//firm's avg market share will be the initial market share
-	  	WRITELLS(cur1, "Firm_Price", v[19], 0, 1);                                      			//firm's price will be the initial price of the sector, the same for all firms
+	  	WRITELLS(cur1, "Firm_Price", v[19], 0, 1);                                      		//firm's price will be the initial price of the sector, the same for all firms
 	  	WRITELLS(cur1, "Firm_Avg_Potential_Markup", v[8], 0, 1);								//avg potential markup will be the initial markup
 	  	WRITELLS(cur1, "Firm_Desired_Markup", v[8], 0, 1); 										//desired markup will be the initial markup
 	  	WRITELLS(cur1, "Firm_Sales", v[61], 0, 1);												//firm's sales will be equal to effective orders, no delivery delay
-	  	WRITELLS(cur1, "Firm_Revenue", (v[61]*v[19]), 0, 1);                            			//firm's revenue will be the firm's sales times firm price
+	  	WRITELLS(cur1, "Firm_Revenue", (v[61]*v[19]), 0, 1);                            		//firm's revenue will be the firm's sales times firm price
 	  	WRITELLS(cur1, "Firm_Stock_Inventories", (v[61]*v[17]), 0, 1);                        	//firm's inventories will be the sales times the desired inventories proportion (parameter)
 	  	WRITELLS(cur1, "Firm_Stock_Inputs", (v[11]*v[61]), 0, 1);                      			//firm's stock of imputs will be the sales times the input tech relationship
 	  	WRITELLS(cur1, "Firm_Productive_Capacity", ((v[61]*(1+v[17]))/v[18]), 0, 1);			//firm productive capacity will be the sales divided by the desired degree of capacity utlization (parameter)
-	  	WRITELLS(cur1, "Firm_Capital", (v[62]*v[19]), 0, 1);										//firm nominal capital equals number of capital if capital goods price equals 1
+	  	WRITELLS(cur1, "Firm_Capital", (v[62]*v[19]), 0, 1);									//firm nominal capital equals number of capital if capital goods price equals 1
 	  	WRITELLS(cur1, "Firm_Wage", v[9], 0, 1); 												//firm's nominal wage equals sector nominal wage initial
-		WRITELLS(cur1, "Firm_Variable_Cost", ((v[9]/v[7])+v[11]*v[19]), 0, 1);							//firm variable cost equals unitary wage plus unitary cost of inputs. The last equals the tech coefficient if input price equals 1
+		WRITELLS(cur1, "Firm_Variable_Cost", ((v[9]/v[7])+v[11]*v[19]), 0, 1);					//firm variable cost equals unitary wage plus unitary cost of inputs. The last equals the tech coefficient if input price equals 1
 		WRITELLS(cur1, "Firm_Competitiveness", 1, 0, 1);                           				//if all firms are the same
 	  	WRITELLS(cur1, "Firm_Delivery_Delay", 1, 0, 1);                           		  		//it is assumed that all demand is met initially, so equals 1 by definition
 		WRITELLS(cur1, "Firm_Stock_Financial_Assets", 0, 0, 1);									//no financial assets initially
@@ -264,8 +264,9 @@ CYCLE(cur, "SECTORS")
 				{
 				v[72]=VS(cur5, "id_capital_good_number");
 				v[73]=(-v[5]+v[71]+1)+(v[72]-1)*v[0];                                  			//calculates the capital good date of birth based on the firm number and the number of the capital good
-				WRITES(cur5, "capital_good_date_birth", v[73]);									//write the capital good date of birth
-				WRITES(cur5, "capital_good_depreciation_period", (v[73]+v[5]));
+				WRITES(cur5, "capital_good_date_birth", 0);									//write the capital good date of birth
+//				WRITES(cur5, "capital_good_depreciation_period", (v[73]+v[5]));
+				WRITES(cur5, "capital_good_depreciation_period", 600);
 				}
 			}					
 }			

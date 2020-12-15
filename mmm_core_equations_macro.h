@@ -1,6 +1,57 @@
 /*****MACRO VARIABLES******/
 
 
+EQUATION("Total_Domestic_Intermediate_Demand")
+/*
+Calculates the domestic demand for inputs, cycling trough firms and sectors.
+*/
+		v[0]=0;                                                      		//initializes the value for thr CYCLE
+		CYCLE(cur, "SECTORS")                                        		//CYCLE trought all sectors
+		{
+			v[1]=0;                                                    		//initializes the value for the CYCLE
+			CYCLES(cur, cur1, "FIRMS")                                 		//CYCLE trought all firms inside the sectors
+			{    
+				v[2]=VS(cur1, "Firm_Input_Demand_Next_Period");             //gives the demand for imputs of each firm
+				v[1]=v[1]+v[2];                                          	//sums up the demand for imputs of all firms
+			} 
+		v[0]=v[0]+v[1];                                              		//sums up the demand for imputs of all setors
+		}
+RESULT(v[0])
+
+
+EQUATION("Total_Domestic_Consumption_Demand")
+/*
+Calculates the domestic demand for consumption goods, summing up the consumption of each class.
+*/
+	v[0]=0;                                                 				//initializes the CYCLE
+	CYCLE(cur, "CLASSES")                                   				//CYCLE trought all income classes
+	{
+		v[1]=VS(cur, "Class_Real_Domestic_Consumption");      	   			//class consumption
+		v[0]=v[0]+v[1];                                       				//sums up all classes consumption
+	}
+RESULT(v[0])
+
+
+EQUATION("Total_Domestic_Capital_Goods_Demand")
+/*
+The demand for capital goods is calculated by summing up the demand for capital goods from all firms and sectors.
+*/
+	v[1]=0;                                                 				//initializes the CYCLE
+	CYCLE(cur, "SECTORS")                                   				//CYCLE trought the sectors
+	{	
+		v[2]=0;                                               				//initializes the second CYCLE
+		CYCLES(cur, cur1, "FIRMS")                            				//CYCLE trought the firms
+		{
+			v[3]=VS(cur1, "Firm_Demand_Capital_Goods");         			//gives the demand for capital goods of each firm
+			v[4]=VLS(cur1, "Firm_Demand_Capital_Goods_Expansion", 1);		//firm's capital good demand for expantion investment
+			v[5]=VLS(cur1, "Firm_Demand_Capital_Goods_Replacement", 1); 	//firm's capital good demand for replacement investment
+			v[2]=v[2]+v[4]+v[5];                                    		//sums up all capital goods demand
+		}
+		v[1]=v[1]+v[2];                                       				//sums up all firm's capital goods demand
+	}
+RESULT(v[1])
+
+
 EQUATION("Price_Capital_Goods")
 /*
 Price of capital goods for the firms is the average price of the capital goods sector
@@ -14,62 +65,62 @@ EQUATION("Total_Distributed_Profits")
 /*
 Total amount of distributed profits by the firms. Will be used to determine the income of the income classes.
 */
-	v[0]=0;                                            		//initializes the CYCLE
-	CYCLE(cur, "SECTORS")                              		//CYCLE trought all sectors
+	v[0]=0;                                            						//initializes the CYCLE
+	CYCLE(cur, "SECTORS")                              						//CYCLE trought all sectors
 	{
-		v[1]=0;                                         	//initializes the second CYCLE
-		CYCLES(cur, cur1, "FIRMS")                       	//CYCLE trought all firms
+		v[1]=0;                                         					//initializes the second CYCLE
+		CYCLES(cur, cur1, "FIRMS")                       					//CYCLE trought all firms
 		{
-			VS(cur1, "Firm_Retained_Profits");           	//make sure Retained_Profits was calculated before
-			v[2]=VS(cur1, "Firm_Distributed_Profits");      //value of distributed profits of each firm
-			v[1]=v[1]+v[2];                                	//sums up the value of all firms in the sector
+			VS(cur1, "Firm_Retained_Profits");           					//make sure Retained_Profits was calculated before
+			v[2]=VS(cur1, "Firm_Distributed_Profits");      				//value of distributed profits of each firm
+			v[1]=v[1]+v[2];                                					//sums up the value of all firms in the sector
 		}
-		v[0]=v[0]+v[1];                                  	//sums up the value of distributed profits of all sectors
+		v[0]=v[0]+v[1];                                  					//sums up the value of distributed profits of all sectors
 	}
 RESULT(v[0])
 
 
 EQUATION("Total_Profits")
 /*
-Total Surplus of the Economy. Is the sum of all firms net profits. Will be used to calculate GDP
+Total Profits of the Economy. Is the sum of all firms net profits. Will be used to calculate GDP
 */
-	v[0]=0;                                                    		//initializes the CYCLE
-	CYCLE(cur, "SECTORS")                                      		//CYCLE trought all sectors
+	v[0]=0;                                                    				//initializes the CYCLE
+	CYCLE(cur, "SECTORS")                                      				//CYCLE trought all sectors
 	{ 
-		v[1]=0;                                                  	//initializes the second CYCLE
-		CYCLES(cur, cur1, "FIRMS")                               	//CYCLE trought all firms of the sector
+		v[1]=0;                                                  			//initializes the second CYCLE
+		CYCLES(cur, cur1, "FIRMS")                               			//CYCLE trought all firms of the sector
 		{
-			v[2]=VS(cur1, "Firm_Net_Profits");                      //firm's surplus
-			v[1]=v[1]+v[2];                                        	//sums up all firms' surplus of the sector
+			v[2]=VS(cur1, "Firm_Net_Profits");                      		//firm's surplus
+			v[1]=v[1]+v[2];                                        			//sums up all firms' surplus of the sector
 		}
-		v[0]=v[0]+v[1];                                          	//sums up the surplus of all sectors
+		v[0]=v[0]+v[1];                                          			//sums up the surplus of all sectors
 	}
 RESULT(v[0])
 
 
 EQUATION("Total_Wages")
 /*
-The total wage is calculated by the sum of the wages paid by the sectors with government wages. The wage per unit of production is a predetermined parameter, and the total salary is calculated by multiplying this unit wage by the actual production of each sector.
+The total wage is calculated by the sum of the wages paid by the sectors with government wages.
 */
-	v[0]=0;                                                    		//initializes the CYCLE
-	CYCLE(cur, "SECTORS")                                      		//CYCLE trought all sectors
+	v[0]=0;                                                    				//initializes the CYCLE
+	CYCLE(cur, "SECTORS")                                      				//CYCLE trought all sectors
 	{
-		v[1]=0;                                                  	//initializes the second CYCLE
-		CYCLES(cur, cur1, "FIRMS")                               	//CYCLE trought all firms of the sector
+		v[1]=0;                                                  			//initializes the second CYCLE
+		CYCLES(cur, cur1, "FIRMS")                               			//CYCLE trought all firms of the sector
 		{
-			v[2]=VS(cur1, "Firm_Wage");                             //firm's wage
-			v[3]=VS(cur1, "Firm_Effective_Production");             //firm's effective production
-			v[4]=VS(cur1, "Firm_Avg_Productivity");            		//firm's productivity 
-			v[5]=VS(cur1, "Firm_RND_Expenses");                     //firm's rnd expeses, returned as salary to researchers
+			v[2]=VS(cur1, "Firm_Wage");                             		//firm's wage
+			v[3]=VS(cur1, "Firm_Effective_Production");             		//firm's effective production
+			v[4]=VS(cur1, "Firm_Avg_Productivity");            				//firm's productivity 
+			v[5]=VS(cur1, "Firm_RND_Expenses");                     		//firm's rnd expeses, returned as salary to researchers
 			if (v[4]!=0)
-				v[1]=v[1]+v[3]*(v[2]/v[4])+v[5];                       	//sums up all firms' wage, determined by a unitary wage (sectorial wage divided by firm's productivity) multiplied by firm's effective production plus RND expenses
+				v[1]=v[1]+v[3]*(v[2]/v[4])+v[5];                    		//sums up all firms' wage, determined by a unitary wage (sectorial wage divided by firm's productivity) multiplied by firm's effective production plus RND expenses
 			else
 				v[1]=v[1]+v[5];
 		}
-		v[0]=v[0]+v[1];                                          	//sums up all wages of all sectors
+		v[0]=v[0]+v[1];                                          			//sums up all wages of all sectors
 	}
-	v[6]=V("Government_Wages");                                		//wages paid by the government
-	v[7]=v[0]+v[6];                                            		//sums up productive sectors wages with government wages
+	v[6]=V("Government_Wages");                                				//wages paid by the government
+	v[7]=v[0]+v[6];                                            				//sums up productive sectors wages with government wages
 RESULT(v[7])
 
 
@@ -90,7 +141,8 @@ Aggeregate Investment Expenses is calculated summing up the demand of capital go
 		}
 	v[0]=v[0]+v[1];
 	}
-RESULT(v[0])
+	v[5]=v[0]*v[4];
+RESULT(v[5])
 
 
 EQUATION("Profit_Share")
@@ -149,12 +201,12 @@ EQUATION("Real_GDP")
 /*
 Real quarterly GDP is the nominal GDP over the price index.
 */
-	v[0]=V("GDP");                 	 	//nominal GDP
-	v[1]=V("Price_Index");           	//current price index
-	if(v[1]!=0)                      	//if the price index is not zero
-		v[2]=v[0]/v[1];                	//real GDP is the nominal GDP devided by the price index
-	else                             	//if the price index is zero
-		v[2]=v[0];                     	//real GDP equals nominal GDP
+	v[0]=V("GDP");                 	 										//nominal GDP
+	v[1]=V("Price_Index");           										//current price index
+	if(v[1]!=0)                      										//if the price index is not zero
+		v[2]=v[0]/v[1];                										//real GDP is the nominal GDP devided by the price index
+	else                             										//if the price index is zero
+		v[2]=v[0];                     										//real GDP equals nominal GDP
 RESULT(v[2])
 
 
@@ -163,24 +215,24 @@ EQUATION("Annual_Growth")
 Annual Nominal GDP growth rate.
 */
 
-	v[0]=V("annual_period");
-	v[1]=0;
-	for (v[2]=0; v[2]<=(v[0]-1); v[2]=v[2]+1)
+	v[0]=V("annual_period");												//defines the annual period
+	v[1]=0;																	//initializes the annual nominal gdp
+	for (i=0; i<=(v[0]-1); i++)												//for each lag from 0 to annual period-1
 		{
-		v[3]=VL("GDP", v[2]);
-		v[1]=v[1]+v[3];
+		v[2]=VL("GDP", i);													//nominal quarterly GDP
+		v[1]=v[1]+v[2];														//sum up nominal gdp
 		}
-	v[4]=0;
-	for (v[5]=v[0]; v[5]<=(2*v[0]-1); v[5]=v[5]+1)
+	v[3]=0;																	//initializes the last year annual nominal gdp
+	for (i=v[0]; i<=(2*v[0]-1); i++)										//for each lag from annual period to 2xannual period -1					
 		{
-		v[6]=VL("GDP", v[5]);
-		v[4]=v[4]+v[6];
+		v[4]=VL("GDP", i);													//nominal quartlery GDP
+		v[3]=v[3]+v[4];														//sum up nominal GDP
 		}
-	if (v[4]!=0)
-		v[7]=(v[1]-v[4])/v[4];
-	else
-		v[7]=1;
-RESULT(v[7])
+	if (v[3]!=0)															//if the annual gdp is no zero
+		v[5]=(v[1]-v[3])/v[3];												//calculate the growth rate
+	else																	//if it zero
+		v[5]=1;																//growth rate is 1
+RESULT(v[5])
 
 
 EQUATION("Annual_Real_Growth")
@@ -188,24 +240,24 @@ EQUATION("Annual_Real_Growth")
 Annual Real GDP Growth rate.
 */
 
-	v[0]=V("annual_period");
-	v[1]=0;
-	for (v[2]=0; v[2]<=(v[0]-1); v[2]=v[2]+1)
+	v[0]=V("annual_period");												//defines the annual period
+	v[1]=0;																	//initializes the annual real gdp
+	for (i=0; i<=(v[0]-1); i++)												//for each lag from 0 to annual period-1
 		{
-		v[3]=VL("Real_GDP", v[2]);
-		v[1]=v[1]+v[3];
+		v[2]=VL("Real_GDP", i);												//real quarterly GDP
+		v[1]=v[1]+v[2];														//sum up real gdp
 		}
-	v[4]=0;
-	for (v[5]=v[0]; v[5]<=(2*v[0]-1); v[5]=v[5]+1)
+	v[3]=0;																	//initializes the last year annual real gdp
+	for (i=v[0]; i<=(2*v[0]-1); i++)										//for each lag from annual period to 2xannual period -1	
 		{
-		v[6]=VL("Real_GDP", v[5]);
-		v[4]=v[4]+v[6];
+		v[4]=VL("Real_GDP", i);												//real quartlery GDP
+		v[3]=v[3]+v[4];														//sum up real GDP
 		}
-	if (v[4]!=0)
-		v[7]=(v[1]-v[4])/v[4];
-	else
-	v[7]=1;
-RESULT(v[7])
+	if (v[3]!=0)															//if the annual gdp is no zero
+		v[5]=(v[1]-v[3])/v[3];												//calculate the growth rate
+	else																	//if it zero
+		v[5]=1;																//growth rate is 1
+RESULT(v[5])
 
 
 EQUATION("Likelihood_Crisis")
@@ -213,21 +265,21 @@ EQUATION("Likelihood_Crisis")
 Counts the number of crisis ocurrances. 
 */
 	v[7]=V("annual_period");
-	v[0]= fmod((double) t,v[7]);        		//divides the time period by four
-	if(v[0]==0)                        		 	//if the rest of the above division is zero (begenning of the year)
+	v[0]= fmod((double) t,v[7]);        									//divides the time period by four
+	if(v[0]==0)                        		 								//if the rest of the above division is zero (begenning of the year)
 		{
-		v[1]=V("Annual_Real_Growth");     		//real growth rate
-		v[2]=V("crisis_threshold");       		//parameter that defines crisis
-		if(v[1]<v[2])                     		//if the real growth rate is lower the the crisis threshold
-			v[3]=1;                         	//counts a crisis
-		else                              		//if the real growth rate is not lower the the crisis threshold
-			v[3]=0;                         	//do not count a crisis
+		v[1]=V("Annual_Real_Growth");     									//real growth rate
+		v[2]=V("crisis_threshold");       									//parameter that defines crisis
+		if(v[1]<v[2])                     									//if the real growth rate is lower the the crisis threshold
+			v[3]=1;                         								//counts a crisis
+		else                              									//if the real growth rate is not lower the the crisis threshold
+			v[3]=0;                         								//do not count a crisis
 		}
-	else                                		//if the rest of the division is not zero
-		v[3]=0;                           		//do not count a crisis   
-	v[4]=VL("Likelihood_Crisis",1);     		//crisis counter in the last period
-	v[5]=v[4]+v[3];                     		//acumulates the crisis counters
-	v[6]=(v[5]/t);                      		//gives the probability, total crisis counter divided by the number of time periods
+	else                                									//if the rest of the division is not zero
+		v[3]=0;                           									//do not count a crisis   
+	v[4]=VL("Likelihood_Crisis",1);     									//crisis counter in the last period
+	v[5]=v[4]+v[3];                     									//acumulates the crisis counters
+	v[6]=(v[5]/t);                      									//gives the probability, total crisis counter divided by the number of time periods
 RESULT(v[5])
 
 
@@ -235,16 +287,16 @@ EQUATION("Total_Consumption")
 /*
 Quarterly aggregate nominal consumption, given by the nominal value of the consumption good sector sales
 */
-	v[0]=0;                                              	//initializes the CYCLE  
-	CYCLE(cur, "SECTORS")                                	//CYCLE trough all sectors 
+	v[0]=0;                                              					//initializes the CYCLE  
+	CYCLE(cur, "SECTORS")                                					//CYCLE trough all sectors 
 	{
-		v[1]=VS(cur, "Sector_Sales");                      	//sector sales
-		v[2]=VS(cur, "Sector_Avg_Price");                   //sector average price
-		v[3]=VS(cur, "id_consumption_goods_sector");       	//identifies consumption goods sectors
-		if (v[3]==1)                                       	//if it is a consumption good sector
-			v[0]=v[0]+v[1]*v[2];                            //sums up nominal value of sector production
-		else                                               	//if it is not a consumption good sector
-			v[0]=v[0];	                                    //does not sum up
+		v[1]=VS(cur, "Sector_Sales");                      					//sector sales
+		v[2]=VS(cur, "Sector_Avg_Price");                   				//sector average price
+		v[3]=VS(cur, "id_consumption_goods_sector");       					//identifies consumption goods sectors
+		if (v[3]==1)                                       					//if it is a consumption good sector
+			v[0]=v[0]+v[1]*v[2];                            				//sums up nominal value of sector production
+		else                                               					//if it is not a consumption good sector
+			v[0]=v[0];	                                    				//does not sum up
 	}
 RESULT(v[0])
 
@@ -253,16 +305,16 @@ EQUATION("Total_Investment")
 /*
 Quarterly aggregate nominal investment, given by the nominal value of capital goods sector sales
 */
-	v[0]=0;                                              		//initializes the CYCLE  
-	CYCLE(cur, "SECTORS")                                		//CYCLE trough all sectors 
+	v[0]=0;                                              					//initializes the CYCLE  
+	CYCLE(cur, "SECTORS")                                					//CYCLE trough all sectors 
 	{
-		v[1]=VS(cur, "Sector_Sales");                      		//sector sales
-		v[2]=VS(cur, "Sector_Avg_Price");                       //sector average price
-		v[3]=VS(cur, "id_capital_goods_sector");           		//identifies capital goods sectors
-		if (v[3]==1)                                       		//if it is a capital good sector
-			v[0]=v[0]+v[1]*v[2];                             	//sums up nominal value of sector production
-		else                                               		//if it is not a capital good sector
-			v[0]=v[0];	                                     	//does not sum up
+		v[1]=VS(cur, "Sector_Sales");                      					//sector sales
+		v[2]=VS(cur, "Sector_Avg_Price");                       			//sector average price
+		v[3]=VS(cur, "id_capital_goods_sector");           					//identifies capital goods sectors
+		if (v[3]==1)                                       					//if it is a capital good sector
+			v[0]=v[0]+v[1]*v[2];                             				//sums up nominal value of sector production
+		else                                               					//if it is not a capital good sector
+			v[0]=v[0];	                                     				//does not sum up
 	}
 RESULT(v[0])
 
@@ -271,16 +323,16 @@ EQUATION("Total_Intermediate")
 /*
 Quarterly aggregate nominal intermediate consumption, given by the nominal value of intermediate goods sector sales
 */
-	v[0]=0;                                              		//initializes the CYCLE  
-	CYCLE(cur, "SECTORS")                                		//CYCLE trough all sectors 
+	v[0]=0;                                              					//initializes the CYCLE  
+	CYCLE(cur, "SECTORS")                                					//CYCLE trough all sectors 
 	{
-		v[1]=VS(cur, "Sector_Sales");                      		//sector sales
-		v[2]=VS(cur, "Sector_Avg_Price");                       //sector average price
-		v[3]=VS(cur, "id_intermediate_goods_sector");      		//identifies intermediate goods sectors
-		if (v[3]==1)                                       		//if it is a intermediate good sector
-			v[0]=v[0]+v[1]*v[2];                            	//sums up nominal value of sector production
-		else                                               		//if it is not a intermediate good sector
-			v[0]=v[0];	                                     	//does not sum up
+		v[1]=VS(cur, "Sector_Sales");                      					//sector sales
+		v[2]=VS(cur, "Sector_Avg_Price");                       			//sector average price
+		v[3]=VS(cur, "id_intermediate_goods_sector");      					//identifies intermediate goods sectors
+		if (v[3]==1)                                       					//if it is a intermediate good sector
+			v[0]=v[0]+v[1]*v[2];                            				//sums up nominal value of sector production
+		else                                               					//if it is not a intermediate good sector
+			v[0]=v[0];	                                     				//does not sum up
 	}
 RESULT(v[0])
 
@@ -289,12 +341,12 @@ EQUATION("Gross_Value_Production")
 /*
 Nominal value of total sales of the economy
 */
-	v[0]=0;                                                		//initializes the CYCLE
-	CYCLE(cur, "SECTORS")                                  		//CYCLE trough all sectors
+	v[0]=0;                                                					//initializes the CYCLE
+	CYCLE(cur, "SECTORS")                                  					//CYCLE trough all sectors
 	{
-		v[1]=VS(cur,"Sector_Avg_Price");                        //sector average price
-		v[2]=VS(cur,"Sector_Sales");                         	//sector sales
-		v[0]=v[0]+v[1]*v[2];                                 	//calculates and sums up nominal value of all sectors effective sales
+		v[1]=VS(cur,"Sector_Avg_Price");                        			//sector average price
+		v[2]=VS(cur,"Sector_Sales");                         				//sector sales
+		v[0]=v[0]+v[1]*v[2];                                 				//calculates and sums up nominal value of all sectors effective sales
 	}
 RESULT(v[0])
 
@@ -303,16 +355,16 @@ EQUATION("Avg_Rate_Capacity_Utilization")
 /*
 Sum up sector's effective production over productive capacity, weighted by sector's nominal value of production over total gross value of production
 */
-	v[0]=0;                                                		//initializes the CYCLE
-	CYCLE(cur, "SECTORS")                                  		//CYCLE trough all sectors                         
+	v[0]=0;                                                					//initializes the CYCLE
+	CYCLE(cur, "SECTORS")                                  					//CYCLE trough all sectors                         
 	{
-		v[1]=VLS(cur,"Sector_Productive_Capacity",1);        	//sector productive capacity in the last period
-		v[2]=VS(cur,"Sector_Effective_Production");          	//sector effective production
-		v[3]=V("Gross_Value_Production");                    	//gross value of production
-		v[4]=VS(cur,"Sector_Sales");                         	//sector sales
-		v[5]=VS(cur,"Sector_Avg_Price");                        //sector average price
+		v[1]=VLS(cur,"Sector_Productive_Capacity",1);        				//sector productive capacity in the last period
+		v[2]=VS(cur,"Sector_Effective_Production");          				//sector effective production
+		v[3]=V("Gross_Value_Production");                    				//gross value of production
+		v[4]=VS(cur,"Sector_Sales");                         				//sector sales
+		v[5]=VS(cur,"Sector_Avg_Price");                        			//sector average price
 		if  (v[1]!=0&&v[3]!=0)
- 			v[0]=v[0]+((v[4]*v[5]/v[3])*(v[2]/v[1]));           //calculates and sums up rate of capacity utilization of all sectors. The rate of capacity utilization is given by sales multiplyed by the price and divided by the gross value of production, multiplyed by the ratio between effective production and productive capacit
+ 			v[0]=v[0]+((v[4]*v[5]/v[3])*(v[2]/v[1]));           			//calculates and sums up rate of capacity utilization of all sectors. The rate of capacity utilization is given by sales multiplyed by the price and divided by the gross value of production, multiplyed by the ratio between effective production and productive capacit
  		else
  			v[0]=0;
  	}
@@ -323,12 +375,12 @@ EQUATION("Total_Inventories")
 /*
 Sum up the nominal value of the stock of invesntories of each sector
 */
-	v[0]=0;                                                		//initializes the CYCLE
-	CYCLE(cur, "SECTORS")                                  		//CYCLE trough all sectors 
+	v[0]=0;                                                					//initializes the CYCLE
+	CYCLE(cur, "SECTORS")                                  					//CYCLE trough all sectors 
 	{
-		v[1]=VS(cur,"Sector_Avg_Price");                        //sector average price    
-		v[2]=VS(cur,"Sector_Inventories");                   	//sector stock of inventories
-		v[0]=v[0]+v[1]*v[2];                                 	//calculates and sums up nominal value of inventories of all sectors
+		v[1]=VS(cur,"Sector_Avg_Price");									//sector average price    
+		v[2]=VS(cur,"Sector_Inventories");                   				//sector stock of inventories
+		v[0]=v[0]+v[1]*v[2];                                 				//calculates and sums up nominal value of inventories of all sectors
 	}
 RESULT(v[0])
 
@@ -355,20 +407,20 @@ EQUATION("Price_Index")
 /*
 Paasche price index of all sector. GDP deflator
 */
-	v[0]=v[1]=0;                                         	//initializes the CYCLE  
-	CYCLE(cur, "SECTORS")                                	//CYCLE trough all sectors 
+	v[0]=v[1]=0;                                         					//initializes the CYCLE  
+	CYCLE(cur, "SECTORS")                                					//CYCLE trough all sectors 
 	{
-		v[2]=VS(cur, "Sector_Sales");                      	//sector sales
-		v[3]=VS(cur, "Sector_Avg_Price");                   //sector average price
-		v[4]=V("initial_avg_price");                 		//sector initial average price
+		v[2]=VS(cur, "Sector_Sales");                      					//sector sales
+		v[3]=VS(cur, "Sector_Avg_Price");                   				//sector average price
+		v[4]=V("initial_avg_price");                 						//sector initial average price
 
-		v[0]=v[0]+v[2]*v[3];                               	//current nominal prices of the sector
-		v[1]=v[1]+v[2]*v[4];                               	//initial prices of the sector
+		v[0]=v[0]+v[2]*v[3];                               					//current nominal prices of the sector
+		v[1]=v[1]+v[2]*v[4];                               					//initial prices of the sector
 	}
-	if (v[1]!=0)                                         	//if initial prices is not zero
-		v[5]=v[4]*(v[0]/v[1]);                              //price index will be current prices over initial prices, 
-	else                                                 	//if initial prices is zero
-		v[5]=VL("Price_Index", 1);                         	//use last period price index
+	if (v[1]!=0)                                         					//if initial prices is not zero
+		v[5]=v[4]*(v[0]/v[1]);                              				//price index will be current prices over initial prices, 
+	else                                                 					//if initial prices is zero
+		v[5]=VL("Price_Index", 1);                         					//use last period price index
 RESULT(v[5])
 
 
@@ -376,17 +428,17 @@ EQUATION("Consumer_Price_Index")
 /*
 Paasche price index of consumption goods sector. Used for inflation target and income classes real income.
 */
-	v[0]=v[1]=0;                                         		//initializes the CYCLE  
-	CYCLE(cur, "SECTORS")                                		//CYCLE trough all sectors 
+	v[0]=v[1]=0;                                         					//initializes the CYCLE  
+	CYCLE(cur, "SECTORS")                                					//CYCLE trough all sectors 
 	{
 		v[6]=VS(cur, "id_consumption_goods_sector");
 		if (v[6]==1)
 			{
-			v[2]=VS(cur, "Sector_Sales");                      	//sector sales
-			v[3]=VS(cur, "Sector_Avg_Price");                   //sector average price
-			v[4]=V("initial_avg_price");                 		//sector initial average price
-			v[0]=v[0]+v[2]*v[3];                               	//current nominal prices of the sector
-			v[1]=v[1]+v[2]*v[4];                               	//initial prices of the sector
+			v[2]=VS(cur, "Sector_Sales");                      				//sector sales
+			v[3]=VS(cur, "Sector_Avg_Price");                   			//sector average price
+			v[4]=V("initial_avg_price");                 					//sector initial average price
+			v[0]=v[0]+v[2]*v[3];                               				//current nominal prices of the sector
+			v[1]=v[1]+v[2]*v[4];                               				//initial prices of the sector
 			}
 		else
 			{
@@ -394,10 +446,10 @@ Paasche price index of consumption goods sector. Used for inflation target and i
 			v[1]=v[1];	
 			}	
 	}	
-	if (v[1]!=0)                                         		//if initial prices is not zero
-		v[5]=v[4]*(v[0]/v[1]);                                  //price index will be current prices over initial prices, 
-	else                                                 		//if initial prices is zero
-		v[5]=VL("Consumer_Price_Index", 1);                		//use last period price index
+	if (v[1]!=0)                                         					//if initial prices is not zero
+		v[5]=v[4]*(v[0]/v[1]);                                 				//price index will be current prices over initial prices, 
+	else                                                 					//if initial prices is zero
+		v[5]=VL("Consumer_Price_Index", 1);                					//use last period price index
 RESULT(v[5])
 
 
@@ -435,7 +487,16 @@ Unemployment rate, in percentage value
 		v[2]=0;
 	else
 		v[2]=(v[0]-v[1])/v[0];
-RESULT(v[2])
+	
+	v[3]=V("inital_population");
+	v[4]=V("population_growth");
+	v[5]=V("population_std_dev");
+	
+	v[6]=log(v[3])+t*(v[4]);   	
+	v[7]=exp(norm(v[6],v[5]));
+	
+	v[8]=(v[7]-v[1])/v[7];
+RESULT(v[8])
 
 
 EQUATION("Total_Exports")
@@ -460,8 +521,10 @@ Total imports in nominal value are obtained from the sum of imports of all secto
 */
 	v[0]=WHTAVE("Sector_Extra_Imports", "Sector_External_Price");
 	v[1]=SUM("Class_Real_Imports");
+	cur = SEARCH_CND("id_consumption_goods_sector", 1);
+	v[4]=VS(cur, "Sector_External_Price");
 	v[2]=V("Exchange_Rate");
-	v[3]=(v[0]+v[1])*v[2];
+	v[3]=(v[0]+v[1]*v[4])*v[2];
 RESULT(v[3])
 
 

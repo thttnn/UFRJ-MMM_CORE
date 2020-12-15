@@ -1,13 +1,13 @@
 # Model compilation options
 TARGET=lsd
 FUN=fun_MMM_CORE
-FUN_EXTRA= fun_time_step.h fun_initialization.h fun_analysis.h fun_functions.h fun_macro.h fun_macro_sfc.h fun_classes.h fun_external_sector.h fun_government.h fun_sector_external.h fun_sector_aggregates.h fun_sector_demand.h fun_entry_exit.h fun_firm_capital.h fun_firm_finance.h fun_firm_investment.h fun_firm_price.h fun_firm_production.h fun_firm_profit.h fun_firm_rnd.h fun_firm_sales.h fun_firm_inputs.h fun_capital_goods.h fun_sector_analysis.h  fun_analysis_2.h
+FUN_EXTRA= mmm_core_equations_time_step.h mmm_core_equations_initialization.h mmm_core_equations_analysis.h mmm_core_equations_functions.h mmm_core_equations_macro.h mmm_core_equations_macro_sfc.h mmm_core_equations_classes.h mmm_core_equations_external_sector.h mmm_core_equations_government.h mmm_core_equations_sector_external.h mmm_core_equations_sector_aggregates.h mmm_core_equations_sector_demand.h mmm_core_equations_entry_exit.h mmm_core_equations_firm_capital.h mmm_core_equations_firm_finance.h mmm_core_equations_firm_investment.h mmm_core_equations_firm_price.h mmm_core_equations_firm_production.h mmm_core_equations_firm_profit.h mmm_core_equations_firm_rnd.h mmm_core_equations_firm_sales.h mmm_core_equations_firm_inputs.h mmm_core_equations_capital_goods.h mmm_core_equations_sector_analysis.h  mmm_core_equations_analysis_2.h
 SWITCH_CC=-Og -ggdb3
 SWITCH_CC_LNK=
 
 
 # System compilation options
-LSDROOT=C:/Lsd-7.2-stable
+LSDROOT=C:/Lsd
 SRC=src
 EXT=.exe
 
@@ -28,7 +28,7 @@ CC=x86_64-w64-mingw32-g++
 CC_CROSS=x86_64-w64-mingw32-
 GLOBAL_CC=-march=native -std=gnu++14 -w
 SSWITCH_CC=-mthreads -mwindows -O3
-LSDROOT=C:/Lsd-7.2-stable
+LSDROOT=C:/Lsd
 
 # Body of makefileNW (from src/makefile_baseNW.txt)
 # reset variables to allow for no-window version
