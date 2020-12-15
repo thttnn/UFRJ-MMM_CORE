@@ -74,7 +74,7 @@ Defined as the government stock of public debt in the last period multipyed by t
 */
 	v[0]=VL("Government_Debt",1);
 	v[1]=V("Basic_Interest_Rate");
-	v[2]=v[0]*v[1];
+	v[2]=max(0,v[0]*v[1]);
 RESULT(v[2])
 
 
@@ -95,7 +95,7 @@ Defined as the stock of debt in the last period plus current government deficit
 */
 	v[0]=VL("Government_Debt",1);
 	v[1]=V("Government_Deficit");
-	v[2]=max(0,v[0]+v[1]);
+	v[2]=v[0]+v[1];
 RESULT(v[2])
 
 

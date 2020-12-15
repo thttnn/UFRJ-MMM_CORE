@@ -690,7 +690,7 @@ Param: class_interest_payment_share 0 n + n n	1	0
 Param: class_max_debt_ratio 0 n + n n	1	1
 Param: class_profit_share 0 n + n n	0.9	0.1
 Param: class_propensity_to_consume 0 n + n n	0.8	0.9
-Param: class_propensity_to_import 0 n + n n	0.1	0.1
+Param: class_propensity_to_import 0 n + n n	0	0
 Param: class_wage_share 0 n + n n	0.1	0.9
 Var: Class_Autonomous_Consumption 1 s + n n	5	4
 Var: Class_Debt 1 s + n n	0	0
@@ -2411,7 +2411,7 @@ END_DESCRIPTION
 Parameter_class_propensity_to_import
 (no description available)
 _INIT_
-
+All 2 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_class_wage_share
