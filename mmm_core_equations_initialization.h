@@ -47,8 +47,8 @@ CYCLE(cur, "CLASSES")
 	v[29]=VS(cur, "class_propensity_to_import");
 	v[30]=VS(cur, "class_direct_tax");
 	
-	//v[20]=v[20]+v[27]*v[28]*(1-v[30]);															//effective aggregate propensity to consume on wages
-	//v[21]=v[21]+v[26]*v[28]*(1-v[30]);															//effective aggregate propensity to consume on profits
+	v[20]=v[20]+v[27]*v[28]*(1-v[30]);															//effective aggregate propensity to consume on wages
+	v[21]=v[21]+v[26]*v[28]*(1-v[30]);															//effective aggregate propensity to consume on profits
 	
 	v[22]=v[22]+v[26]*v[30];																	//effective direct tax over profits
 	v[23]=v[23]+v[27]*v[30];																	//effective direct tax over wages
@@ -56,8 +56,8 @@ CYCLE(cur, "CLASSES")
 	v[25]=v[25]+v[26]*v[29]*(1-v[30]);															//effective aggregate propensity to import on profits
 }
 
-v[20]=V("propensity_to_consume_wages");
-v[21]=V("propensity_to_consume_profits");
+//v[20]=V("propensity_to_consume_wages");
+//v[21]=V("propensity_to_consume_profits");
 
 //Begin Auxiliary Calculations
 v[19]=(v[8]*v[9]/v[7])/(1-v[8]*v[11]);															//nominal price
@@ -159,7 +159,7 @@ CYCLE(cur, "SECTORS")
 		v[60]=v[43];																			//initial demand production and sales
 	
 	v[61]=v[60]/v[6]; 																			//initial production of each firm
-	v[62]=((v[61]*(1+v[17]))/v[18])*v[12];														//number of capital goods of each firm
+	v[62]=(v[61]/v[18])*v[12];														//number of capital goods of each firm
 	v[63]=((v[19]/v[8])-v[11]*v[19])/v[7];                        								//sector initial wage
 	
 	for (i=1 ; i<=v[0] ; i++)																	//for (investment_period) lags 
@@ -179,7 +179,7 @@ CYCLE(cur, "SECTORS")
 		WRITELLS(cur, "Sector_Max_Productivity", v[7], 0,  1);                      			//If all capital goods have the same productivity, Max_Productivity equals productivity_initial 
 		WRITELLS(cur, "Sector_Max_Quality", v[10], 0,  1);
 		WRITELLS(cur, "Sector_Inventories", (v[60]*v[17]), 0, 1);                  				//Firms operate with desired level of inventories, thus, Current stock of inventories is the desired level times effective production
-		WRITELLS(cur, "Sector_Productive_Capacity", ((v[60]*(1+v[17]))/v[18]), 0, 1);			//All firms start operating at desired degree of utilization, thus, productive capacity is endogenous calculated based on effective production and desired degree
+		WRITELLS(cur, "Sector_Productive_Capacity", (v[60]/v[18]), 0, 1);			//All firms start operating at desired degree of utilization, thus, productive capacity is endogenous calculated based on effective production and desired degree
 		WRITELLS(cur, "Sector_Exports", (v[49]/3)/v[19], 0, 1);										//Total exports are divided equally among sectors.
 		v[75]=((v[49]/3)/(pow(v[50], v[16])));													//calculate sector exports coefficient
 		WRITES(cur, "sector_exports_coefficient", v[75]);										//write the exports coefficient, assuming external price and foreign price starts as 1, so the exchange rate
@@ -225,7 +225,7 @@ CYCLE(cur, "SECTORS")
 	  	WRITELLS(cur1, "Firm_Revenue", (v[61]*v[19]), 0, 1);                            		//firm's revenue will be the firm's sales times firm price
 	  	WRITELLS(cur1, "Firm_Stock_Inventories", (v[61]*v[17]), 0, 1);                        	//firm's inventories will be the sales times the desired inventories proportion (parameter)
 	  	WRITELLS(cur1, "Firm_Stock_Inputs", (v[11]*v[61]), 0, 1);                      			//firm's stock of imputs will be the sales times the input tech relationship
-	  	WRITELLS(cur1, "Firm_Productive_Capacity", ((v[61]*(1+v[17]))/v[18]), 0, 1);			//firm productive capacity will be the sales divided by the desired degree of capacity utlization (parameter)
+	  	WRITELLS(cur1, "Firm_Productive_Capacity", (v[61]/v[18]), 0, 1);			//firm productive capacity will be the sales divided by the desired degree of capacity utlization (parameter)
 	  	WRITELLS(cur1, "Firm_Capital", (v[62]*v[19]), 0, 1);									//firm nominal capital equals number of capital if capital goods price equals 1
 	  	WRITELLS(cur1, "Firm_Wage", v[9], 0, 1); 												//firm's nominal wage equals sector nominal wage initial
 		WRITELLS(cur1, "Firm_Variable_Cost", ((v[9]/v[7])+v[11]*v[19]), 0, 1);					//firm variable cost equals unitary wage plus unitary cost of inputs. The last equals the tech coefficient if input price equals 1

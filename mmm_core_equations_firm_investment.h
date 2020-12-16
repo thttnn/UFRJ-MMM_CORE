@@ -73,7 +73,7 @@ Nominal value of desired new capital goods.
 		
    		v[2]=V("desired_inventories_proportion");																										
    		v[3]=V("desired_degree_capacity_utilization");
-		v[4]=((v[0]*(1+v[2]))/v[3])- v[1] + v[10];					//desired productive capacity will be the amount needed based on expected sales minus existing plus what will depreciate in the next investment period
+		v[4]=((v[0])/v[3])- v[1] + v[10];					//desired productive capacity will be the amount needed based on expected sales minus existing plus what will depreciate in the next investment period
    		v[5]=max(0,v[4]);											//cannot be negative
    		
 		v[6]=V("Price_Capital_Goods");								//price of capital goods

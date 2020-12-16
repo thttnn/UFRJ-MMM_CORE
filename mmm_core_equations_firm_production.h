@@ -41,8 +41,10 @@ Programed Production is subjected to a existing capactity restriction, but it is
 			v[12]=v[11]/v[10];
 			v[7]=v[7]+v[12];
 			}
+		v[9]=V("Firm_Effective_Orders_Capital_Goods");
+		v[7]=v[9]*(1+v[5])-v[6];
 		}
-	v[8]=max(0, min(v[2],v[7]));                          	//planned production can never be more then the maximum productive capacity and can never be negative
+	v[8]=max(0,v[7]);                          	//planned production can never be more then the maximum productive capacity and can never be negative
 RESULT(v[8])
 
 
@@ -53,7 +55,7 @@ The actual production of each sector will be determined by the constraint impose
 */
 	v[0]=V("Firm_Planned_Production");                                                              //firm's planned production
 	v[1]=V("Firm_Available_Inputs_Ratio");
-	v[2]=v[1]*v[0];                                                                            		//effective planned production, constrained by the ratio of available inputs
+	v[2]=v[0];                                                                            		//effective planned production, constrained by the ratio of available inputs
 	
 	SORT("CAPITALS", "Capital_Good_Productivity", "DOWN");                                        	//rule for the use of capital goods, sorts firm's capital goods by productivity in a decreasing order
 	v[3]=0;                                                                                      	//initializes the CYCLE

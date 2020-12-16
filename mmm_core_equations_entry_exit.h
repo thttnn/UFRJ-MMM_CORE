@@ -153,7 +153,7 @@ In this variable a new firm enters if there is market space available and the en
 		
 		cur5=SEARCH_CND("Firm_Market_Share", v[12]);					//search the firm with the closest market share to the average one
 		v[2]=VS(cur5, "Firm_Market_Share");								//market share of the average firm
-		v[3]=((v[2]*v[20])*(1+v[23]))/v[22];							//new firm's productive capacity to reach the average market share   
+		v[3]=((v[2]*v[20]))/v[22];							//new firm's productive capacity to reach the average market share   
 		v[4]=min(v[3],(v[34]+v[44]));									//new firm's productive capacity can not be higher than productive capacity available
 		v[7]=v[4]*v[35];												//new firm's number of capitals
    		

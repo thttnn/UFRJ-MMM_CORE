@@ -45,7 +45,7 @@ The demand for capital goods is calculated by summing up the demand for capital 
 			v[3]=VS(cur1, "Firm_Demand_Capital_Goods");         			//gives the demand for capital goods of each firm
 			v[4]=VLS(cur1, "Firm_Demand_Capital_Goods_Expansion", 1);		//firm's capital good demand for expantion investment
 			v[5]=VLS(cur1, "Firm_Demand_Capital_Goods_Replacement", 1); 	//firm's capital good demand for replacement investment
-			v[2]=v[2]+v[4]+v[5];                                    		//sums up all capital goods demand
+			v[2]=v[2]+v[3];                                    		//sums up all capital goods demand
 		}
 		v[1]=v[1]+v[2];                                       				//sums up all firm's capital goods demand
 	}
@@ -488,15 +488,7 @@ Unemployment rate, in percentage value
 	else
 		v[2]=(v[0]-v[1])/v[0];
 	
-	v[3]=V("inital_population");
-	v[4]=V("population_growth");
-	v[5]=V("population_std_dev");
-	
-	v[6]=log(v[3])+t*(v[4]);   	
-	v[7]=exp(norm(v[6],v[5]));
-	
-	v[8]=(v[7]-v[1])/v[7];
-RESULT(v[8])
+RESULT(v[2])
 
 
 EQUATION("Total_Exports")
