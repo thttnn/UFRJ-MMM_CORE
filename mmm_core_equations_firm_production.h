@@ -55,7 +55,7 @@ The actual production of each sector will be determined by the constraint impose
 */
 	v[0]=V("Firm_Planned_Production");                                                              //firm's planned production
 	v[1]=V("Firm_Available_Inputs_Ratio");
-	v[2]=v[0];                                                                            		//effective planned production, constrained by the ratio of available inputs
+	v[2]=v[0]*v[1];                                                                            		//effective planned production, constrained by the ratio of available inputs
 	
 	SORT("CAPITALS", "Capital_Good_Productivity", "DOWN");                                        	//rule for the use of capital goods, sorts firm's capital goods by productivity in a decreasing order
 	v[3]=0;                                                                                      	//initializes the CYCLE

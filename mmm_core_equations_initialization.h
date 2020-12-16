@@ -60,7 +60,7 @@ CYCLE(cur, "CLASSES")
 //v[21]=V("propensity_to_consume_profits");
 
 //Begin Auxiliary Calculations
-v[19]=(v[8]*v[9]/v[7])/(1-v[8]*v[11]);															//nominal price
+v[19]=(v[8]*v[9]/v[7])/(1-v[8]*v[11]);															//price
 v[31]=(v[9]/v[7]) + v[13]*(1-v[15])*v[19];														//sector effective wage margin over production including RND
 v[32]=v[19]*(1-v[15])*(1-v[13])-((v[9]/v[7])+v[11]*v[19]);										//sector effective profit margin over production
 v[33]=(v[15]*v[19] + v[22]*v[14]*v[32] + v[23]*v[31])/(1-v[23]);								//sector effective tax-public wage over production
