@@ -13,7 +13,7 @@ V("Basic_Interest_Rate");
 V("Government_Max_Expenses");                          		
 V("Government_Wages");                                 		
 
-/*****EXPORTS (AUTONOMOUS) AND PRICE SETTING*****/
+/*****PRICE SETTING*****/
 V("Firm_Wage");                                      	  
 V("External_Income");                                  		
 V("Sector_External_Price");                                
@@ -24,8 +24,7 @@ V("Firm_Desired_Market_Share");
 V("Firm_Desired_Markup");                                   
 V("Firm_Desired_Price");                                  
 V("Firm_Price");                                          
-V("Sector_Avg_Price");                                     
-V("Sector_Exports");                                   		 
+V("Sector_Avg_Price");                                                                       		 
 
 /*****CAPITAL GOODS DEMAND*****/
 V("Firm_Demand_Capital_Goods");                             
@@ -54,7 +53,8 @@ V("Sector_Potential_Employment");
 V("Sector_Unemployment");									
 
 /*****CONSUMPTION DEMAND*****/
-V("Sector_Domestic_Consumption_Demand");                     
+V("Sector_Domestic_Consumption_Demand"); 
+V("Sector_Exports");                     
 V("Sector_Effective_Orders");                          		             		
 
 /*****EFFECTIVE ORDERS, SALES AND PROFITS*****/
