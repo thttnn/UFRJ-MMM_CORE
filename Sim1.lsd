@@ -127,7 +127,6 @@ Label Root
 			Var: Sector_Avg_Productivity
 			Var: Sector_Avg_Quality
 			Var: Sector_Avg_Wage
-			Var: Sector_Bargain_Power
 			Var: Sector_Demand_Met
 			Var: Sector_Demand_Met_By_Imports
 			Var: Sector_Effective_Orders
@@ -229,7 +228,6 @@ Label Root
 		}
 
 		Param: annual_period
-		Param: bargain_power_adjustment
 		Param: basic_percent_spread
 		Param: capital_output_ratio
 		Param: crisis_threshold
@@ -258,7 +256,6 @@ Label Root
 		Param: learning_adjustment
 		Param: market_share_expansion
 		Param: markup_period
-		Param: minimum_passthrough
 		Param: number_object_firms
 		Param: profits_distribution_rate
 		Param: rnd_revenue_proportion
@@ -325,8 +322,6 @@ Label Root
 		Param: class_period
 		Param: government_period
 		Param: initial_wage
-		Param: propensity_to_consume_profits
-		Param: propensity_to_consume_wages
 		Var: Exit
 		Var: Exit_Defaulted_Loans
 		Var: Exit_Deposits_Distributed
@@ -425,7 +420,6 @@ Var: Time_Step 0 n + d n
 
 Object: MACRO C	1
 Param: annual_period 0 n + n n	4
-Param: bargain_power_adjustment 0 n + n n	0
 Param: basic_percent_spread 0 n + n n	0.5
 Param: capital_output_ratio 0 n + n n	2
 Param: crisis_threshold 0 n + n n	0
@@ -454,7 +448,6 @@ Param: investment_period 0 n + n n	6
 Param: learning_adjustment 0 n + n n	0
 Param: market_share_expansion 0 n + n n	0.5
 Param: markup_period 0 n + n n	2
-Param: minimum_passthrough 0 n + n n	0.5
 Param: number_object_firms 0 n + n n	20
 Param: profits_distribution_rate 0 n + n n	0.9
 Param: rnd_revenue_proportion 0 n + n n	0.01
@@ -521,8 +514,6 @@ Var: Wage_Share 0 s + n n
 Param: class_period 0 n + n n	4
 Param: government_period 0 n + n n	4
 Param: initial_wage 0 n + n n	1
-Param: propensity_to_consume_profits 0 n + n n	0.8
-Param: propensity_to_consume_wages 0 n + n n	0.9
 Var: Exit 0 n + n n
 Var: Exit_Defaulted_Loans 0 n + n n
 Var: Exit_Deposits_Distributed 0 n + n n
@@ -550,7 +541,6 @@ Var: Sector_Avg_Price 2 s + n n	1	1	1	1	1	1
 Var: Sector_Avg_Productivity 1 s + n n	0	0	0
 Var: Sector_Avg_Quality 5 s + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Avg_Wage 0 s + n n
-Var: Sector_Bargain_Power 0 s + n n
 Var: Sector_Demand_Met 6 s + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Demand_Met_By_Imports 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Effective_Orders 8 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -837,12 +827,6 @@ _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
-Parameter_bargain_power_adjustment
-(no description available)
-_INIT_
-All 1 instances equal to 0.
-END_DESCRIPTION
-
 Parameter_basic_percent_spread
 (no description available)
 _INIT_
@@ -1009,12 +993,6 @@ Parameter_markup_period
 (no description available)
 _INIT_
 All 1 instances equal to 2.
-END_DESCRIPTION
-
-Parameter_minimum_passthrough
-(no description available)
-_INIT_
-All 3 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_number_object_firms
@@ -1413,18 +1391,6 @@ _INIT_
 All 1 instances equal to 0.266667.
 END_DESCRIPTION
 
-Parameter_propensity_to_consume_profits
-(no description available)
-_INIT_
-All 1 instances equal to 0.77.
-END_DESCRIPTION
-
-Parameter_propensity_to_consume_wages
-(no description available)
-_INIT_
-All 1 instances equal to 0.75.
-END_DESCRIPTION
-
 Variable_Exit
 This variable counts productive capacity that exited the sector in each time step. Firm objects are deleted inside that variable due to two possibilities: small market share or high debt rate. In the second case, if entry conitions are met, the firm can be bought by a new one.
 This variable counts productive capacity that exited the sector in each time step. Firm objects are deleted inside that variable due to two possibilities: small market share or high debt rate. In the second case, if entry conitions are met, the firm can be bought by a new one.
@@ -1586,12 +1552,6 @@ _INIT_
 END_DESCRIPTION
 
 Variable_Sector_Avg_Wage
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Sector_Bargain_Power
 (no description available)
 _INIT_
 

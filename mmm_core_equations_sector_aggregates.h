@@ -197,42 +197,6 @@ Unemployment, calculated as the difference between effective employment and pote
 RESULT(v[2])
 
 
-EQUATION("Sector_Bargain_Power")
-/*
-Determines the productivity passthrough. If the employment in the sector is increasing, it increases the passtrhrough. Otherwise, it decreases.
-*/
-	v[0]=V("annual_period");											//annual period parameters
-	v[1]=fmod((double)t,v[0]);							    			//divides time step by the annual period and takes the rest
-	if (v[1]==0)														//if it is the beggening of a new year
-		{
-		v[2]=VL("Sector_Employment",1);									//sector employment in the last period
-		v[3]=VL("Sector_Employment",(v[0]+1));							//sector employment in the beggining of the last year
-		v[4]=v[2]-v[3];													//check if sector employment has increased or decreased
-		v[5]=VL("sector_passthrough_productivity", 1);					//productivity passtrought in the last period
-		v[6]=VL("sector_passthrough_inflation", 1);						//inflation passtrought in the last period
-		v[7]=V("bargain_power_adjustment");								//bargain power adjustment
-		v[10]=V("minimum_passthrough");									//minimum accepted passtrought
-			if (v[4]<0)													//if sector employemnt has decreased
-				{
-				v[8]=max((min(1,(v[5]-v[7]))),v[10]);					//reduce productivity passtrought
-				v[9]=max((min(1,(v[6]-v[7]))),v[10]);					//reduce inflation passtrought
-				WRITE("sector_passthrough_productivity", v[8]);			//writes the new passtrought
-				//WRITE("sector_passthrough_inflation", v[9]);			//writes the new passtrought
-				}
-			else														//if sector employment has increased
-				{
-				v[8]=max((min(1,(v[5]+v[7]))),v[10]);					//reduce productivity passtrought
-				v[9]=max((min(1,(v[6]+v[7]))),v[10]);					//reduce inflation passtrought
-				WRITE("sector_passthrough_productivity", v[8]);			//writes the new passtrought
-				//WRITE("sector_passthrough_inflation", v[9]);			//writes the new passtrought
-				}
-		}
-	else
-	{
-	v[8]=0;
-	v[9]=0;
-	}
-RESULT(0)
 	
 
 /*****SECTOR AVERAGES AND MAX*****/

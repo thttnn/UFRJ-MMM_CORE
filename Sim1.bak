@@ -127,7 +127,6 @@ Label Root
 			Var: Sector_Avg_Productivity
 			Var: Sector_Avg_Quality
 			Var: Sector_Avg_Wage
-			Var: Sector_Bargain_Power
 			Var: Sector_Demand_Met
 			Var: Sector_Demand_Met_By_Imports
 			Var: Sector_Effective_Orders
@@ -550,7 +549,6 @@ Var: Sector_Avg_Price 2 s + n n	1	1	1	1	1	1
 Var: Sector_Avg_Productivity 1 s + n n	0	0	0
 Var: Sector_Avg_Quality 5 s + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Avg_Wage 0 s + n n
-Var: Sector_Bargain_Power 0 s + n n
 Var: Sector_Demand_Met 6 s + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Demand_Met_By_Imports 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Effective_Orders 8 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -648,7 +646,7 @@ Var: Firm_Revenue 1 n + n n	10	10	10
 Var: Firm_Sales 1 n + n n	10	10	10
 Var: Firm_Stock_Debt 1 n + n n	0	0	0
 Var: Firm_Stock_Financial_Assets 1 n + n n	0	0	0
-Var: Firm_Stock_Inputs 1 n + n n	0	0	0
+Var: Firm_Stock_Inputs 1 s + n n	0	0	0
 Var: Firm_Variable_Cost 1 n + n n	0	0	0
 Var: Firm_Replacement_Expenses 0 n + n n
 Var: Firm_Available_Funds_After_Replacement 0 n + n n
@@ -1586,12 +1584,6 @@ _INIT_
 END_DESCRIPTION
 
 Variable_Sector_Avg_Wage
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Sector_Bargain_Power
 (no description available)
 _INIT_
 

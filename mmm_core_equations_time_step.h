@@ -13,7 +13,6 @@ V("Government_Max_Expenses");                          		//government variable
 V("Government_Wages");                                 		//government variable
 
 /*****EXPORTS (AUTONOMOUS) AND PRICE SETTING*****/
-V("Sector_Bargain_Power");                                  //sector variable
 V("Firm_Wage");                                      	   	//sector variable
 V("External_Income");                                  		//external sector variable
 V("Sector_External_Price");                                 //sector variable
