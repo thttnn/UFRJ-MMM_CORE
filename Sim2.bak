@@ -1,342 +1,336 @@
 	
 Label Root
 {
-	Son: INIT
-	Label INIT
+	Son: MACRO
+	Label MACRO
 	{
-		Son: MACRO
-		Label MACRO
+		Son: SECTORS
+		Label SECTORS
 		{
-			Son: SECTORS
-			Label SECTORS
+			Son: FIRMS
+			Label FIRMS
 			{
-				Son: FIRMS
-				Label FIRMS
+				Son: CAPITALS
+				Label CAPITALS
 				{
-					Son: CAPITALS
-					Label CAPITALS
-					{
-						Param: capital_good_date_birth
-						Param: capital_good_productive_capacity
-						Param: capital_good_productivity_initial
-						Param: capital_good_to_replace
-						Var: Capital_Good_Acumulated_Production
-						Var: Capital_Good_Production
-						Var: Capital_Good_Productivity
-						Param: id_capital_good_number
-						Param: capital_good_depreciation_period
-						Param: capital_good_to_depreciate
-
-					}
-
-					Param: capital_goods_effective_orders_firm_temporary
-					Param: capital_goods_production_temporary
-					Param: consumption_effective_orders_firm_temporary
-					Param: firm_date_birth
-					Param: id_firm_number
-					Param: intermediate_effective_orders_firm_temporary
-					Param: intermediate_production_firm_temporary
-					Var: Firm_Available_Debt
-					Var: Firm_Available_Financial_Assets
-					Var: Firm_Available_Funds_Replacement
-					Var: Firm_Available_Inputs_Ratio
-					Var: Firm_Avg_Potential_Markup
-					Var: Firm_Capital
-					Var: Firm_Competitiveness
-					Var: Firm_Debt_Rate
-					Var: Firm_Delivery_Delay
-					Var: Firm_Demand_Capital_Goods
-					Var: Firm_Demand_Productive_Capacity_Expansion
-					Var: Firm_Productive_Capacity_Depreciation
-					Var: Firm_Desired_Expansion_Investment_Expenses
-					Var: Firm_Desired_Market_Share
-					Var: Firm_Desired_Markup
-					Var: Firm_Desired_Price
-					Var: Firm_Effective_Market_Share
-					Var: Firm_Effective_Markup
-					Var: Firm_Effective_Orders
-					Var: Firm_Effective_Orders_Capital_Goods
-					Var: Firm_Effective_Production
-					Var: Firm_Effective_Productive_Capacity_Variation
-					Var: Firm_Expected_Sales
-					Var: Firm_Expected_Sales_Long_Term
-					Var: Firm_Avg_Debt_Rate
-					Var: Firm_Avg_Market_Share
-					Var: Firm_Avg_Productivity
-					Var: Firm_Financial_Assets_Return
-					Var: Firm_Debt_Flow
-					Var: Firm_Financial_Assets_Flow
-					Var: Firm_Frontier_Productivity
-					Var: Firm_Total_Funds
-					Var: Firm_Imitation_Productivity
-					Var: Firm_Indirect_Tax
-					Var: Firm_Innovation_Productivity
-					Var: Firm_Input_Cost
-					Var: Firm_Input_Demand_Next_Period
-					Var: Firm_Interest_Rate
-					Var: Firm_Stock_Inventories
-					Var: Firm_Inventories_Variation
-					Var: Firm_Effective_Expansion_Investment_Expenses
-					Var: Firm_Market_Share
-					Var: Firm_Max_Productivity
-					Var: Firm_Net_Profits
-					Var: Firm_Net_Revenue
-					Var: Firm_Planned_Production
-					Var: Firm_Potential_Markup
-					Var: Firm_Price
-					Var: Firm_Productive_Capacity
-					Var: Firm_Distributed_Profits
-					Var: Firm_RND_Expenses
-					Var: Firm_Demand_Productive_Capacity_Replacement
-					Var: Firm_Required_Inputs
-					Var: Firm_Retained_Profits
-					Var: Firm_Revenue
-					Var: Firm_Sales
-					Var: Firm_Stock_Debt
-					Var: Firm_Stock_Financial_Assets
-					Var: Firm_Stock_Inputs
-					Var: Firm_Variable_Cost
-					Var: Firm_Replacement_Expenses
-					Var: Firm_Available_Funds_After_Replacement
-					Var: Firm_Wage
-					Var: Firm_Quality
-					Param: firm_imitation_quality
-					Param: firm_innovation_quality
-					Var: Firm_Investment_Period
-					Var: Firm_Modernization_Rate
-					Var: Firm_Capacity_Utilization
-					Var: Firm_Demand_Capital_Goods_Expansion
-					Var: Firm_Demand_Capital_Goods_Replacement
-					Var: Firm_Effective_Capital_Goods_Expansion
-					Var: Firm_Effective_Capital_Goods_Replacement
-					Var: Firm_Imitation_Quality
-					Var: Firm_Innovation_Quality
+					Param: capital_good_date_birth
+					Param: capital_good_productive_capacity
+					Param: capital_good_productivity_initial
+					Param: capital_good_to_replace
+					Var: Capital_Good_Acumulated_Production
+					Var: Capital_Good_Production
+					Var: Capital_Good_Productivity
+					Param: id_capital_good_number
+					Param: capital_good_depreciation_period
+					Param: capital_good_to_depreciate
 
 				}
 
-				Param: markup_apropriation
-				Param: sector_initial_demand
-				Param: sector_exports_coefficient
-				Param: id_capital_goods_sector
-				Param: id_consumption_goods_sector
-				Param: id_intermediate_goods_sector
-				Param: sector_passthrough_inflation
-				Param: sector_passthrough_productivity
-				Param: sector_possible_entry
-				Var: Sector_Avg_Competitiveness
-				Var: Sector_Avg_Debt_Rate
-				Var: Sector_Avg_Markup
-				Var: Sector_Avg_Price
-				Var: Sector_Avg_Productivity
-				Var: Sector_Avg_Quality
-				Var: Sector_Avg_Wage
-				Var: Sector_Demand_Met
-				Var: Sector_Demand_Met_By_Imports
-				Var: Sector_Effective_Orders
-				Var: Sector_Effective_Production
-				Var: Sector_Employment
-				Var: Sector_Entry_Condition
-				Var: Sector_Exports
-				Var: Sector_External_Price
-				Var: Sector_Extra_Imports
-				Var: Sector_Inventories
-				Var: Sector_Inverse_HHI
-				Var: Sector_Max_Productivity
-				Var: Sector_Max_Quality
-				Var: Sector_Number_Firms
-				Var: Sector_Participation
-				Var: Sector_Potential_Employment
-				Var: Sector_Productive_Capacity
-				Var: Sector_Productive_Capacity_Available
-				Var: Sector_Productive_Capacity_Entry
-				Var: Sector_Productive_Capacity_Exit
-				Var: Sector_Sales
-				Var: Sector_Sum_Market_Share
-				Var: Sector_Turbulence
-				Var: Sector_Unemployment
-				Var: Sector_Normalized_HHI
-				Param: sector_initial_price
-				Var: Sector_Capital_Demand
-				Var: Sector_Consumption_Demand
-				Var: Sector_Intermediate_Demand
-				Var: Sector_Quality_Growth
+				Param: capital_goods_effective_orders_firm_temporary
+				Param: capital_goods_production_temporary
+				Param: consumption_effective_orders_firm_temporary
+				Param: firm_date_birth
+				Param: id_firm_number
+				Param: intermediate_effective_orders_firm_temporary
+				Param: intermediate_production_firm_temporary
+				Var: Firm_Available_Debt
+				Var: Firm_Available_Financial_Assets
+				Var: Firm_Available_Funds_Replacement
+				Var: Firm_Available_Inputs_Ratio
+				Var: Firm_Avg_Potential_Markup
+				Var: Firm_Capital
+				Var: Firm_Competitiveness
+				Var: Firm_Debt_Rate
+				Var: Firm_Delivery_Delay
+				Var: Firm_Demand_Capital_Goods
+				Var: Firm_Demand_Productive_Capacity_Expansion
+				Var: Firm_Productive_Capacity_Depreciation
+				Var: Firm_Desired_Expansion_Investment_Expenses
+				Var: Firm_Desired_Market_Share
+				Var: Firm_Desired_Markup
+				Var: Firm_Desired_Price
+				Var: Firm_Effective_Market_Share
+				Var: Firm_Effective_Markup
+				Var: Firm_Effective_Orders
+				Var: Firm_Effective_Orders_Capital_Goods
+				Var: Firm_Effective_Production
+				Var: Firm_Effective_Productive_Capacity_Variation
+				Var: Firm_Expected_Sales
+				Var: Firm_Expected_Sales_Long_Term
+				Var: Firm_Avg_Debt_Rate
+				Var: Firm_Avg_Market_Share
+				Var: Firm_Avg_Productivity
+				Var: Firm_Financial_Assets_Return
+				Var: Firm_Debt_Flow
+				Var: Firm_Financial_Assets_Flow
+				Var: Firm_Frontier_Productivity
+				Var: Firm_Total_Funds
+				Var: Firm_Imitation_Productivity
+				Var: Firm_Indirect_Tax
+				Var: Firm_Innovation_Productivity
+				Var: Firm_Input_Cost
+				Var: Firm_Input_Demand_Next_Period
+				Var: Firm_Interest_Rate
+				Var: Firm_Stock_Inventories
+				Var: Firm_Inventories_Variation
+				Var: Firm_Effective_Expansion_Investment_Expenses
+				Var: Firm_Market_Share
+				Var: Firm_Max_Productivity
+				Var: Firm_Net_Profits
+				Var: Firm_Net_Revenue
+				Var: Firm_Planned_Production
+				Var: Firm_Potential_Markup
+				Var: Firm_Price
+				Var: Firm_Productive_Capacity
+				Var: Firm_Distributed_Profits
+				Var: Firm_RND_Expenses
+				Var: Firm_Demand_Productive_Capacity_Replacement
+				Var: Firm_Required_Inputs
+				Var: Firm_Retained_Profits
+				Var: Firm_Revenue
+				Var: Firm_Sales
+				Var: Firm_Stock_Debt
+				Var: Firm_Stock_Financial_Assets
+				Var: Firm_Stock_Inputs
+				Var: Firm_Variable_Cost
+				Var: Firm_Replacement_Expenses
+				Var: Firm_Available_Funds_After_Replacement
+				Var: Firm_Wage
+				Var: Firm_Quality
+				Param: firm_imitation_quality
+				Param: firm_innovation_quality
+				Var: Firm_Investment_Period
+				Var: Firm_Modernization_Rate
+				Var: Firm_Capacity_Utilization
+				Var: Firm_Demand_Capital_Goods_Expansion
+				Var: Firm_Demand_Capital_Goods_Replacement
+				Var: Firm_Effective_Capital_Goods_Expansion
+				Var: Firm_Effective_Capital_Goods_Replacement
+				Var: Firm_Imitation_Quality
+				Var: Firm_Innovation_Quality
 
 			}
 
-			Son: CLASSES
-			Label CLASSES
-			{
-				Param: class_direct_tax
-				Param: class_interest_payment_share
-				Param: class_max_debt_ratio
-				Param: class_profit_share
-				Param: class_propensity_to_consume
-				Param: class_propensity_to_import
-				Param: class_wage_share
-				Var: Class_Autonomous_Consumption
-				Var: Class_Debt
-				Var: Class_Debt_Payment
-				Var: Class_Debt_Ratio
-				Var: Class_Effective_Domestic_Consumption
-				Var: Class_Effective_Imports
-				Var: Class_Expenses
-				Var: Class_Financial_Asset_Return
-				Var: Class_Financial_Assets
-				Var: Class_Government_Interest_Payment
-				Var: Class_Nominal_Income
-				Var: Class_Real_Domestic_Consumption
-				Var: Class_Real_Imports
-				Var: Class_Real_Income
-				Var: Class_Savings
-
-			}
-
-			Son: GOVERNMENT
-			Label GOVERNMENT
-			{
-				Param: government_expectations
-				Param: government_surplus_rate_target
-				Param: inflation_sensitivity
-				Param: inflation_target
-				Param: interest_rate
-				Param: interest_rate_adjustment
-				Param: unemployment_sensitivity
-				Param: unemployment_target
-				Var: Government_Interest_Payment
-				Var: Government_Wages
-				Var: Total_Income_Taxes
-				Var: Total_Indirect_Taxes
-				Var: Basic_Interest_Rate
-				Var: Government_Max_Expenses
-				Var: Government_Primary_Surplus
-				Var: Government_Debt
-				Var: Government_Debt_GDP_Ratio
-				Var: Government_Deficit
-				Var: Total_Taxes
-				Param: initial_taxes
-
-			}
-
-			Son: EXTERNAL_SECTOR
-			Label EXTERNAL_SECTOR
-			{
-				Param: exchange_rate_growth
-				Param: external_income_growth_adjustment
-				Var: Exchange_Rate
-				Var: External_Income
-				Param: International_Reserves
-				Var: Trade_Balance
-				Param: external_income_fixed_growth
-
-			}
-
-			Param: annual_period
-			Param: basic_percent_spread
-			Param: capital_output_ratio
-			Param: crisis_threshold
-			Param: depreciation_period
-			Param: desired_debt_rate
-			Param: desired_degree_capacity_utilization
-			Param: desired_financial_rate
-			Param: desired_inventories_proportion
-			Param: elascitity_delay
-			Param: elasticity_price
-			Param: elasticity_quality
-			Param: expectations
-			Param: exports_elasticity_income
-			Param: exports_elasticity_price
-			Param: external_price_competitiveness
-			Param: external_price_growth
-			Param: indirect_tax_rate
-			Param: initial_avg_price
-			Param: initial_external_price
-			Param: initial_markup
-			Param: initial_productivity
-			Param: initial_quality
-			Param: innovation_proportion
-			Param: input_tech_coefficient
-			Param: investment_period
-			Param: learning_adjustment
-			Param: market_share_expansion
-			Param: markup_period
-			Param: number_object_firms
-			Param: profits_distribution_rate
-			Param: rnd_revenue_proportion
-			Param: std_dev_innovation
-			Param: strategic_price_weight
-			Param: tech_opportunity
-			Func: Capital_Goods_Demand_Function
-			Func: Domestic_Consumption_Demand_Function
-			Func: Income_Taxes_Function
-			Func: Indirect_Taxes_Function
-			Func: Intermediate_Demand_Function
-			Var: Annual_Growth
-			Var: Annual_Inflation
-			Var: Annual_Real_Growth
-			Var: Avg_Markup
-			Var: Avg_Productivity
-			Var: Avg_Profit_Rate
-			Var: Avg_Rate_Capacity_Utilization
-			Var: Consumer_Price_Index
-			Var: GDP
-			Var: GDP_Demand
-			Var: Gross_Value_Production
-			Var: Likelihood_Crisis
-			Var: Observed_Capital_Labor_Ratio
-			Var: Observed_Capital_Output_Ratio
-			Var: Price_Capital_Goods
-			Var: Price_Index
-			Var: Profit_Share
-			Var: Real_GDP
-			Var: SFC_Financial_Sector_Wealth
-			Var: SFC_Financial_Sector_Wealth_2
-			Var: SFC_Net_Rentability_Financial_Assets
-			Var: SFC_Total_Financial_Assets_Return_Classes
-			Var: SFC_Total_Financial_Assets_Return_Firms
-			Var: SFC_Total_Funds
-			Var: SFC_Total_Interest_Payments_Classes
-			Var: SFC_Total_Interest_Payments_Firms
-			Var: SFC_Total_Savings
-			Var: SFC_Total_Variation_Debt_Classes
-			Var: SFC_Total_Variation_Debt_Firms
-			Var: SFC_Total_Variation_Financial_Assets_Classes
-			Var: SFC_Total_Variation_Financial_Assets_Firms
-			Var: Total_Autonomous_Consumption
-			Var: Total_Autonomous_Investment
-			Var: Total_Capital_Stock
-			Var: Total_Classes_Expenses
-			Var: Total_Consumption
-			Var: Total_Distributed_Profits
-			Var: Total_Exports
-			Var: Total_Imports
-			Var: Total_Induced_Investment
-			Var: Total_Intermediate
-			Var: Total_Inventories
-			Var: Total_Inventories_Variation
-			Var: Total_Investment
-			Var: Total_Investment_Expenses
-			Var: Total_Productive_Capacity_Depreciated
-			Var: Total_Productive_Capacity_Expansion
-			Var: Total_Productive_Capacity_Replacement
-			Var: Total_Profits
-			Var: Total_Wages
-			Var: Unemployment
-			Var: Wage_Share
-			Param: class_period
-			Param: government_period
-			Param: initial_wage
-			Var: Exit
-			Var: Exit_Defaulted_Loans
-			Var: Exit_Deposits_Distributed
-			Var: Exit_Productive_Capacity
-			Param: survival_period
-			Param: class_autonomous_consumption_adjustment
-			Var: Total_Domestic_Capital_Goods_Demand
-			Var: Total_Domestic_Consumption_Demand
-			Var: Total_Domestic_Intermediate_Demand
+			Param: markup_apropriation
+			Param: sector_initial_demand
+			Param: sector_exports_coefficient
+			Param: id_capital_goods_sector
+			Param: id_consumption_goods_sector
+			Param: id_intermediate_goods_sector
+			Param: sector_passthrough_inflation
+			Param: sector_passthrough_productivity
+			Param: sector_possible_entry
+			Var: Sector_Avg_Competitiveness
+			Var: Sector_Avg_Debt_Rate
+			Var: Sector_Avg_Markup
+			Var: Sector_Avg_Price
+			Var: Sector_Avg_Productivity
+			Var: Sector_Avg_Quality
+			Var: Sector_Avg_Wage
+			Var: Sector_Demand_Met
+			Var: Sector_Demand_Met_By_Imports
+			Var: Sector_Effective_Orders
+			Var: Sector_Effective_Production
+			Var: Sector_Employment
+			Var: Sector_Entry_Condition
+			Var: Sector_Exports
+			Var: Sector_External_Price
+			Var: Sector_Extra_Imports
+			Var: Sector_Inventories
+			Var: Sector_Inverse_HHI
+			Var: Sector_Max_Productivity
+			Var: Sector_Max_Quality
+			Var: Sector_Number_Firms
+			Var: Sector_Participation
+			Var: Sector_Potential_Employment
+			Var: Sector_Productive_Capacity
+			Var: Sector_Productive_Capacity_Available
+			Var: Sector_Productive_Capacity_Entry
+			Var: Sector_Productive_Capacity_Exit
+			Var: Sector_Sales
+			Var: Sector_Sum_Market_Share
+			Var: Sector_Turbulence
+			Var: Sector_Unemployment
+			Var: Sector_Normalized_HHI
+			Param: sector_initial_price
+			Var: Sector_Capital_Demand
+			Var: Sector_Consumption_Demand
+			Var: Sector_Intermediate_Demand
+			Var: Sector_Quality_Growth
 
 		}
 
+		Son: CLASSES
+		Label CLASSES
+		{
+			Param: class_direct_tax
+			Param: class_interest_payment_share
+			Param: class_max_debt_ratio
+			Param: class_profit_share
+			Param: class_propensity_to_consume
+			Param: class_propensity_to_import
+			Param: class_wage_share
+			Var: Class_Autonomous_Consumption
+			Var: Class_Debt
+			Var: Class_Debt_Payment
+			Var: Class_Debt_Ratio
+			Var: Class_Effective_Domestic_Consumption
+			Var: Class_Effective_Imports
+			Var: Class_Expenses
+			Var: Class_Financial_Asset_Return
+			Var: Class_Financial_Assets
+			Var: Class_Government_Interest_Payment
+			Var: Class_Nominal_Income
+			Var: Class_Real_Domestic_Consumption
+			Var: Class_Real_Imports
+			Var: Class_Real_Income
+			Var: Class_Savings
+
+		}
+
+		Son: GOVERNMENT
+		Label GOVERNMENT
+		{
+			Param: government_expectations
+			Param: government_surplus_rate_target
+			Param: inflation_sensitivity
+			Param: inflation_target
+			Param: interest_rate
+			Param: interest_rate_adjustment
+			Param: unemployment_sensitivity
+			Param: unemployment_target
+			Var: Government_Interest_Payment
+			Var: Government_Wages
+			Var: Total_Income_Taxes
+			Var: Total_Indirect_Taxes
+			Var: Basic_Interest_Rate
+			Var: Government_Max_Expenses
+			Var: Government_Primary_Surplus
+			Var: Government_Debt
+			Var: Government_Debt_GDP_Ratio
+			Var: Government_Deficit
+			Var: Total_Taxes
+			Param: initial_taxes
+
+		}
+
+		Son: EXTERNAL_SECTOR
+		Label EXTERNAL_SECTOR
+		{
+			Param: exchange_rate_growth
+			Param: external_income_growth_adjustment
+			Var: Exchange_Rate
+			Var: External_Income
+			Param: International_Reserves
+			Var: Trade_Balance
+			Param: external_income_fixed_growth
+
+		}
+
+		Param: annual_period
+		Param: basic_percent_spread
+		Param: capital_output_ratio
+		Param: crisis_threshold
+		Param: depreciation_period
+		Param: desired_debt_rate
+		Param: desired_degree_capacity_utilization
+		Param: desired_financial_rate
+		Param: desired_inventories_proportion
+		Param: elascitity_delay
+		Param: elasticity_price
+		Param: elasticity_quality
+		Param: expectations
+		Param: exports_elasticity_income
+		Param: exports_elasticity_price
+		Param: external_price_competitiveness
+		Param: external_price_growth
+		Param: indirect_tax_rate
+		Param: initial_avg_price
+		Param: initial_external_price
+		Param: initial_markup
+		Param: initial_productivity
+		Param: initial_quality
+		Param: innovation_proportion
+		Param: input_tech_coefficient
+		Param: investment_period
+		Param: learning_adjustment
+		Param: market_share_expansion
+		Param: markup_period
+		Param: number_object_firms
+		Param: profits_distribution_rate
+		Param: rnd_revenue_proportion
+		Param: std_dev_innovation
+		Param: strategic_price_weight
+		Param: tech_opportunity
+		Func: Capital_Goods_Demand_Function
+		Func: Domestic_Consumption_Demand_Function
+		Func: Income_Taxes_Function
+		Func: Indirect_Taxes_Function
+		Func: Intermediate_Demand_Function
+		Var: Annual_Growth
+		Var: Annual_Inflation
+		Var: Annual_Real_Growth
+		Var: Avg_Markup
+		Var: Avg_Productivity
+		Var: Avg_Profit_Rate
+		Var: Avg_Rate_Capacity_Utilization
+		Var: Consumer_Price_Index
+		Var: GDP
+		Var: GDP_Demand
+		Var: Gross_Value_Production
+		Var: Likelihood_Crisis
+		Var: Observed_Capital_Labor_Ratio
+		Var: Observed_Capital_Output_Ratio
+		Var: Price_Capital_Goods
+		Var: Price_Index
+		Var: Profit_Share
+		Var: Real_GDP
+		Var: SFC_Financial_Sector_Wealth
+		Var: SFC_Financial_Sector_Wealth_2
+		Var: SFC_Net_Rentability_Financial_Assets
+		Var: SFC_Total_Financial_Assets_Return_Classes
+		Var: SFC_Total_Financial_Assets_Return_Firms
+		Var: SFC_Total_Funds
+		Var: SFC_Total_Interest_Payments_Classes
+		Var: SFC_Total_Interest_Payments_Firms
+		Var: SFC_Total_Savings
+		Var: SFC_Total_Variation_Debt_Classes
+		Var: SFC_Total_Variation_Debt_Firms
+		Var: SFC_Total_Variation_Financial_Assets_Classes
+		Var: SFC_Total_Variation_Financial_Assets_Firms
+		Var: Total_Autonomous_Consumption
+		Var: Total_Autonomous_Investment
+		Var: Total_Capital_Stock
+		Var: Total_Classes_Expenses
+		Var: Total_Consumption
+		Var: Total_Distributed_Profits
+		Var: Total_Exports
+		Var: Total_Imports
+		Var: Total_Induced_Investment
+		Var: Total_Intermediate
+		Var: Total_Inventories
+		Var: Total_Inventories_Variation
+		Var: Total_Investment
+		Var: Total_Investment_Expenses
+		Var: Total_Productive_Capacity_Depreciated
+		Var: Total_Productive_Capacity_Expansion
+		Var: Total_Productive_Capacity_Replacement
+		Var: Total_Profits
+		Var: Total_Wages
+		Var: Unemployment
+		Var: Wage_Share
+		Param: class_period
+		Param: government_period
+		Param: initial_wage
+		Var: Exit
+		Var: Exit_Defaulted_Loans
+		Var: Exit_Deposits_Distributed
+		Var: Exit_Productive_Capacity
+		Param: survival_period
+		Param: class_autonomous_consumption_adjustment
+		Var: Total_Domestic_Capital_Goods_Demand
+		Var: Total_Domestic_Consumption_Demand
+		Var: Total_Domestic_Intermediate_Demand
 
 	}
 
@@ -423,8 +417,6 @@ DATA
 Object: Root C	1
 Var: Initialization 0 n + d n
 Var: Time_Step 0 n + d n
-
-Object: INIT C	1
 
 Object: MACRO C	1
 Param: annual_period 0 n + n n	4
@@ -682,7 +674,7 @@ Param: class_interest_payment_share 0 n + n n	1	0
 Param: class_max_debt_ratio 0 n + n n	1	1
 Param: class_profit_share 0 n + n n	0.9	0.1
 Param: class_propensity_to_consume 0 n + n n	0.8	0.9
-Param: class_propensity_to_import 0 n + n n	0	0
+Param: class_propensity_to_import 0 n + n n	0.1	0.05
 Param: class_wage_share 0 n + n n	0.1	0.9
 Var: Class_Autonomous_Consumption 1 s + n n	5	4
 Var: Class_Debt 1 s + n n	0	0
@@ -724,12 +716,12 @@ Param: initial_taxes 0 n + n n	0
 
 Object: EXTERNAL_SECTOR C	1
 Param: exchange_rate_growth 0 n + n n	0
-Param: external_income_growth_adjustment 0 n + n n	1
+Param: external_income_growth_adjustment 0 n + n n	0
 Var: Exchange_Rate 1 n + n n	1
 Var: External_Income 1 s + n n	100
 Param: International_Reserves 1 n + n n	100000
 Var: Trade_Balance 0 s + n n
-Param: external_income_fixed_growth 0 n + n n	0
+Param: external_income_fixed_growth 0 n + n n	0.01
 
 Object: ANALYSIS C	1
 Var: C 0 s + n n
@@ -821,10 +813,6 @@ Variable_Time_Step
 (no description available)
 _INIT_
 
-END_DESCRIPTION
-
-Object_INIT
-(no description available)
 END_DESCRIPTION
 
 Object_MACRO
