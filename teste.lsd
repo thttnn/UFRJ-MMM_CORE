@@ -337,6 +337,51 @@ Label Root
 
 		}
 
+		Param: a_per
+		Param: C_alpha
+		Param: C_beta
+		Param: C_d
+		Param: C_eta
+		Param: C_lambda
+		Param: C_mk
+		Param: c_per
+		Param: C_phi
+		Param: C_tau
+		Param: C_w
+		Param: calib_C_demand
+		Param: calib_distributed_profits
+		Param: calib_GDP
+		Param: calib_I_demand
+		Param: calib_indirect_taxes
+		Param: calib_K_demand
+		Param: calib_price_index
+		Param: calib_total_imports
+		Param: calib_total_profits
+		Param: calib_total_taxes
+		Param: calib_total_wages
+		Param: depre_per
+		Param: gov_per
+		Param: I_alpha
+		Param: I_beta
+		Param: I_d
+		Param: I_eta
+		Param: I_lambda
+		Param: I_mk
+		Param: i_per
+		Param: I_phi
+		Param: I_tau
+		Param: I_w
+		Param: K_alpha
+		Param: K_beta
+		Param: K_d
+		Param: K_eta
+		Param: K_lambda
+		Param: K_mk
+		Param: K_phi
+		Param: K_tau
+		Param: K_w
+		Param: mk_per
+		Var: Calibration
 
 	}
 
@@ -425,6 +470,51 @@ Var: Initialization 0 n + d n
 Var: Time_Step 0 n + d n
 
 Object: INIT C	1
+Param: a_per 0 n + n n	4
+Param: C_alpha 0 n + n n	0.4
+Param: C_beta 0 n + n n	2
+Param: C_d 0 n + n n	0.9
+Param: C_eta 0 n + n n	20
+Param: C_lambda 0 n + n n	0.01
+Param: C_mk 0 n + n n	1.5
+Param: c_per 0 n + n n	4
+Param: C_phi 0 n + n n	1
+Param: C_tau 0 n + n n	0
+Param: C_w 0 n + n n	1
+Param: calib_C_demand 0 n + n n	0
+Param: calib_distributed_profits 0 n + n n	0
+Param: calib_GDP 0 n + n n	0
+Param: calib_I_demand 0 n + n n	0
+Param: calib_indirect_taxes 0 n + n n	0
+Param: calib_K_demand 0 n + n n	0
+Param: calib_price_index 0 n + n n	0
+Param: calib_total_imports 0 n + n n	0
+Param: calib_total_profits 0 n + n n	0
+Param: calib_total_taxes 0 n + n n	0
+Param: calib_total_wages 0 n + n n	0
+Param: depre_per 0 n + n n	60
+Param: gov_per 0 n + n n	4
+Param: I_alpha 0 n + n n	0.4
+Param: I_beta 0 n + n n	2
+Param: I_d 0 n + n n	0.9
+Param: I_eta 0 n + n n	20
+Param: I_lambda 0 n + n n	0.01
+Param: I_mk 0 n + n n	1.5
+Param: i_per 0 n + n n	6
+Param: I_phi 0 n + n n	1
+Param: I_tau 0 n + n n	0
+Param: I_w 0 n + n n	1
+Param: K_alpha 0 n + n n	0.4
+Param: K_beta 0 n + n n	2
+Param: K_d 0 n + n n	0.9
+Param: K_eta 0 n + n n	20
+Param: K_lambda 0 n + n n	0.01
+Param: K_mk 0 n + n n	1.5
+Param: K_phi 0 n + n n	1
+Param: K_tau 0 n + n n	0
+Param: K_w 0 n + n n	1
+Param: mk_per 0 n + n n	4
+Var: Calibration 0 n + n n
 
 Object: MACRO C	1
 Param: annual_period 0 n + n n	4
@@ -825,6 +915,278 @@ END_DESCRIPTION
 
 Object_INIT
 (no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_a_per
+(no description available)
+_INIT_
+All 1 instances equal to 4.
+END_DESCRIPTION
+
+Parameter_C_alpha
+(no description available)
+_INIT_
+All 1 instances equal to 0.4.
+END_DESCRIPTION
+
+Parameter_C_beta
+(no description available)
+_INIT_
+All 1 instances equal to 2.
+END_DESCRIPTION
+
+Parameter_C_d
+(no description available)
+_INIT_
+All 1 instances equal to 0.9.
+END_DESCRIPTION
+
+Parameter_C_eta
+(no description available)
+_INIT_
+All 1 instances equal to 20.
+END_DESCRIPTION
+
+Parameter_C_lambda
+(no description available)
+_INIT_
+All 1 instances equal to 0.01.
+END_DESCRIPTION
+
+Parameter_C_mk
+(no description available)
+_INIT_
+All 1 instances equal to 1.5.
+END_DESCRIPTION
+
+Parameter_c_per
+(no description available)
+_INIT_
+All 1 instances equal to 4.
+END_DESCRIPTION
+
+Parameter_C_phi
+(no description available)
+_INIT_
+All 1 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_C_tau
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_C_w
+(no description available)
+_INIT_
+All 1 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_calib_C_demand
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_distributed_profits
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_GDP
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_I_demand
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_indirect_taxes
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_K_demand
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_price_index
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_total_imports
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_total_profits
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_total_taxes
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_calib_total_wages
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_depre_per
+(no description available)
+_INIT_
+All 1 instances equal to 60.
+END_DESCRIPTION
+
+Parameter_gov_per
+(no description available)
+_INIT_
+All 1 instances equal to 4.
+END_DESCRIPTION
+
+Parameter_I_alpha
+(no description available)
+_INIT_
+All 1 instances equal to 0.4.
+END_DESCRIPTION
+
+Parameter_I_beta
+(no description available)
+_INIT_
+All 1 instances equal to 2.
+END_DESCRIPTION
+
+Parameter_I_d
+(no description available)
+_INIT_
+All 1 instances equal to 0.9.
+END_DESCRIPTION
+
+Parameter_I_eta
+(no description available)
+_INIT_
+All 1 instances equal to 20.
+END_DESCRIPTION
+
+Parameter_I_lambda
+(no description available)
+_INIT_
+All 1 instances equal to 0.01.
+END_DESCRIPTION
+
+Parameter_I_mk
+(no description available)
+_INIT_
+All 1 instances equal to 1.5.
+END_DESCRIPTION
+
+Parameter_i_per
+(no description available)
+_INIT_
+All 1 instances equal to 6.
+END_DESCRIPTION
+
+Parameter_I_phi
+(no description available)
+_INIT_
+All 1 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_I_tau
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_I_w
+(no description available)
+_INIT_
+All 1 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_K_alpha
+(no description available)
+_INIT_
+All 1 instances equal to 0.4.
+END_DESCRIPTION
+
+Parameter_K_beta
+(no description available)
+_INIT_
+All 1 instances equal to 2.
+END_DESCRIPTION
+
+Parameter_K_d
+(no description available)
+_INIT_
+All 1 instances equal to 0.9.
+END_DESCRIPTION
+
+Parameter_K_eta
+(no description available)
+_INIT_
+All 1 instances equal to 20.
+END_DESCRIPTION
+
+Parameter_K_lambda
+(no description available)
+_INIT_
+All 1 instances equal to 0.01.
+END_DESCRIPTION
+
+Parameter_K_mk
+(no description available)
+_INIT_
+All 1 instances equal to 1.5.
+END_DESCRIPTION
+
+Parameter_K_phi
+(no description available)
+_INIT_
+All 1 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_K_tau
+(no description available)
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_K_w
+(no description available)
+_INIT_
+All 1 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_mk_per
+(no description available)
+_INIT_
+All 1 instances equal to 4.
+END_DESCRIPTION
+
+Variable_Calibration
+Macro Parameters
+
+
 END_DESCRIPTION
 
 Object_MACRO
