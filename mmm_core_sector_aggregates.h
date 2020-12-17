@@ -92,12 +92,20 @@ RESULT(v[3])
 /*****SECTOR AGGREGATES*****/
 
 
-EQUATION("Sector_Sales")                          
-/*
-Sum up the sales of all firms in the sector
-*/
-	v[0]=SUM("Firm_Sales");                                     
-RESULT(v[0])
+EQUATION("Sector_Sales")                                                            
+RESULT(SUM("Firm_Sales"))
+
+EQUATION("Sector_Inventories")                               
+RESULT(SUM("Firm_Stock_Inventories"))
+
+EQUATION("Sector_Effective_Production")                     
+RESULT(SUM("Firm_Effective_Production"))
+
+EQUATION("Sector_Productive_Capacity")                    
+RESULT(SUM("Firm_Productive_Capacity"))
+
+EQUATION("Sector_Sum_Market_Share")
+RESULT(SUM("Firm_Market_Share"))
 
 
 EQUATION("Sector_Demand_Met")
@@ -111,38 +119,6 @@ Percentage of demand fulfilled by each sector
   	else                                                 	//if effective orders is not positive
     	v[2]=1;                                            	//the percentage of the demand met by the sector is 100%
 RESULT(v[2])
-
-
-EQUATION("Sector_Inventories")
-/*
-Sum of the Inventories 
-*/
-	v[0]=SUM("Firm_Stock_Inventories");                                
-RESULT(v[0])
-
-
-EQUATION("Sector_Effective_Production")
-/*
-Sum of the Effective Production 
-*/
-	v[0]=SUM("Firm_Effective_Production");                        
-RESULT(v[0])
-
-
-EQUATION("Sector_Productive_Capacity")
-/*
-Sum of the Productive Capacity 
-*/
-	v[0]=SUM("Firm_Productive_Capacity");                     
-RESULT(v[0])
-
-
-EQUATION("Sector_Sum_Market_Share")
-/*
-Sum of the Market shares: this variable works to verify the Fischer Equation
-*/
-	v[0]=SUM("Firm_Market_Share");
-RESULT(v[0])
 
 
 EQUATION("Sector_Employment")
@@ -202,22 +178,6 @@ RESULT(v[2])
 /*****SECTOR AVERAGES AND MAX*****/
 
 
-EQUATION("Sector_Avg_Price")
-/*
-Average weighted by firm's market share
-*/
-	v[0]=WHTAVE("Firm_Price", "Firm_Market_Share");
-RESULT(v[0])
-
-
-EQUATION("Sector_Avg_Wage")
-/*
-Sector average nominal wage, weighted by firm's market share
-*/
-	v[0]=WHTAVE("Firm_Wage", "Firm_Market_Share");
-RESULT(v[0])
-
-
 EQUATION("Sector_Avg_Competitiveness")
 /*
 Average competitiveness, weighted by firm's market share
@@ -231,53 +191,29 @@ Average competitiveness, weighted by firm's market share
 	}
 RESULT(v[0])
 
+EQUATION("Sector_Avg_Price")
+RESULT(WHTAVE("Firm_Price", "Firm_Market_Share"))
 
-EQUATION("Sector_Max_Productivity")
-/*
-Maximum productivity of the sector will be the higher between firm's frontier productivities
-*/
-	v[0]=MAX("Firm_Frontier_Productivity");          
-RESULT(v[0])
+EQUATION("Sector_Avg_Wage")
+RESULT(WHTAVE("Firm_Wage", "Firm_Market_Share"))
 
+EQUATION("Sector_Max_Productivity")          
+RESULT(MAX("Firm_Frontier_Productivity"))
 
 EQUATION("Sector_Avg_Markup")
-/*
-Average markup of the sector, weighted by firm's effective market share
-*/
-	v[0]=WHTAVE("Firm_Effective_Markup", "Firm_Market_Share");
-RESULT(v[0])
-
+RESULT(WHTAVE("Firm_Effective_Markup", "Firm_Market_Share"))
 
 EQUATION("Sector_Avg_Productivity")
-/*
-Sector average productivity will be the average of firms productivity weighted by their market shares
-*/
-	v[0]=WHTAVE("Firm_Avg_Productivity", "Firm_Market_Share");
-RESULT(v[0])
-
+RESULT(WHTAVE("Firm_Avg_Productivity", "Firm_Market_Share"))
 
 EQUATION("Sector_Avg_Debt_Rate")
-/*
-Sector average debt rate will be the average of firms productivity weighted by their market shares
-*/
-	v[0]=WHTAVE("Firm_Debt_Rate", "Firm_Market_Share");
-RESULT(v[0])
-
+RESULT(WHTAVE("Firm_Debt_Rate", "Firm_Market_Share"))
 
 EQUATION("Sector_Max_Quality")
-/*
-Maximum firm quality of the sector.
-*/
-	v[0]=MAX("Firm_Quality");
-RESULT(v[0])
-
+RESULT(MAX("Firm_Quality"))
 
 EQUATION("Sector_Avg_Quality")
-/*
-Average of the firm's quality weighted by their market share
-*/
-	v[0]=WHTAVE("Firm_Quality", "Firm_Market_Share");
-RESULT(v[0])
+RESULT(WHTAVE("Firm_Quality", "Firm_Market_Share"))
 
 
 
