@@ -33,18 +33,18 @@ The intermediate goods sectors demand exactly the amount they will need to produ
 */
 
 	v[0]=V("Firm_Planned_Production");                     	//firm's planned production for the current period
-	v[1]=V("sector_input_tech_coefficient");           			//input technical coefficient
+	v[1]=V("sector_input_tech_coefficient");           		//input technical coefficient
 	v[2]=V("id_intermediate_goods_sector");           		//identifies intermediate good sectors
 	
 	v[3]=VL("Firm_Effective_Orders", 1);                   	//firm's effective orders lagged 1 
 	v[4]=VL("Firm_Effective_Orders", 2);                   	//firm's effective orders lagged 2
-	v[5]=V("sector_expectations");                                 //expectation parameter
-	if(v[4]!=0)                                       	//if effective orders is not 0
+	v[5]=V("sector_expectations");                          //expectation parameter
+	if(v[4]!=0)                                       		//if effective orders is not 0
 		v[6]=1+(v[5]*((v[3]-v[4])/v[4]));               	//gives an expected growth rate, based on the effective orders
 	else                                              		//if effective orders is 0
 		v[6]=1;                                         	//the expected growth rate is 1
 	
-	v[7]=(v[0]*v[1])*(v[6]);    					//gives the amount of imputs necessary for the next period, multiplying the current planned production plus the desired amount of investories by the exptected growth rate and by the imput techinical relanshionship, and subtracting the current stock of imputs, already discounting the amount to be used in current production
+	v[7]=(v[0]*v[1])*(v[6]);    							//gives the amount of imputs necessary for the next period, multiplying the current planned production plus the desired amount of investories by the exptected growth rate and by the imput techinical relanshionship, and subtracting the current stock of imputs, already discounting the amount to be used in current production
 	v[8]=max(v[7],0);                               		//the demand of imputs for the next period can never be negative
 RESULT(v[8])
 
@@ -59,7 +59,7 @@ The stock of inputs of each firm at the end of the period is calculated by summi
 	v[2]=VS(cur,"Sector_Demand_Met");                     	//percentage of the total demand met by the sector                
 	v[3]=VS(cur,"Sector_Demand_Met_By_Imports");          	//identifies if firms were capable of inporting the amount not mey by the domestic production
 	v[4]=v[2]+(1-v[2])*v[3];                              	//percentage of the demand met by the domestic production and by the external producers                     
-	v[5]=V("sector_input_tech_coefficient");                     	//input technical coefficient               			 
+	v[5]=V("sector_input_tech_coefficient");                //input technical coefficient               			 
 	v[6]=V("Firm_Effective_Production");                  	//firm's effective production   
 	v[7]=VL("Firm_Stock_Inputs", 1);	                  	//firm's stock of inputs in the last period
 	v[8]=v[7]+v[1]*v[4]-(v[5]*v[6]);                      	//the current stock of inputs is the stock in the last period plus the amount of the demand for the next period that was effetivly met, minus the amount used in effective production                 
@@ -74,7 +74,7 @@ Unitary costs of the inputs. It's given by the domestic input price plus the ext
 	cur=SEARCH_CND("id_intermediate_goods_sector", 1);    	//search the inputs for the one from the intermediate sector
 	v[1]=VLS(cur,"Sector_Avg_Price",1);                   	//intermediate sector average price
 	v[2]=VS(cur,"Sector_External_Price");                 	//sector external price
-	v[3]=V("sector_input_tech_coefficient");                     	//input technical relationship 
+	v[3]=V("sector_input_tech_coefficient");                //input technical relationship 
 	v[5]=V("Exchange_Rate");                              	//exchange rate
 	v[6]=VLS(cur,"Sector_Demand_Met",1);                  	//demand for inputs met by the domestic production in the last period
 	v[7]=VLS(cur,"Sector_Demand_Met_By_Imports", 1);

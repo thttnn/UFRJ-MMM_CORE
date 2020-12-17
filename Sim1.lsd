@@ -150,8 +150,8 @@ Label Root
 				Var: Sector_Avg_Productivity
 				Var: Sector_Avg_Quality
 				Var: Sector_Avg_Wage
-				Var: Sector_Capital_Demand
-				Var: Sector_Consumption_Demand
+				Var: Sector_Domestic_Capital_Demand
+				Var: Sector_Domestic_Consumption_Demand
 				Var: Sector_Demand_Met
 				Var: Sector_Demand_Met_By_Imports
 				Var: Sector_Effective_Orders
@@ -161,7 +161,7 @@ Label Root
 				Var: Sector_Exports
 				Var: Sector_External_Price
 				Var: Sector_Extra_Imports
-				Var: Sector_Intermediate_Demand
+				Var: Sector_Domestic_Intermediate_Demand
 				Var: Sector_Inventories
 				Var: Sector_Inverse_HHI
 				Var: Sector_Max_Productivity
@@ -622,8 +622,8 @@ Var: Sector_Avg_Price 2 s + n n	1	1	1	1	1	1
 Var: Sector_Avg_Productivity 1 s + n n	0	0	0
 Var: Sector_Avg_Quality 5 s + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Avg_Wage 0 s + n n
-Var: Sector_Capital_Demand 0 n + n n
-Var: Sector_Consumption_Demand 0 n + n n
+Var: Sector_Domestic_Capital_Demand 0 n + n n
+Var: Sector_Domestic_Consumption_Demand 0 n + n n
 Var: Sector_Demand_Met 6 s + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Demand_Met_By_Imports 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Sector_Effective_Orders 8 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -633,7 +633,7 @@ Var: Sector_Entry_Condition 0 n + n n
 Var: Sector_Exports 1 s + n n	0	0	0
 Var: Sector_External_Price 1 n + n n	1	1	1
 Var: Sector_Extra_Imports 0 n + n n
-Var: Sector_Intermediate_Demand 0 n + n n
+Var: Sector_Domestic_Intermediate_Demand 0 n + n n
 Var: Sector_Inventories 1 n + n n	0	0	0
 Var: Sector_Inverse_HHI 0 s + n n
 Var: Sector_Max_Productivity 1 n + n n	1	1	1
@@ -1860,13 +1860,13 @@ _INIT_
 
 END_DESCRIPTION
 
-Variable_Sector_Capital_Demand
+Variable_Sector_Domestic_Capital_Demand
 Calls the Capital_Goods_Demand Function and calculates the demand of other sectors.
 _INIT_
 
 END_DESCRIPTION
 
-Variable_Sector_Consumption_Demand
+Variable_Sector_Domestic_Consumption_Demand
 Stores the value of the Demand Function if it is a consumption goods sector
 _INIT_
 
@@ -1926,7 +1926,7 @@ _INIT_
 
 END_DESCRIPTION
 
-Variable_Sector_Intermediate_Demand
+Variable_Sector_Domestic_Intermediate_Demand
 This stores the value of the "Dom_Intermediate_Demand_Function" for each sector.
 _INIT_
 

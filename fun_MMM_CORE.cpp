@@ -17,7 +17,6 @@ MODELBEGIN
 	#include "mmm_core_government.h"         				// Government Object Variables
 	#include "mmm_core_external_sector.h"    				// External Sector Object Variables
 		#include "mmm_core_entry_exit.h"       				// Entry and Exit Variables (inside Sector Object)
-		#include "mmm_core_sector_external.h"				// Sector Variables related to External Sector
 		#include "mmm_core_sector_demand.h"					// Sector Variables for Demand Calculations
 		#include "mmm_core_sector_aggregates.h"				// Sector Agreggates and Averages Variables
 			#include "mmm_core_firm_rnd.h"					// Firm's R&D Variables			

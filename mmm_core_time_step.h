@@ -9,149 +9,149 @@ Comments indicate the level of each variable.
 V("Calibration");
 
 /*****GOVERNMENT EXPENSES (AUTONOMOUS)*****/
-V("Basic_Interest_Rate");                                   //government variable
-V("Government_Max_Expenses");                          		//government variable
-V("Government_Wages");                                 		//government variable
+V("Basic_Interest_Rate");                                  
+V("Government_Max_Expenses");                          		
+V("Government_Wages");                                 		
 
 /*****EXPORTS (AUTONOMOUS) AND PRICE SETTING*****/
-V("Firm_Wage");                                      	   	//sector variable
-V("External_Income");                                  		//external sector variable
-V("Sector_External_Price");                                 //sector variable
-V("Exchange_Rate");                                    		//external sector variable
-V("Firm_Input_Cost");                                       //input variable
-V("Firm_Variable_Cost");                                    //firm variable
-V("Firm_Desired_Market_Share");                             //firm variable
-V("Firm_Desired_Markup");                                   //firm variable
-V("Firm_Desired_Price");                                    //firm variable
-V("Firm_Price");                                            //firm variable
-V("Sector_Avg_Price");                                      //sector variable
-V("Sector_Exports");                                   		//sector variable 
+V("Firm_Wage");                                      	  
+V("External_Income");                                  		
+V("Sector_External_Price");                                
+V("Exchange_Rate");                                    		
+V("Firm_Input_Cost");                                     
+V("Firm_Variable_Cost");                                   
+V("Firm_Desired_Market_Share");                            
+V("Firm_Desired_Markup");                                   
+V("Firm_Desired_Price");                                  
+V("Firm_Price");                                          
+V("Sector_Avg_Price");                                     
+V("Sector_Exports");                                   		 
 
 /*****CAPITAL GOODS DEMAND*****/
 V("Firm_Demand_Capital_Goods");                             
-V("Sector_Capital_Demand");                          		                  		
-V("Firm_Effective_Orders_Capital_Goods");              		//firm variable
+V("Sector_Domestic_Capital_Demand");                          		                  		
+V("Firm_Effective_Orders_Capital_Goods");              		
 
 /*****PRODUCTION*****/
-V("Firm_Expected_Sales");                                   //firm variable
-V("Firm_Planned_Production");                               //firm variable
-V("Firm_Available_Inputs_Ratio");                       	//firm variable
-V("Capital_Good_Productivity");                        		//capital variable
-V("Firm_Competitiveness");                                  //firm variable
-V("Firm_Market_Share");                                     //firm variable
-V("Firm_Required_Inputs");                                  //firm variable 
-V("Firm_Input_Demand_Next_Period");                         //firm variable
-V("Sector_Intermediate_Demand");                      		//macro variable
-V("Firm_Effective_Production");                             //firm variable
-V("Capital_Good_Production");                           	//capital variable
-V("Capital_Good_Acumulated_Production");					//capital variable
-V("Capital_Good_Productivity");								//capital variable
-V("Firm_Capacity_Utilization");								//firm variable
-V("Firm_Avg_Productivity");                             	//firm variable
-V("Sector_Avg_Productivity");                           	//sector variable
-V("Sector_Employment");                                 	//sector variable
-V("Sector_Potential_Employment");					    	//sector variable
-V("Sector_Unemployment");									//sector variable
+V("Firm_Expected_Sales");                                   
+V("Firm_Planned_Production");                               
+V("Firm_Available_Inputs_Ratio");                       	
+V("Capital_Good_Productivity");                        		
+V("Firm_Competitiveness");                                  
+V("Firm_Market_Share");                                    
+V("Firm_Required_Inputs");                                  
+V("Firm_Input_Demand_Next_Period");                         
+V("Sector_Domestic_Intermediate_Demand");                   
+V("Firm_Effective_Production");                             
+V("Capital_Good_Production");                           	
+V("Capital_Good_Acumulated_Production");					
+V("Capital_Good_Productivity");								
+V("Firm_Capacity_Utilization");								
+V("Firm_Avg_Productivity");                             	
+V("Sector_Avg_Productivity");                           	
+V("Sector_Employment");                                 	
+V("Sector_Potential_Employment");					    	
+V("Sector_Unemployment");									
 
 /*****CONSUMPTION DEMAND*****/
-V("Sector_Consumption_Demand");                       		//macro variable
-V("Sector_Effective_Orders");                          		//sector variable               		
+V("Sector_Domestic_Consumption_Demand");                     
+V("Sector_Effective_Orders");                          		             		
 
 /*****EFFECTIVE ORDERS, SALES AND PROFITS*****/
-V("Firm_Effective_Orders");                                 //firm variable 
-V("Firm_Sales");                                            //firm variable
-V("Firm_Delivery_Delay");                                   //firm variable
-V("Sector_Sales");                                     		//sector variable
-V("Firm_Stock_Inventories");                                //firm variable
-V("Firm_Effective_Market_Share");                           //firm variable
-V("Firm_Revenue");                                          //firm variable
-V("Firm_Indirect_Tax");                                     //firm variable
-V("Firm_Net_Revenue");									   	//firm variable
-V("Firm_RND_Expenses");									   	//firm variable
-V("Price_Capital_Goods");                              		//macro variable
-V("Firm_Interest_Rate");                               		//firm variable
-V("Firm_Net_Profits");                                      //firm variable
-V("Firm_Retained_Profits");                                 //firm variable
-V("Firm_Distributed_Profits");                              //firm variable
+V("Firm_Effective_Orders");                                
+V("Firm_Sales");                                            
+V("Firm_Delivery_Delay");                                  
+V("Sector_Sales");                                     		
+V("Firm_Stock_Inventories");                                
+V("Firm_Effective_Market_Share");                         
+V("Firm_Revenue");                                         
+V("Firm_Indirect_Tax");                                   
+V("Firm_Net_Revenue");									   
+V("Firm_RND_Expenses");									   	
+V("Price_Capital_Goods");                              		
+V("Firm_Interest_Rate");                               		
+V("Firm_Net_Profits");                                     
+V("Firm_Retained_Profits");                                
+V("Firm_Distributed_Profits");                             
 
 /*****INCOME GENERATION*****/
-V("Total_Distributed_Profits");                             //macro variable
-V("Total_Profits");                                    		//macro variable
-V("Total_Wages");                                      		//macro variable
-V("Sector_Demand_Met");                                		//sector variable
-V("Sector_Extra_Imports");                                  //sector variable   
-V("Sector_Demand_Met_By_Imports");                          //sector variable
-V("Class_Nominal_Income");                             		//class variable
-V("Class_Real_Income");                                		//class variable
+V("Total_Distributed_Profits");                            
+V("Total_Profits");                                    		
+V("Total_Wages");                                      		
+V("Sector_Demand_Met");                                		
+V("Sector_Extra_Imports");                                 
+V("Sector_Demand_Met_By_Imports");                          
+V("Class_Nominal_Income");                             		
+V("Class_Real_Income");                                		
 
 /*****R&D*****/
-V("Firm_Innovation_Productivity");                          //firm variable
-V("Firm_Imitation_Productivity");                           //firm variable
-V("Firm_Frontier_Productivity");                            //firm variable
-V("Firm_Quality");										   	//firm variable
+V("Firm_Innovation_Productivity");                          
+V("Firm_Imitation_Productivity");                          
+V("Firm_Frontier_Productivity");                            
+V("Firm_Quality");										   	
 
 /*****CAPITAL AND INVESTMENT DECISIONS*****/
-V("Firm_Investment_Period");						   		//firm variable
-V("Firm_Productive_Capacity_Depreciation");                 //firm variable
-V("Firm_Effective_Productive_Capacity_Variation");          //firm variable
-V("Firm_Productive_Capacity");                              //firm variable
-V("Firm_Max_Productivity");                   				//firm variable
-V("Firm_Expected_Sales_Long_Term");                         //firm variable
-V("Firm_Desired_Expansion_Investment_Expenses");            //firm variable
+V("Firm_Investment_Period");						   		
+V("Firm_Productive_Capacity_Depreciation");                
+V("Firm_Effective_Productive_Capacity_Variation");         
+V("Firm_Productive_Capacity");                              
+V("Firm_Max_Productivity");                   				
+V("Firm_Expected_Sales_Long_Term");                        
+V("Firm_Desired_Expansion_Investment_Expenses");           
 
 /*****FINANCIAL CONSTRAINTS*****/
-V("Firm_Available_Financial_Assets");                       //firm variable
-V("Firm_Available_Debt");                                   //firm variable
-V("Firm_Total_Funds");                                      //firm variable 
+V("Firm_Available_Financial_Assets");                      
+V("Firm_Available_Debt");                                   
+V("Firm_Total_Funds");                                       
 
 /*****EFFECTIVE INVESTMENT*****/
-V("Firm_Effective_Expansion_Investment_Expenses");          //firm variable 
-V("Firm_Demand_Productive_Capacity_Expansion");             //firm variable  
-V("Firm_Available_Funds_Replacement");                      //firm variable 
-V("Firm_Demand_Productive_Capacity_Replacement");           //firm variable 
-V("Firm_Replacement_Expenses");							   	//firm variable
-V("Firm_Available_Funds_After_Replacement");				//firm variable
+V("Firm_Effective_Expansion_Investment_Expenses");           
+V("Firm_Demand_Productive_Capacity_Expansion");             
+V("Firm_Available_Funds_Replacement");                      
+V("Firm_Demand_Productive_Capacity_Replacement");            
+V("Firm_Replacement_Expenses");							  
+V("Firm_Available_Funds_After_Replacement");				
 
 /*****DEBT*****/
-V("Firm_Debt_Flow");                                        //firm variable
-V("Firm_Financial_Assets_Flow");                            //firm variable
-V("Firm_Stock_Debt");                                       //firm variable  
-V("Firm_Capital");                                          //firm variable  
-V("Firm_Debt_Rate");                                        //firm variable
-V("Firm_Avg_Debt_Rate");							   		//firm variable
+V("Firm_Debt_Flow");                                        
+V("Firm_Financial_Assets_Flow");                            
+V("Firm_Stock_Debt");                                        
+V("Firm_Capital");                                           
+V("Firm_Debt_Rate");                                        
+V("Firm_Avg_Debt_Rate");							   	
 
 /*****ENTRY & EXIT*****/
 V("Sector_Productive_Capacity");
-V("Sector_Avg_Quality");                         			//sector variable
-V("Sector_Max_Quality");                        			//sector variable
-V("Exit"); 													//sector variable
-V("Exit_Deposits_Distributed"); 							//sector variable
-V("Exit_Defaulted_Loans");    								//sector variable                 			
-V("Sector_Entry_Condition"); 								//sector variable                               
-V("Sector_Productive_Capacity_Exit");						//sector variable						
-V("Sector_Productive_Capacity_Entry");						//sector variable					
-V("Sector_Productive_Capacity_Available"); 					//sector variable
+V("Sector_Avg_Quality");                         			
+V("Sector_Max_Quality");                        			
+V("Exit"); 													
+V("Exit_Deposits_Distributed"); 							
+V("Exit_Defaulted_Loans");    								                 			
+V("Sector_Entry_Condition"); 								                         
+V("Sector_Productive_Capacity_Exit");									
+V("Sector_Productive_Capacity_Entry");										
+V("Sector_Productive_Capacity_Available"); 					
 
 /*****MACRO RESULTS*****/
-V("Total_Inventories");                             		//macro variable
-V("Gross_Value_Production");                            	//macro variable
-V("Avg_Rate_Capacity_Utilization");               			//macro variable
-V("Total_Consumption");                                    	//macro variable                 
-V("Total_Investment");                                     	//macro variable
-V("Total_Intermediate");									//macro variable
-V("Sector_Participation");									//sector variable
-V("Total_Indirect_Taxes");                                  //government variable
-V("Profit_Share");                                      	//macro variable
-V("Wage_Share");                                        	//macro variable
-V("GDP");                                            		//macro variable
-V("GDP_Demand");                                   	    	//macro variable
-V("Annual_Growth");                                     	//macro variable
-V("Price_Index");                                       	//macro variable
-V("Consumer_Price_Index");                              	//macro variable
-V("Real_GDP");                                          	//macro variable
-V("Annual_Real_Growth");                                	//macro variable
-V("Likelihood_Crisis");                                 	//macro variable
-V("Unemployment");                                      	//macro variable
+V("Total_Inventories");                             		
+V("Gross_Value_Production");                            	
+V("Avg_Rate_Capacity_Utilization");               			
+V("Total_Consumption");                                                  
+V("Total_Investment");                                    
+V("Total_Intermediate");									
+V("Sector_Participation");									
+V("Total_Indirect_Taxes");                                  
+V("Profit_Share");                                      	
+V("Wage_Share");                                        	
+V("GDP");                                            		
+V("GDP_Demand");                                   	    	
+V("Annual_Growth");                                     	
+V("Price_Index");                                       	
+V("Consumer_Price_Index");                              	
+V("Real_GDP");                                          	
+V("Annual_Real_Growth");                                	
+V("Likelihood_Crisis");                                 	
+V("Unemployment");                                      	
 
 /*****ANALYSIS*****/
 V("P");                                                

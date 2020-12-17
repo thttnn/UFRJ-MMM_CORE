@@ -123,15 +123,15 @@ In this variable a new firm enters if there is market space available and the en
       if(v[1]>0&&v[6]<1)												//if entry conditions are met and there are market space 
       {
       v[20]=V("Sector_Effective_Orders");								//sector effective orders
-      v[0]=V("sector_investment_period");										//sector investment period
-      v[22]=V("sector_desired_degree_capacity_utilization");					//sector degree of capacity utilization
-      v[23]=V("sector_desired_inventories_proportion");						//sector inventories proportion
+      v[0]=V("sector_investment_period");								//sector investment period
+      v[22]=V("sector_desired_degree_capacity_utilization");			//sector degree of capacity utilization
+      v[23]=V("sector_desired_inventories_proportion");					//sector inventories proportion
 	  v[25]=V("Price_Capital_Goods");									//price of capital goods
       v[34]=VL("Sector_Productive_Capacity_Available",1);				//productive capacity available in the last period
 	  v[44]=V("Sector_Productive_Capacity_Exit");						//productive capacity exited in the current period
       v[36]=V("Sector_Avg_Price");										//sector avg price
-      v[35]=V("sector_capital_output_ratio");									//sector capital output ratio
-      v[38]=V("sector_depreciation_period");									//sector depreciation period
+      v[35]=V("sector_capital_output_ratio");							//sector capital output ratio
+      v[38]=V("sector_depreciation_period");							//sector depreciation period
       v[39]=V("Sector_Avg_Productivity");   							//sector avg productivity	
       v[42]=uniform_int(1, v[0]);										//randon integer number between 1 and investment period
       v[5]=COUNT("FIRMS");												//current number of firms
@@ -153,7 +153,7 @@ In this variable a new firm enters if there is market space available and the en
 		
 		cur5=SEARCH_CND("Firm_Market_Share", v[12]);					//search the firm with the closest market share to the average one
 		v[2]=VS(cur5, "Firm_Market_Share");								//market share of the average firm
-		v[3]=((v[2]*v[20]))/v[22];							//new firm's productive capacity to reach the average market share   
+		v[3]=((v[2]*v[20]))/v[22];										//new firm's productive capacity to reach the average market share   
 		v[4]=min(v[3],(v[34]+v[44]));									//new firm's productive capacity can not be higher than productive capacity available
 		v[7]=v[4]*v[35];												//new firm's number of capitals
    		

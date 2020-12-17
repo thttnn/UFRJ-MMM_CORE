@@ -10,8 +10,8 @@ Firm Variable
 	if(v[1]==0)                                                              		//if the rest of the above division is zero, adjust strategic markup
 		{
 		v[2]=VL("Firm_Avg_Potential_Markup",1);                                     //average potential markup of the firm in the last period        
-		v[3]=V("sector_market_share_expansion");                                           //market-share expantion parameter
-		v[4]=V("sector_markup_apropriation");                                              //profits apropriation parameter   
+		v[3]=V("sector_market_share_expansion");                                    //market-share expantion parameter
+		v[4]=V("sector_markup_apropriation");                                       //profits apropriation parameter   
 		v[5]=V("Firm_Desired_Market_Share");                                        //desired market-share 
 		v[6]=VL("Firm_Avg_Market_Share",1);                                    		//firm average market share in the last period   
 		v[7]=VL("Firm_Competitiveness",1);                                          //firm's competitiveness in the last period
@@ -92,15 +92,33 @@ Firm's effective price is a average between the desired price and the sector ave
 	else                                                                       		//if desired price is not positive
 		v[5]=v[0];                                                             		//firm's price will be the last period's
 
-	v[9]=V("sector_markup_period");								//sector markup period parameter
-	v[10]=fmod((t+v[9]),v[9]);								//devides the current time step by the markup period and takes the rest
-	v[11]=V("id_firm_number");								//firm number
-	v[12]=fmod((v[11]+v[9]),v[9]);							//divides the firm number by the investment period and takes the rest
+	v[9]=V("sector_markup_period");													//sector markup period parameter
+	v[10]=fmod((t+v[9]),v[9]);														//devides the current time step by the markup period and takes the rest
+	v[11]=V("id_firm_number");														//firm number
+	v[12]=fmod((v[11]+v[9]),v[9]);													//divides the firm number by the investment period and takes the rest
 	if (v[10]==v[12])
 		v[13]=v[5];
 	else
 		v[13]=v[0];
 RESULT(v[13])
+
+
+EQUATION("Sector_External_Price")
+/*
+External price of the sector's goods. 
+*/
+	v[0]=VL("Sector_External_Price",1);						//external price in the last period
+	v[1]=V("sector_external_price_growth");					//exogenous external price rate of growth
+	if(v[1]!=0)												//if the exogenous rate is different from zero
+		v[2]=(1+v[1])*v[0];									//apply the exogenous rate of growth
+	else													//if not (endogenous rate of growth)
+   	{     
+		v[3]=VL("Sector_Avg_Price",2);						//sector average price lagged 2
+		v[4]=VL("Sector_Avg_Price",1);						//sector average price lalged 1
+		v[5]=V("sector_external_price_competitiveness");	//parameter that determines how domestic sector is competitive and affect external price
+		v[2]=v[0]*(1+v[5]*((v[4]-v[3])/v[3]));				//new external price will depend on the rate of growth of domestic price
+   	}  
+RESULT(v[2])
 
 
 EQUATION("Firm_Effective_Markup")

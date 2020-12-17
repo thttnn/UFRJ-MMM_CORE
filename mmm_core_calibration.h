@@ -207,14 +207,14 @@ CYCLE(cur, "SECTORS")
 {
 	if(VS(cur,"id_consumption_goods_sector")==1)
 	{
-	v[160]=v[141];																		//sector inital demand
+	v[160]=v[141];																						//sector inital demand
 	v[161]=V("C_eta");
-	v[162]=v[101];																		//sector initial price
-	v[163]=v[141]/V("C_eta");															//firm production
-	v[164]=v[163]*V("C_beta")/V("C_psi");												//number of capital goods for each firm
+	v[162]=v[101];																						//sector initial price
+	v[163]=v[141]/V("C_eta");																			//firm production
+	v[164]=v[163]*V("C_beta")/V("C_psi");																//number of capital goods for each firm
 	v[165]=(v[149]*V("C_exp_sh"))/(pow(v[150], VS(cur,"sector_exports_elasticity_income")));
 	v[166]=(v[149]*V("C_exp_sh"))/v[162];
-	v[167]=1/V("C_eta");																//sector market share
+	v[167]=1/V("C_eta");																				//sector market share
 	v[168]=V("C_mk");
 	v[169]=V("C_w");
 	v[170]=(V("C_w")/V("C_phi"))+V("C_alpha")*v[100];
@@ -235,14 +235,14 @@ CYCLE(cur, "SECTORS")
 	
 	if(VS(cur,"id_capital_goods_sector")==1)
 	{
-	v[160]=v[142];																		//sector inital demand
+	v[160]=v[142];																					//sector inital demand
 	v[161]=V("K_eta");
-	v[162]=v[102];																		//sector initial price
-	v[163]=v[142]/V("K_eta");															//firm production
-	v[164]=v[163]*V("K_beta")/V("K_psi");												//number of capital goods for each firm
+	v[162]=v[102];																					//sector initial price
+	v[163]=v[142]/V("K_eta");																		//firm production
+	v[164]=v[163]*V("K_beta")/V("K_psi");															//number of capital goods for each firm
 	v[165]=(v[149]*V("K_exp_sh"))/(pow(v[150], VS(cur,"sector_exports_elasticity_income")));
 	v[166]=(v[149]*V("K_exp_sh"))/v[162];
-	v[167]=1/V("K_eta");																//sector market share
+	v[167]=1/V("K_eta");																			//sector market share
 	v[168]=V("K_mk");
 	v[169]=V("K_w");
 	v[170]=(V("K_w")/V("K_phi"))+V("K_alpha")*v[100];
@@ -263,14 +263,14 @@ CYCLE(cur, "SECTORS")
 	
 	if(VS(cur,"id_intermediate_goods_sector")==1)
 	{
-	v[160]=v[143];																		//sector inital demand
+	v[160]=v[143];																					//sector inital demand
 	v[161]=V("I_eta");
-	v[162]=v[100];																		//sector initial price
-	v[163]=v[143]/V("I_eta");															//firm production
-	v[164]=v[163]*V("I_beta")/V("I_psi");												//number of capital goods for each firm
-	v[165]=(v[149]*V("I_exp_sh"))/(pow(v[150], VS(cur,"sector_exports_elasticity_income")));	//sector exports coefficient
-	v[166]=(v[149]*V("I_exp_sh"))/v[162];												//sector real exports
-	v[167]=1/V("I_eta");																//sector market share
+	v[162]=v[100];																					//sector initial price
+	v[163]=v[143]/V("I_eta");																		//firm production
+	v[164]=v[163]*V("I_beta")/V("I_psi");															//number of capital goods for each firm
+	v[165]=(v[149]*V("I_exp_sh"))/(pow(v[150], VS(cur,"sector_exports_elasticity_income")));		//sector exports coefficient
+	v[166]=(v[149]*V("I_exp_sh"))/v[162];															//sector real exports
+	v[167]=1/V("I_eta");																			//sector market share
 	v[168]=V("I_mk");
 	v[169]=V("I_w");
 	v[170]=(V("I_w")/V("I_phi"))+V("I_alpha")*v[100];

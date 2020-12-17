@@ -56,7 +56,7 @@ Profit of each firm, difference between revenue and costs, being revenue as a fu
 	v[4]=V("Firm_Interest_Rate");                                     //interest rate paid by the firm
 	v[6]=VL("Firm_Stock_Financial_Assets",1);                         //stock of financial assets in the last period
 	v[7]=V("Basic_Interest_Rate");                                    //return rate of financial assets
-	v[8]=v[0]+v[6]*v[7]-(v[3]*v[4])-(v[2]*v[1]);                    //net profits is given by net revenue plus financial assets return minus variable unit cost times effective production, depreciation expenses and interest payment.
+	v[8]=v[0]+v[6]*v[7]-(v[3]*v[4])-(v[2]*v[1]);                      //net profits is given by net revenue plus financial assets return minus variable unit cost times effective production, depreciation expenses and interest payment.
 RESULT(v[8])
 
 
@@ -65,7 +65,7 @@ EQUATION("Firm_Retained_Profits")
 Profit retained by the sector after being distributed to class and paid interest on the debt and separate the expense for depreciation.
 */
 	v[0]=V("Firm_Net_Profits");                                        //firm's profits            
-	v[1]=V("sector_profits_distribution_rate");                               //firm's profit distribution parameter                            
+	v[1]=V("sector_profits_distribution_rate");                        //firm's profit distribution parameter                            
 	if(v[0]>0)                                                         //if net profits is positive
 		v[2]=(1-v[1])*v[0];                                            //retained profits
 	else                                                               //if net profits is zero or negative                                                                     
@@ -78,7 +78,7 @@ EQUATION("Firm_Distributed_Profits")
 Amount of profits distributed to the income classes
 */
 	v[0]=V("Firm_Net_Profits");                                        //firm's profits            
-	v[1]=V("sector_profits_distribution_rate");                               //firm's profit distribution parameter  
+	v[1]=V("sector_profits_distribution_rate");                        //firm's profit distribution parameter  
 	if(v[0]>0)                                                         //if net profits is positive
 		v[2]=v[1]*v[0];                                                //distributed profits
 	else                                                               //if net profits is zero or negative                                                                     
