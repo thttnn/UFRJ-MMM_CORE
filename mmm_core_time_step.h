@@ -6,6 +6,7 @@ Determines the order in which the variables will be calculated in each time step
 It is the logical sequence of the model in each time step.
 Comments indicate the level of each variable. 
 */
+V("Calibration");
 
 /*****GOVERNMENT EXPENSES (AUTONOMOUS)*****/
 V("Basic_Interest_Rate");                                   //government variable
