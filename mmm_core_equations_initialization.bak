@@ -47,8 +47,8 @@ CYCLE(cur, "CLASSES")
 	v[29]=VS(cur, "class_propensity_to_import");
 	v[30]=VS(cur, "class_direct_tax");
 	
-	//v[20]=v[20]+v[27]*v[28]*(1-v[30]);															//effective aggregate propensity to consume on wages
-	//v[21]=v[21]+v[26]*v[28]*(1-v[30]);															//effective aggregate propensity to consume on profits
+	v[20]=v[20]+v[27]*v[28]*(1-v[30]);															//effective aggregate propensity to consume on wages
+	v[21]=v[21]+v[26]*v[28]*(1-v[30]);															//effective aggregate propensity to consume on profits
 	
 	v[22]=v[22]+v[26]*v[30];																	//effective direct tax over profits
 	v[23]=v[23]+v[27]*v[30];																	//effective direct tax over wages
@@ -56,11 +56,11 @@ CYCLE(cur, "CLASSES")
 	v[25]=v[25]+v[26]*v[29]*(1-v[30]);															//effective aggregate propensity to import on profits
 }
 
-v[20]=V("propensity_to_consume_wages");
-v[21]=V("propensity_to_consume_profits");
+//v[20]=V("propensity_to_consume_wages");
+//v[21]=V("propensity_to_consume_profits");
 
 //Begin Auxiliary Calculations
-v[19]=(v[8]*v[9]/v[7])/(1-v[8]*v[11]);															//nominal price
+v[19]=(v[8]*v[9]/v[7])/(1-v[8]*v[11]);															//price
 v[31]=(v[9]/v[7]) + v[13]*(1-v[15])*v[19];														//sector effective wage margin over production including RND
 v[32]=v[19]*(1-v[15])*(1-v[13])-((v[9]/v[7])+v[11]*v[19]);										//sector effective profit margin over production
 v[33]=(v[15]*v[19] + v[22]*v[14]*v[32] + v[23]*v[31])/(1-v[23]);								//sector effective tax-public wage over production
@@ -266,7 +266,7 @@ CYCLE(cur, "SECTORS")
 				v[73]=(-v[5]+v[71]+1)+(v[72]-1)*v[0];                                  			//calculates the capital good date of birth based on the firm number and the number of the capital good
 				WRITES(cur5, "capital_good_date_birth", 0);									//write the capital good date of birth
 //				WRITES(cur5, "capital_good_depreciation_period", (v[73]+v[5]));
-				WRITES(cur5, "capital_good_depreciation_period", 600);
+				WRITES(cur5, "capital_good_depreciation_period", 700);
 				}
 			}					
 }			

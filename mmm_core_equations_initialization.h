@@ -56,9 +56,6 @@ CYCLE(cur, "CLASSES")
 	v[25]=v[25]+v[26]*v[29]*(1-v[30]);															//effective aggregate propensity to import on profits
 }
 
-//v[20]=V("propensity_to_consume_wages");
-//v[21]=V("propensity_to_consume_profits");
-
 //Begin Auxiliary Calculations
 v[19]=(v[8]*v[9]/v[7])/(1-v[8]*v[11]);															//price
 v[31]=(v[9]/v[7]) + v[13]*(1-v[15])*v[19];														//sector effective wage margin over production including RND
@@ -93,15 +90,15 @@ CYCLE(cur, "MACRO")
 		WRITELLS(cur,"Likelihood_Crisis", 0, 0, 1);                  							//zero by definition
 		WRITELLS(cur,"Annual_Growth", 0, 0, 1);													//zero by definition, no growth initally
 		WRITELLS(cur,"Annual_Real_Growth", 0, 0, 1);                 							//zero by definition, no growth initally
-	for (v[101]=1 ; v[101]<=(v[3]+1) ; v[101]=v[101]+1)                  						//for (annual period +1) lags
+	for (i=1 ; i<=(v[3]+1) ; i++)                  												//for (annual period +1) lags
 		{
-		WRITELLS(cur,"Price_Index", v[19], 0, v[101]);									 		//writes Price_Index, all initial price index is 1
-		WRITELLS(cur,"Consumer_Price_Index", v[19], 0, v[101]);          						//writes Consumper_Price_Index, all initial price index is 1
+		WRITELLS(cur,"Price_Index", v[19], 0, i);									 			//writes Price_Index, all initial price index is 1
+		WRITELLS(cur,"Consumer_Price_Index", v[19], 0,i);          								//writes Consumper_Price_Index, all initial price index is 1
 		}
-	for (v[102]=1 ; v[102]<=(2*v[3]) ; v[102]=v[102]+1)                  						//for (2*annual_period) lags
+	for (i=1 ; i<=(2*v[3]) ; i++)                  												//for (2*annual_period) lags
 		{
-		WRITELLS(cur,"GDP", v[50], 0, v[102]);                     	 							//GDP
-		WRITELLS(cur,"Real_GDP", (v[50]/v[19]), 0, v[102]);                  					//Real GDP will be equal to nominal GDP because price index always begins as 1
+		WRITELLS(cur,"GDP", v[50], 0, i);                     	 								//GDP
+		WRITELLS(cur,"Real_GDP", (v[50]/v[19]), 0, i);                  						//Real GDP will be equal to nominal GDP because price index always begins as 1
 		}
 }
 
@@ -114,21 +111,16 @@ CYCLE(cur, "CLASSES")
 	v[53]=VS(cur, "class_direct_tax");															//class parameter
 	v[54]=(v[51]*v[48]+v[52]*(v[46]))*(1-v[53]);             									//class nominal net income																		//total imports
 	v[55]=v[6]/v[75];																			//class initial autonomous consumption
-		for (v[104]=1 ; v[104]<=v[2] ; v[104]=v[104]+1)                          				//for (class_period) lags
+		for (i=1 ; i<=v[2] ; i++)                          										//for (class_period) lags
 			{
-			WRITELLS(cur, "Class_Nominal_Income", v[54], 0, v[104]);            				//writes Class_Nominal_Income
-			WRITELLS(cur, "Class_Real_Income", (v[54]/v[19]), 0, v[104]);						//writes Class_Real_Income
+			WRITELLS(cur, "Class_Nominal_Income", v[54], 0,i);            						//writes Class_Nominal_Income
+			WRITELLS(cur, "Class_Real_Income", (v[54]/v[19]), 0,i);								//writes Class_Real_Income
 			}
 			WRITELLS(cur, "Class_Autonomous_Consumption", v[55], 0, 1);         				//write class' autonomous consumption
 			WRITELLS(cur, "Class_Debt", 0, 0, 1);                              					//0, no debt initially
 			WRITELLS(cur, "Class_Debt_Payment", 0, 0, 1);										//0, no debt initially
 			WRITELLS(cur, "Class_Financial_Assets", 0, 0, 1);									//0, no financial assets initially
 			WRITELLS(cur, "Class_Financial_Assets", 0, 0, 2);									//0, no financial assets initially
-
-		if (v[51]==1)
-			WRITES(cur, "class_propensity_to_consume", v[21]);
-		if (v[52]==1)
-			WRITES(cur, "class_propensity_to_consume", v[20]);
 }
 
 //Begin Writing External Variables
@@ -140,8 +132,8 @@ cur = SEARCH("GOVERNMENT");																		//initial total taxes is calculated
 WRITELLS(cur,"Total_Taxes", v[44], 0, 1);														//write initial total taxes
 WRITELLS(cur,"Government_Max_Expenses", v[44], 0, 1);        									//initial max government expenses equals total taxes calculated in the calibration
 WRITELLS(cur,"Government_Wages", v[44], 0, 1);		            								//initial government expenses is only wages, which thereafter will grow depending on inflation and average productivity		
-for (v[105]=1 ; v[105]<=v[4] ; v[105]=v[105]+1)		              								//for (government_period) lags	
-	WRITELLS(cur,"Government_Debt", 0, 0, v[105]);                  							//no debt initially	
+for (i=1 ; i<=v[4] ; i++)		              													//for (government_period) lags	
+	WRITELLS(cur,"Government_Debt", 0, 0, i);                  									//no debt initially	
 v[56]=VS(cur, "interest_rate");																	//base interest rate parameter
 WRITELLS(cur,"Basic_Interest_Rate", v[56], 0, 1);
 
