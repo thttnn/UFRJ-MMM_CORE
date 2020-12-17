@@ -1,57 +1,6 @@
 /*****MACRO VARIABLES******/
 
 
-EQUATION("Total_Domestic_Intermediate_Demand")
-/*
-Calculates the domestic demand for inputs, cycling trough firms and sectors.
-*/
-		v[0]=0;                                                      		//initializes the value for thr CYCLE
-		CYCLE(cur, "SECTORS")                                        		//CYCLE trought all sectors
-		{
-			v[1]=0;                                                    		//initializes the value for the CYCLE
-			CYCLES(cur, cur1, "FIRMS")                                 		//CYCLE trought all firms inside the sectors
-			{    
-				v[2]=VS(cur1, "Firm_Input_Demand_Next_Period");             //gives the demand for imputs of each firm
-				v[1]=v[1]+v[2];                                          	//sums up the demand for imputs of all firms
-			} 
-		v[0]=v[0]+v[1];                                              		//sums up the demand for imputs of all setors
-		}
-RESULT(v[0])
-
-
-EQUATION("Total_Domestic_Consumption_Demand")
-/*
-Calculates the domestic demand for consumption goods, summing up the consumption of each class.
-*/
-	v[0]=0;                                                 				//initializes the CYCLE
-	CYCLE(cur, "CLASSES")                                   				//CYCLE trought all income classes
-	{
-		v[1]=VS(cur, "Class_Real_Domestic_Consumption");      	   			//class consumption
-		v[0]=v[0]+v[1];                                       				//sums up all classes consumption
-	}
-RESULT(v[0])
-
-
-EQUATION("Total_Domestic_Capital_Goods_Demand")
-/*
-The demand for capital goods is calculated by summing up the demand for capital goods from all firms and sectors.
-*/
-	v[1]=0;                                                 				//initializes the CYCLE
-	CYCLE(cur, "SECTORS")                                   				//CYCLE trought the sectors
-	{	
-		v[2]=0;                                               				//initializes the second CYCLE
-		CYCLES(cur, cur1, "FIRMS")                            				//CYCLE trought the firms
-		{
-			v[3]=VS(cur1, "Firm_Demand_Capital_Goods");         			//gives the demand for capital goods of each firm
-			v[4]=VLS(cur1, "Firm_Demand_Capital_Goods_Expansion", 1);		//firm's capital good demand for expantion investment
-			v[5]=VLS(cur1, "Firm_Demand_Capital_Goods_Replacement", 1); 	//firm's capital good demand for replacement investment
-			v[2]=v[2]+v[3];                                    		//sums up all capital goods demand
-		}
-		v[1]=v[1]+v[2];                                       				//sums up all firm's capital goods demand
-	}
-RESULT(v[1])
-
-
 EQUATION("Price_Capital_Goods")
 /*
 Price of capital goods for the firms is the average price of the capital goods sector

@@ -589,7 +589,7 @@ Var: Firm_Capital 1 n + n n	0	0	0
 Var: Firm_Competitiveness 1 n + n n	1	1	1
 Var: Firm_Debt_Rate 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Delivery_Delay 1 n + n n	1	1	1
-Var: Firm_Demand_Capital_Goods 6 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: Firm_Demand_Capital_Goods 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Demand_Productive_Capacity_Expansion 7 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Productive_Capacity_Depreciation 7 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Desired_Expansion_Investment_Expenses 0 n + n n
@@ -638,7 +638,7 @@ Var: Firm_Revenue 1 n + n n	10	10	10
 Var: Firm_Sales 1 n + n n	10	10	10
 Var: Firm_Stock_Debt 1 n + n n	0	0	0
 Var: Firm_Stock_Financial_Assets 1 n + n n	0	0	0
-Var: Firm_Stock_Inputs 1 s + n n	0	0	0
+Var: Firm_Stock_Inputs 1 n + n n	0	0	0
 Var: Firm_Variable_Cost 1 n + n n	0	0	0
 Var: Firm_Replacement_Expenses 0 n + n n
 Var: Firm_Available_Funds_After_Replacement 0 n + n n
