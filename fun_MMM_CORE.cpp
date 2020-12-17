@@ -11,7 +11,6 @@ MODELBEGIN
 
 #include "mmm_core_time_step.h"          					// Time Step Variable
 #include "mmm_core_calibration.h"               			// Calibration calculation
-#include "mmm_core_initialization.h"               			// Initialization Variables
 #include "mmm_core_functions.h"          					// Macro Functions
 #include "mmm_core_macro.h"              					// Macro Object Variables and Functions
 #include "mmm_core_macro_sfc.h"          					// Macro Object Variables for Stock-Flow Consistency
@@ -32,8 +31,7 @@ MODELBEGIN
 			#include "mmm_core_firm_finance.h"				// Firm's Finance Variables
 			#include "mmm_core_firm_inputs.h" 				// Firm's Input Variable      
 				#include "mmm_core_capital_goods.h"  		// Capital Goods Object Variables
-//#include "mmm_core_analysis.h"           					// Variables for Analysis
-#include "mmm_core_analysis_2.h"           					// Variables for Analysis Long
+#include "mmm_core_analysis.h"           					// Variables for Analysis
 #include "mmm_core_sector_analysis.h"						// Sector Variables for Analysis
 
 MODELEND

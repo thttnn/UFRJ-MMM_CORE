@@ -36,6 +36,19 @@ v[0]=SUMS(cur, "Sector_Employment");
 RESULT(v[0])
 
 
+EQUATION("EMP_G")
+/*
+Quarterly Employment Growth rate
+*/
+v[0]=V("EMP");
+v[1]=VL("EMP", 1);
+if (v[1]!=0)
+v[2]=(v[0]-v[1])/v[1];
+else
+v[2]=0;
+RESULT(v[2])
+
+
 EQUATION("GDP_G")
 /*
 GDP real growth rate
@@ -387,32 +400,106 @@ v[2]=0;
 RESULT(v[2])
 
 
-EQUATION("DEBT")
+EQUATION("CGDP")
 /*
-Firms' Stock of Debt
+Real Consumption share of GDP
 */
-v[0]=0;
-CYCLES(root, cur, "SECTORS")
-{
-	v[1]=0;
-	CYCLES(cur, cur1, "FIRMS")
-	{
-		v[2]=VS(cur1, "Firm_Stock_Debt");
-		v[1]=v[1]+v[2];
-	}
-v[0]=v[0]+v[1];
-}
+v[0]=V("C_r");
+v[1]=V("Real_GDP");
+if(v[1]!=0)
+	v[2]=v[0]/v[1];
+else
+	v[2]=0;
+RESULT(v[2])
+
+
+EQUATION("IGDP")
+/*
+Real Investment share of GDP
+*/
+v[0]=V("I_r");
+v[1]=V("Real_GDP");
+if(v[1]!=0)
+	v[2]=v[0]/v[1];
+else
+	v[2]=0;
+RESULT(v[2])
+
+
+EQUATION("GGDP")
+/*
+Real Government Expenses share of GDP
+*/
+v[0]=V("G_r");
+v[1]=V("Real_GDP");
+if(v[1]!=0)
+	v[2]=v[0]/v[1];
+else
+	v[2]=0;
+RESULT(v[2])
+
+
+EQUATION("NXGDP")
+/*
+Real net exports share of GDP
+*/
+v[0]=V("NX_r");
+v[1]=V("Real_GDP");
+if(v[1]!=0)
+	v[2]=v[0]/v[1];
+else
+	v[2]=0;
+RESULT(v[2])
+
+
+EQUATION("INVGDP")
+/*
+Real inventories share of GDP
+*/
+v[0]=V("INVE_r");
+v[1]=V("Real_GDP");
+if(v[1]!=0)
+	v[2]=v[0]/v[1];
+else
+	v[2]=0;
+RESULT(v[2])
+
+
+EQUATION("KGDP")
+/*
+Real stock of capital share of GDP, or capital-output ratio
+*/
+v[0]=V("K_r");
+v[1]=V("Real_GDP");
+if(v[1]!=0)
+	v[2]=v[0]/v[1];
+else
+	v[2]=0;
+RESULT(v[2])
+
+
+EQUATION("KL")
+/*
+Capital labour ratio
+*/
+v[0]=V("Observed_Capital_Labor_Ratio");
 RESULT(v[0])
 
 
-EQUATION("DEBT_G")
+EQUATION("PR")
 /*
-Firms' Debt Growth rate
+Profit Rate
 */
-v[0]=V("DEBT");
-v[1]=VL("DEBT", 1);
-if (v[1]!=0)
-v[2]=(v[0]-v[1])/v[1];
-else
-v[2]=0;
-RESULT(v[2])
+v[0]=V("Avg_Profit_Rate");
+RESULT(v[0])
+
+
+EQUATION("PCU")
+/*
+Productive Capacity Utilization Rate
+*/
+v[0]=V("Avg_Rate_Capacity_Utilization");
+RESULT(v[0])
+
+
+
