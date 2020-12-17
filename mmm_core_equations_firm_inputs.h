@@ -36,26 +36,17 @@ The intermediate goods sectors demand exactly the amount they will need to produ
 	v[1]=V("input_tech_coefficient");           			//input technical coefficient
 	v[2]=V("id_intermediate_goods_sector");           		//identifies intermediate good sectors
 	
-	v[5]=VL("Firm_Effective_Orders", 1);                   	//firm's effective orders lagged 1 
-	v[6]=VL("Firm_Effective_Orders", 2);                   	//firm's effective orders lagged 2
-	v[7]=V("expectations");                                 //expectation parameter
-	if(v[6]!=0)                                       	//if effective orders is not 0
-		v[8]=1+(v[7]*((v[5]-v[6])/v[6]));               	//gives an expected growth rate, based on the effective orders
+	v[3]=VL("Firm_Effective_Orders", 1);                   	//firm's effective orders lagged 1 
+	v[4]=VL("Firm_Effective_Orders", 2);                   	//firm's effective orders lagged 2
+	v[5]=V("expectations");                                 //expectation parameter
+	if(v[4]!=0)                                       	//if effective orders is not 0
+		v[6]=1+(v[5]*((v[3]-v[4])/v[4]));               	//gives an expected growth rate, based on the effective orders
 	else                                              		//if effective orders is 0
-		v[8]=1;                                         	//the expected growth rate is 1
+		v[6]=1;                                         	//the expected growth rate is 1
 	
-	v[9]=VL("Firm_Stock_Inputs",1);                   		//gives the stock of imputs remaining from the last period
-	v[10]=V("Firm_Available_Inputs_Ratio");             	//gives the minimium available imput ratio
-	v[12]=v[9]-(v[10]*v[0]);                          		//subtracts from the stock of imputs the total amount expected to produce, determined by the required amount multiplied by the minimum available ratio.
-	v[4]=max(v[12], 0);                               		//the stock of imputs can never be negative
-	
-	if (v[2]==0)                                      		//if it is not intermediate goods sector
-		v[14]=(v[0]*v[1])*(v[8])-v[4];    					//gives the amount of imputs necessary for the next period, multiplying the current planned production plus the desired amount of investories by the exptected growth rate and by the imput techinical relanshionship, and subtracting the current stock of imputs, already discounting the amount to be used in current production
-	else                                              		//if it is intermediate goods sector
-		v[14]=(v[0]*v[1])*(v[8]);                     		//gives the amount of imputs necessary for the next period, multiplying the current planned production by the exptected growth rate and by the imput techinical relanshionship
-	
-	v[15]=max(v[14],0);                               		//the demand of imputs for the next period can never be negative
-RESULT(v[15])
+	v[7]=(v[0]*v[1])*(v[6]);    					//gives the amount of imputs necessary for the next period, multiplying the current planned production plus the desired amount of investories by the exptected growth rate and by the imput techinical relanshionship, and subtracting the current stock of imputs, already discounting the amount to be used in current production
+	v[8]=max(v[7],0);                               		//the demand of imputs for the next period can never be negative
+RESULT(v[8])
 
 
 

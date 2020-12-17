@@ -56,8 +56,7 @@ Profit of each firm, difference between revenue and costs, being revenue as a fu
 	v[4]=V("Firm_Interest_Rate");                                     //interest rate paid by the firm
 	v[6]=VL("Firm_Stock_Financial_Assets",1);                         //stock of financial assets in the last period
 	v[7]=V("Basic_Interest_Rate");                                    //return rate of financial assets
-	//v[8]=v[0]+v[6]*v[7]-(v[3]*v[4])-(v[2]*v[1]);                    //net profits is given by net revenue plus financial assets return minus variable unit cost times effective production, depreciation expenses and interest payment.
-	v[8]=v[0]-(v[3]*v[4])-(v[2]*v[1]);
+	v[8]=v[0]+v[6]*v[7]-(v[3]*v[4])-(v[2]*v[1]);                    //net profits is given by net revenue plus financial assets return minus variable unit cost times effective production, depreciation expenses and interest payment.
 RESULT(v[8])
 
 

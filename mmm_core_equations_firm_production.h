@@ -26,26 +26,18 @@ Programed Production is subjected to a existing capactity restriction, but it is
 	v[0]=V("id_capital_goods_sector");                    	//identifies the capital goods sector      
 	v[1]=V("Firm_Expected_Sales");                          //calls the firm's expected sales
 	v[2]=VL("Firm_Productive_Capacity", 1);                 //calls the firm's productive capacity of the last period
-	v[5]=V("desired_inventories_proportion");             	//calls the firm's desired inventories ratio as a proportion of sales
-	v[6]=VL("Firm_Stock_Inventories",1);                    //calls the firm's stock of inventories in the last period
+	v[3]=V("desired_inventories_proportion");             	//calls the firm's desired inventories ratio as a proportion of sales
+	v[4]=VL("Firm_Stock_Inventories",1);                    //calls the firm's stock of inventories in the last period
 
 	if(v[0]==0)                                           	//if it is not capital goods sector
-		v[7]=v[1]*(1+v[5])-v[6];                            //planned production will be expected sales plus the desired proportion of investories minus the existing stock of inventories
+		v[5]=v[1]*(1+v[3])-v[4];                            //planned production will be expected sales plus the desired proportion of investories minus the existing stock of inventories
 	else                                                  	//if it is a capital goods sector
 		{
-		v[10]=V("investment_period");
-		v[7]=0;
-		for(i=0;i<=(v[10]-1);i++)
-			{
-			v[11]=VL("Firm_Effective_Orders_Capital_Goods",i);
-			v[12]=v[11]/v[10];
-			v[7]=v[7]+v[12];
-			}
-		v[9]=V("Firm_Effective_Orders_Capital_Goods");
-		v[7]=v[9]*(1+v[5])-v[6];
+		v[6]=V("Firm_Effective_Orders_Capital_Goods");
+		v[5]=v[6]*(1+v[3])-v[4];
 		}
-	v[8]=max(0,v[7]);                          	//planned production can never be more then the maximum productive capacity and can never be negative
-RESULT(v[8])
+	v[7]=max(0,v[5]);                          	//planned production can never be more then the maximum productive capacity and can never be negative
+RESULT(v[7])
 
 
 
@@ -55,8 +47,7 @@ The actual production of each sector will be determined by the constraint impose
 */
 	v[0]=V("Firm_Planned_Production");                                                              //firm's planned production
 	v[1]=V("Firm_Available_Inputs_Ratio");
-	v[2]=v[0]*v[1];                                                                            		//effective planned production, constrained by the ratio of available inputs
-	
+	v[2]=v[0]*v[1];																					//effective planned production, constrained by the ratio of available inputs    
 	SORT("CAPITALS", "Capital_Good_Productivity", "DOWN");                                        	//rule for the use of capital goods, sorts firm's capital goods by productivity in a decreasing order
 	v[3]=0;                                                                                      	//initializes the CYCLE
 	CYCLE(cur, "CAPITALS")                                                                        	//CYCLE trought the capital goods of the firm
@@ -75,10 +66,9 @@ EQUATION("Firm_Capacity_Utilization")
 Firm Effective Production over firm current productive capacity
 */
 v[0]=V("Firm_Effective_Production");
-v[1]=SUM("capital_good_productive_capacity");
-v[3]=VL("Firm_Productive_Capacity", 1);
-if(v[3]!=0)
-	v[2]=v[0]/v[3];
+v[1]=VL("Firm_Productive_Capacity", 1);
+if(v[1]!=0)
+	v[2]=v[0]/v[1];
 else
 	v[2]=0;
 RESULT(v[2])

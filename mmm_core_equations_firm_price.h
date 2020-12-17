@@ -91,7 +91,16 @@ Firm's effective price is a average between the desired price and the sector ave
 		v[5]=max(0.01,v[4]);                                                   		//firm's price can never be zero or lower
 	else                                                                       		//if desired price is not positive
 		v[5]=v[0];                                                             		//firm's price will be the last period's
-RESULT(v[5])
+
+	v[9]=V("markup_period");								//sector markup period parameter
+	v[10]=fmod((t+v[9]),v[9]);								//devides the current time step by the markup period and takes the rest
+	v[11]=V("id_firm_number");								//firm number
+	v[12]=fmod((v[11]+v[9]),v[9]);							//divides the firm number by the investment period and takes the rest
+	if (v[10]==v[12])
+		v[13]=v[5];
+	else
+		v[13]=v[0];
+RESULT(v[13])
 
 
 EQUATION("Firm_Effective_Markup")

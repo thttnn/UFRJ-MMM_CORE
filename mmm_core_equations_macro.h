@@ -61,6 +61,15 @@ Price of capital goods for the firms is the average price of the capital goods s
 RESULT(v[0])
 
 
+EQUATION("Price_Inputs")
+/*
+Price of intermediate goods for the firms is the average price of the capital goods sector
+*/
+	cur = SEARCH_CND("id_intermediate_goods_sector", 1);
+	v[0]=VLS(cur, "Sector_Avg_Price", 1);
+RESULT(v[0])
+
+
 EQUATION("Total_Distributed_Profits")
 /*
 Total amount of distributed profits by the firms. Will be used to determine the income of the income classes.

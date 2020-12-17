@@ -453,7 +453,7 @@ Param: input_tech_coefficient 0 n + n n	0.4
 Param: investment_period 0 n + n n	6
 Param: learning_adjustment 0 n + n n	0
 Param: market_share_expansion 0 n + n n	0.5
-Param: markup_period 0 n + n n	4
+Param: markup_period 0 n + n n	2
 Param: minimum_passthrough 0 n + n n	0.5
 Param: number_object_firms 0 n + n n	20
 Param: profits_distribution_rate 0 n + n n	0.9
@@ -648,7 +648,7 @@ Var: Firm_Revenue 1 n + n n	10	10	10
 Var: Firm_Sales 1 n + n n	10	10	10
 Var: Firm_Stock_Debt 1 n + n n	0	0	0
 Var: Firm_Stock_Financial_Assets 1 n + n n	0	0	0
-Var: Firm_Stock_Inputs 1 n + n n	0	0	0
+Var: Firm_Stock_Inputs 1 s + n n	0	0	0
 Var: Firm_Variable_Cost 1 n + n n	0	0	0
 Var: Firm_Replacement_Expenses 0 n + n n
 Var: Firm_Available_Funds_After_Replacement 0 n + n n
@@ -1008,7 +1008,7 @@ END_DESCRIPTION
 Parameter_markup_period
 (no description available)
 _INIT_
-All 1 instances equal to 4.
+All 1 instances equal to 2.
 END_DESCRIPTION
 
 Parameter_minimum_passthrough
