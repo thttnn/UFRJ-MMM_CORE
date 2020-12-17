@@ -107,6 +107,9 @@ RESULT(SUM("Firm_Productive_Capacity"))
 EQUATION("Sector_Sum_Market_Share")
 RESULT(SUM("Firm_Market_Share"))
 
+EQUATION("Sector_Taxation")
+RESULT(SUM("Firm_Indirect_Tax"))
+
 
 EQUATION("Sector_Demand_Met")
 /*

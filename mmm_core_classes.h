@@ -10,8 +10,13 @@ Class nominal income shall be calculated by summing the ratio of the total surpl
 	v[2]=V("class_profit_share");                          				//profit share of each class
 	v[3]=V("class_wage_share");                            				//wage share of each class
 	v[4]=V("class_direct_tax");                            				//income tax percentage for each class
-	v[9]=(v[0]*v[2]+v[1]*v[3])*(1-v[4]);                  				//class' net nominal income will be the class profits plus the class wages, minus the income tax
-RESULT(v[9])
+	v[5]=(v[0]*v[2]+v[1]*v[3])*(1-v[4]);                  				//class' net nominal income will be the class profits plus the class wages, minus the income tax
+	v[6]=(v[0]*v[2]+v[1]*v[3])*v[4];									//class taxation
+	WRITE("Class_Taxation",v[6]);
+RESULT(v[5])
+
+
+EQUATION_DUMMY("Class_Taxation","Class_Nominal_Income")
 
 
 EQUATION("Class_Real_Income")

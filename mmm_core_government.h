@@ -33,19 +33,10 @@ RESULT(v[0])
 
 
 EQUATION("Total_Income_Taxes")
-/*
-Stores the value of the function
-*/
-	v[0]=V("Income_Taxes_Function");
-RESULT(v[0])
-
+RESULT(SUM("Class_Taxation"))
 
 EQUATION("Total_Indirect_Taxes")
-/*
-Stores the value of the function
-*/
-	v[0]=V("Indirect_Taxes_Function");
-RESULT(v[0])
+RESULT(SUM("Sector_Taxation"))
 
 
 EQUATION("Total_Taxes")

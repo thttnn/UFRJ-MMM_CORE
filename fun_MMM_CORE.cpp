@@ -11,7 +11,6 @@ MODELBEGIN
 
 #include "mmm_core_time_step.h"          					// Time Step Variable
 #include "mmm_core_calibration.h"               			// Calibration calculation
-#include "mmm_core_functions.h"          					// Macro Functions
 #include "mmm_core_macro.h"              					// Macro Object Variables and Functions
 #include "mmm_core_macro_sfc.h"          					// Macro Object Variables for Stock-Flow Consistency
 	#include "mmm_core_classes.h"            				// Income Classes Object Variables

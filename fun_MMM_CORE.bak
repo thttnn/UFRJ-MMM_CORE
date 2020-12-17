@@ -31,7 +31,7 @@ MODELBEGIN
 			#include "mmm_core_firm_finance.h"				// Firm's Finance Variables
 			#include "mmm_core_firm_inputs.h" 				// Firm's Input Variable      
 				#include "mmm_core_capital_goods.h"  		// Capital Goods Object Variables
-#include "mmm_core_analysis.h"           					// Variables for Analysis Long
+#include "mmm_core_analysis.h"           					// Variables for Analysis
 #include "mmm_core_sector_analysis.h"						// Sector Variables for Analysis
 
 MODELEND
