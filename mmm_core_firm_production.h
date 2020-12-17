@@ -5,7 +5,7 @@ Firm's expected sales are calculated from an average of effective sales from the
 */
 	v[1]=VL("Firm_Effective_Orders", 1);                    //firm's effective orders lagged 1
 	v[2]=VL("Firm_Effective_Orders", 2);                    //firm's effective orders lagged 2
-	v[3]=V("expectations");                                 //expectations parameter
+	v[3]=V("sector_expectations");                                 //expectations parameter
 
 	if(v[2]!=0)                                           	//if firm's effective orders lagged 2 is not zero
 		{
@@ -26,7 +26,7 @@ Programed Production is subjected to a existing capactity restriction, but it is
 	v[0]=V("id_capital_goods_sector");                    	//identifies the capital goods sector      
 	v[1]=V("Firm_Expected_Sales");                          //calls the firm's expected sales
 	v[2]=VL("Firm_Productive_Capacity", 1);                 //calls the firm's productive capacity of the last period
-	v[3]=V("desired_inventories_proportion");             	//calls the firm's desired inventories ratio as a proportion of sales
+	v[3]=V("sector_desired_inventories_proportion");             	//calls the firm's desired inventories ratio as a proportion of sales
 	v[4]=VL("Firm_Stock_Inventories",1);                    //calls the firm's stock of inventories in the last period
 
 	if(v[0]==0)                                           	//if it is not capital goods sector

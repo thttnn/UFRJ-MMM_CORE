@@ -17,7 +17,7 @@ EQUATION("Firm_Indirect_Tax")
 Indirect Tax of the firm is the revenue multiplied by the tax parameter
 */
 	v[0]=V("Firm_Revenue");
-	v[1]=V("indirect_tax_rate");
+	v[1]=V("sector_indirect_tax_rate");
 	v[2]=v[0]*v[1];
 RESULT(v[2])
 
@@ -27,8 +27,8 @@ EQUATION("Firm_Net_Revenue")
 Firm's net revenue, discounting taxes and R&D expenses.
 */
 	v[0]=V("Firm_Revenue");
-	v[1]=V("indirect_tax_rate");
-	v[2]=V("rnd_revenue_proportion");
+	v[1]=V("sector_indirect_tax_rate");
+	v[2]=V("sector_rnd_revenue_proportion");
 	v[4]=v[0]*(1-v[1])*(1-v[2]);
 RESULT(v[4])
 
@@ -39,8 +39,8 @@ Firm's R&D expenses, subtracted from the revenue after taxes.
 It will be distributed to income class as wages.
 */
 	v[0]=V("Firm_Revenue");
-	v[1]=V("indirect_tax_rate");
-	v[2]=V("rnd_revenue_proportion");
+	v[1]=V("sector_indirect_tax_rate");
+	v[2]=V("sector_rnd_revenue_proportion");
 	v[4]=v[0]*(1-v[1])*(v[2]);
 RESULT(v[4])
 
@@ -65,7 +65,7 @@ EQUATION("Firm_Retained_Profits")
 Profit retained by the sector after being distributed to class and paid interest on the debt and separate the expense for depreciation.
 */
 	v[0]=V("Firm_Net_Profits");                                        //firm's profits            
-	v[1]=V("profits_distribution_rate");                               //firm's profit distribution parameter                            
+	v[1]=V("sector_profits_distribution_rate");                               //firm's profit distribution parameter                            
 	if(v[0]>0)                                                         //if net profits is positive
 		v[2]=(1-v[1])*v[0];                                            //retained profits
 	else                                                               //if net profits is zero or negative                                                                     
@@ -78,7 +78,7 @@ EQUATION("Firm_Distributed_Profits")
 Amount of profits distributed to the income classes
 */
 	v[0]=V("Firm_Net_Profits");                                        //firm's profits            
-	v[1]=V("profits_distribution_rate");                               //firm's profit distribution parameter  
+	v[1]=V("sector_profits_distribution_rate");                               //firm's profit distribution parameter  
 	if(v[0]>0)                                                         //if net profits is positive
 		v[2]=v[1]*v[0];                                                //distributed profits
 	else                                                               //if net profits is zero or negative                                                                     

@@ -212,25 +212,25 @@ CYCLE(cur, "SECTORS")
 	v[162]=v[101];																		//sector initial price
 	v[163]=v[141]/V("C_eta");															//firm production
 	v[164]=v[163]*V("C_beta")/V("C_psi");												//number of capital goods for each firm
-	v[165]=(v[149]*V("C_exp_sh"))/(pow(v[150], VS(cur,"exports_elasticity_income")));
+	v[165]=(v[149]*V("C_exp_sh"))/(pow(v[150], VS(cur,"sector_exports_elasticity_income")));
 	v[166]=(v[149]*V("C_exp_sh"))/v[162];
 	v[167]=1/V("C_eta");																//sector market share
 	v[168]=V("C_mk");
 	v[169]=V("C_w");
 	v[170]=(V("C_w")/V("C_phi"))+V("C_alpha")*v[100];
 	WRITES(cur, "sector_exports_coefficient", v[165]);
-	WRITES(cur, "capital_output_ratio", V("C_beta"));
-	WRITES(cur, "depreciation_period", V("C_delta"));
-	WRITES(cur, "desired_degree_capacity_utilization", V("C_psi"));
-	WRITES(cur, "desired_inventories_proportion", V("C_sigma"));
-	WRITES(cur, "indirect_tax_rate", V("C_tau"));
-	WRITES(cur, "initial_productivity", V("C_phi"));
-	WRITES(cur, "initial_quality", V("C_q"));
-	WRITES(cur, "input_tech_coefficient", V("C_alpha"));
-	WRITES(cur, "investment_period", V("C_i_per"));
-	WRITES(cur, "markup_period", V("C_mk_per"));
-	WRITES(cur, "profits_distribution_rate", V("C_d"));
-	WRITES(cur, "rnd_revenue_proportion", V("C_lambda"));
+	WRITES(cur, "sector_capital_output_ratio", V("C_beta"));
+	WRITES(cur, "sector_depreciation_period", V("C_delta"));
+	WRITES(cur, "sector_desired_degree_capacity_utilization", V("C_psi"));
+	WRITES(cur, "sector_desired_inventories_proportion", V("C_sigma"));
+	WRITES(cur, "sector_indirect_tax_rate", V("C_tau"));
+	WRITES(cur, "sector_initial_productivity", V("C_phi"));
+	WRITES(cur, "sector_initial_quality", V("C_q"));
+	WRITES(cur, "sector_input_tech_coefficient", V("C_alpha"));
+	WRITES(cur, "sector_investment_period", V("C_i_per"));
+	WRITES(cur, "sector_markup_period", V("C_mk_per"));
+	WRITES(cur, "sector_profits_distribution_rate", V("C_d"));
+	WRITES(cur, "sector_rnd_revenue_proportion", V("C_lambda"));
 	}
 	
 	if(VS(cur,"id_capital_goods_sector")==1)
@@ -240,25 +240,25 @@ CYCLE(cur, "SECTORS")
 	v[162]=v[102];																		//sector initial price
 	v[163]=v[142]/V("K_eta");															//firm production
 	v[164]=v[163]*V("K_beta")/V("K_psi");												//number of capital goods for each firm
-	v[165]=(v[149]*V("K_exp_sh"))/(pow(v[150], VS(cur,"exports_elasticity_income")));
+	v[165]=(v[149]*V("K_exp_sh"))/(pow(v[150], VS(cur,"sector_exports_elasticity_income")));
 	v[166]=(v[149]*V("K_exp_sh"))/v[162];
 	v[167]=1/V("K_eta");																//sector market share
 	v[168]=V("K_mk");
 	v[169]=V("K_w");
 	v[170]=(V("K_w")/V("K_phi"))+V("K_alpha")*v[100];
 	WRITES(cur, "sector_exports_coefficient", v[165]);
-	WRITES(cur, "capital_output_ratio", V("K_beta"));
-	WRITES(cur, "depreciation_period", V("K_delta"));
-	WRITES(cur, "desired_degree_capacity_utilization", V("K_psi"));
-	WRITES(cur, "desired_inventories_proportion", V("K_sigma"));
-	WRITES(cur, "indirect_tax_rate", V("K_tau"));
-	WRITES(cur, "initial_productivity", V("K_phi"));
-	WRITES(cur, "initial_quality", V("K_q"));
-	WRITES(cur, "input_tech_coefficient", V("K_alpha"));
-	WRITES(cur, "investment_period", V("K_i_per"));
-	WRITES(cur, "markup_period", V("K_mk_per"));
-	WRITES(cur, "profits_distribution_rate", V("K_d"));
-	WRITES(cur, "rnd_revenue_proportion", V("K_lambda"));
+	WRITES(cur, "sector_capital_output_ratio", V("K_beta"));
+	WRITES(cur, "sector_depreciation_period", V("K_delta"));
+	WRITES(cur, "sector_desired_degree_capacity_utilization", V("K_psi"));
+	WRITES(cur, "sector_desired_inventories_proportion", V("K_sigma"));
+	WRITES(cur, "sector_indirect_tax_rate", V("K_tau"));
+	WRITES(cur, "sector_initial_productivity", V("K_phi"));
+	WRITES(cur, "sector_initial_quality", V("K_q"));
+	WRITES(cur, "sector_input_tech_coefficient", V("K_alpha"));
+	WRITES(cur, "sector_investment_period", V("K_i_per"));
+	WRITES(cur, "sector_markup_period", V("K_mk_per"));
+	WRITES(cur, "sector_profits_distribution_rate", V("K_d"));
+	WRITES(cur, "sector_rnd_revenue_proportion", V("K_lambda"));
 	}
 	
 	if(VS(cur,"id_intermediate_goods_sector")==1)
@@ -268,68 +268,68 @@ CYCLE(cur, "SECTORS")
 	v[162]=v[100];																		//sector initial price
 	v[163]=v[143]/V("I_eta");															//firm production
 	v[164]=v[163]*V("I_beta")/V("I_psi");												//number of capital goods for each firm
-	v[165]=(v[149]*V("I_exp_sh"))/(pow(v[150], VS(cur,"exports_elasticity_income")));	//sector exports coefficient
+	v[165]=(v[149]*V("I_exp_sh"))/(pow(v[150], VS(cur,"sector_exports_elasticity_income")));	//sector exports coefficient
 	v[166]=(v[149]*V("I_exp_sh"))/v[162];												//sector real exports
 	v[167]=1/V("I_eta");																//sector market share
 	v[168]=V("I_mk");
 	v[169]=V("I_w");
 	v[170]=(V("I_w")/V("I_phi"))+V("I_alpha")*v[100];
 	WRITES(cur, "sector_exports_coefficient", v[165]);
-	WRITES(cur, "capital_output_ratio", V("I_beta"));
-	WRITES(cur, "depreciation_period", V("I_delta"));
-	WRITES(cur, "desired_degree_capacity_utilization", V("I_psi"));
-	WRITES(cur, "desired_inventories_proportion", V("I_sigma"));
-	WRITES(cur, "indirect_tax_rate", V("I_tau"));
-	WRITES(cur, "initial_productivity", V("I_phi"));
-	WRITES(cur, "initial_quality", V("I_q"));
-	WRITES(cur, "input_tech_coefficient", V("I_alpha"));
-	WRITES(cur, "investment_period", V("I_i_per"));
-	WRITES(cur, "markup_period", V("I_mk_per"));
-	WRITES(cur, "profits_distribution_rate", V("I_d"));
-	WRITES(cur, "rnd_revenue_proportion", V("I_lambda"));
+	WRITES(cur, "sector_capital_output_ratio", V("I_beta"));
+	WRITES(cur, "sector_depreciation_period", V("I_delta"));
+	WRITES(cur, "sector_desired_degree_capacity_utilization", V("I_psi"));
+	WRITES(cur, "sector_desired_inventories_proportion", V("I_sigma"));
+	WRITES(cur, "sector_indirect_tax_rate", V("I_tau"));
+	WRITES(cur, "sector_initial_productivity", V("I_phi"));
+	WRITES(cur, "sector_initial_quality", V("I_q"));
+	WRITES(cur, "sector_input_tech_coefficient", V("I_alpha"));
+	WRITES(cur, "sector_investment_period", V("I_i_per"));
+	WRITES(cur, "sector_markup_period", V("I_mk_per"));
+	WRITES(cur, "sector_profits_distribution_rate", V("I_d"));
+	WRITES(cur, "sector_rnd_revenue_proportion", V("I_lambda"));
 	}
 		
-	for (i=1 ; i<=VS(cur,"investment_period") ; i++)											
+	for (i=1 ; i<=VS(cur,"sector_investment_period") ; i++)											
 		{
 		WRITELLS(cur, "Sector_Demand_Met", 1, 0, i); 										    
 		WRITELLS(cur, "Sector_Demand_Met_By_Imports", 1, 0, i);                      			
 		WRITELLS(cur, "Sector_Effective_Orders", v[160], 0, i);               				
 		}		
 	for (i=1 ; i<=V("c_per")+1 ; i++)                        		 					
-		WRITELLS(cur, "Sector_Avg_Quality", VS(cur, "initial_quality"), 0, i);        		
+		WRITELLS(cur, "Sector_Avg_Quality", VS(cur, "sector_initial_quality"), 0, i);        		
 	WRITELLS(cur, "Sector_Productive_Capacity_Available", 0, 0, 1);               
 	WRITELLS(cur, "Sector_Avg_Competitiveness", 1, 0, 1);                     		
 	WRITELLS(cur, "Sector_Avg_Price", v[162], 0, 1);                             
 	WRITELLS(cur, "Sector_Avg_Price", v[162], 0, 2);										
 	WRITELLS(cur, "Sector_External_Price", v[162], 0, 1);                               		
-	WRITELLS(cur, "Sector_Avg_Productivity", VS(cur, "initial_productivity"), 0,  1);               	 		
-	WRITELLS(cur, "Sector_Max_Productivity", VS(cur, "initial_productivity"), 0,  1);                      		
-	WRITELLS(cur, "Sector_Max_Quality", VS(cur, "initial_quality"), 0,  1);
-	WRITELLS(cur, "Sector_Inventories", (v[160]*VS(cur, "desired_inventories_proportion")), 0, 1);                  			
-	WRITELLS(cur, "Sector_Productive_Capacity", (v[160]/VS(cur, "desired_degree_capacity_utilization")), 0, 1);			
+	WRITELLS(cur, "Sector_Avg_Productivity", VS(cur, "sector_initial_productivity"), 0,  1);               	 		
+	WRITELLS(cur, "Sector_Max_Productivity", VS(cur, "sector_initial_productivity"), 0,  1);                      		
+	WRITELLS(cur, "Sector_Max_Quality", VS(cur, "sector_initial_quality"), 0,  1);
+	WRITELLS(cur, "Sector_Inventories", (v[160]*VS(cur, "sector_desired_inventories_proportion")), 0, 1);                  			
+	WRITELLS(cur, "Sector_Productive_Capacity", (v[160]/VS(cur, "sector_desired_degree_capacity_utilization")), 0, 1);			
 	WRITELLS(cur, "Sector_Exports", v[166], 0, 1);																			
 	
 	cur1=SEARCHS(cur, "FIRMS");										
 	WRITES(cur1, "firm_date_birth", 0);                                   					
 	
 	//WRITTING FIRM VARIABLES
-	for (i=1 ; i<=VS(cur,"investment_period") ; i++) 
+	for (i=1 ; i<=VS(cur,"sector_investment_period") ; i++) 
 		{	
 	  	WRITELLS(cur1, "Firm_Demand_Productive_Capacity_Replacement", 0, 0, i);							
 	  	WRITELLS(cur1, "Firm_Debt_Rate", 0, 0, i);															
 	  	WRITELLS(cur1, "Firm_Demand_Capital_Goods", 0, 0, i);
-	  	WRITELLS(cur1, "Firm_Frontier_Productivity", VS(cur, "initial_productivity"), 0, i);    			
-	  	WRITELLS(cur1, "Firm_Max_Productivity", VS(cur, "initial_productivity"), 0, i);      			
-	  	WRITELLS(cur1, "Firm_Avg_Productivity", VS(cur, "initial_productivity"), 0, i);					
+	  	WRITELLS(cur1, "Firm_Frontier_Productivity", VS(cur, "sector_initial_productivity"), 0, i);    			
+	  	WRITELLS(cur1, "Firm_Max_Productivity", VS(cur, "sector_initial_productivity"), 0, i);      			
+	  	WRITELLS(cur1, "Firm_Avg_Productivity", VS(cur, "sector_initial_productivity"), 0, i);					
 		}
-	for(i=1; i<=VS(cur,"investment_period")+1; i++)										 				
+	for(i=1; i<=VS(cur,"sector_investment_period")+1; i++)										 				
 		{
 		WRITELLS(cur1, "Firm_Productive_Capacity_Depreciation", 0, 0, i);  									
 		WRITELLS(cur1, "Firm_Demand_Productive_Capacity_Expansion", 0, 0, i);     							
 		}
-	for (i=1 ; i<=2*VS(cur,"investment_period") ; i++)												
+	for (i=1 ; i<=2*VS(cur,"sector_investment_period") ; i++)												
 	  	WRITELLS(cur1, "Firm_Effective_Orders", v[163], 0, i);                     						
-	for (i=1 ; i<=VS(cur,"markup_period")-1 ; i++)														
+	for (i=1 ; i<=VS(cur,"sector_markup_period")-1 ; i++)														
 		{
 		WRITELLS(cur1, "Firm_Market_Share", v[167], 0, i);             										
 	  	WRITELLS(cur1, "Firm_Potential_Markup", v[168], 0, i);                      						
@@ -342,9 +342,9 @@ CYCLE(cur, "SECTORS")
 	WRITELLS(cur1, "Firm_Desired_Markup", v[168], 0, 1); 												
 	WRITELLS(cur1, "Firm_Sales", v[163], 0, 1);														
 	WRITELLS(cur1, "Firm_Revenue", v[163]*v[162], 0, 1);                            					
-	WRITELLS(cur1, "Firm_Stock_Inventories", v[163]*VS(cur, "desired_inventories_proportion"), 0, 1);                       
-	WRITELLS(cur1, "Firm_Stock_Inputs", VS(cur, "input_tech_coefficient")*v[163], 0, 1);                      						
-	WRITELLS(cur1, "Firm_Productive_Capacity", v[163]/VS(cur, "desired_degree_capacity_utilization"), 0, 1);								
+	WRITELLS(cur1, "Firm_Stock_Inventories", v[163]*VS(cur, "sector_desired_inventories_proportion"), 0, 1);                       
+	WRITELLS(cur1, "Firm_Stock_Inputs", VS(cur, "sector_input_tech_coefficient")*v[163], 0, 1);                      						
+	WRITELLS(cur1, "Firm_Productive_Capacity", v[163]/VS(cur, "sector_desired_degree_capacity_utilization"), 0, 1);								
 	WRITELLS(cur1, "Firm_Capital", (v[164]*v[102]), 0, 1);												
 	WRITELLS(cur1, "Firm_Wage", v[169], 0, 1); 														
 	WRITELLS(cur1, "Firm_Variable_Cost", v[170], 0, 1);								
@@ -357,8 +357,8 @@ CYCLE(cur, "SECTORS")
 	//WRITTING CAPITAL VARIABLES
 	cur2=SEARCHS(cur1, "CAPITALS");													
 	WRITELLS(cur2, "Capital_Good_Acumulated_Production", 0, 0, 1);      				
-	WRITES(cur2, "capital_good_productive_capacity", 1/VS(cur, "capital_output_ratio"));     					  
-	WRITES(cur2, "capital_good_productivity_initial", VS(cur, "initial_productivity"));       		  				
+	WRITES(cur2, "capital_good_productive_capacity", 1/VS(cur, "sector_capital_output_ratio"));     					  
+	WRITES(cur2, "capital_good_productivity_initial", VS(cur, "sector_initial_productivity"));       		  				
 	WRITES(cur2, "capital_good_to_replace", 0);
 	WRITES(cur2, "id_capital_good_number", 1);                       					
 	 			
@@ -370,7 +370,7 @@ CYCLE(cur, "SECTORS")
 	{
 	v[180]=SEARCH_INSTS(cur, cur1);														
 	WRITES(cur1, "id_firm_number", v[180]);                         					
-	v[181]=fmod((double) (v[180]+VS(cur,"investment_period")), VS(cur,"investment_period"));   
+	v[181]=fmod((double) (v[180]+VS(cur,"sector_investment_period")), VS(cur,"sector_investment_period"));   
 			
 	//Begin creating capital goods and writting "capital_good_date_birth"		
 	cur2=SEARCHS(cur1, "CAPITALS");   
@@ -382,9 +382,9 @@ CYCLE(cur, "SECTORS")
 	CYCLES(cur1, cur5, "CAPITALS")                                            			
 	{
 	v[182]=VS(cur5, "id_capital_good_number");
-	v[183]=(-VS(cur,"depreciation_period")+v[181]+1)+(v[182]-1)*VS(cur,"investment_period");                                  			
+	v[183]=(-VS(cur,"sector_depreciation_period")+v[181]+1)+(v[182]-1)*VS(cur,"sector_investment_period");                                  			
 	WRITES(cur5, "capital_good_date_birth", 0);											
-//	WRITES(cur5, "capital_good_depreciation_period", (v[183]+VS(cur,"depreciation_period")));
+//	WRITES(cur5, "capital_good_depreciation_period", (v[183]+VS(cur,"sector_depreciation_period")));
 	WRITES(cur5, "capital_good_depreciation_period", 700);
 	}
 }					

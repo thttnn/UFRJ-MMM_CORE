@@ -7,7 +7,7 @@ Macro Variable
 This variable counts productive capacity that exited the sector in each time step. Firm objects are deleted inside that variable due to two possibilities: small market share or high debt rate. In the second case, if entry conitions are met, the firm can be bought by a new one.
 */
 
-v[0]=V("survival_period");
+v[0]=V("sector_survival_period");
 v[17]=v[18]=v[19]=0;
 CYCLE(cur1, "SECTORS")
 {
@@ -93,7 +93,7 @@ EQUATION("Sector_Entry_Condition")
 /*
 Can only be 0 or 1, if all enter conditions are met.
 */
-	v[1]=V("investment_period");
+	v[1]=V("sector_investment_period");
 	v[2]=VL("Sector_Effective_Orders",1);
 	v[3]=VL("Sector_Effective_Orders",2);
 	v[4]=VL("Sector_Effective_Orders",3);
@@ -123,15 +123,15 @@ In this variable a new firm enters if there is market space available and the en
       if(v[1]>0&&v[6]<1)												//if entry conditions are met and there are market space 
       {
       v[20]=V("Sector_Effective_Orders");								//sector effective orders
-      v[0]=V("investment_period");										//sector investment period
-      v[22]=V("desired_degree_capacity_utilization");					//sector degree of capacity utilization
-      v[23]=V("desired_inventories_proportion");						//sector inventories proportion
+      v[0]=V("sector_investment_period");										//sector investment period
+      v[22]=V("sector_desired_degree_capacity_utilization");					//sector degree of capacity utilization
+      v[23]=V("sector_desired_inventories_proportion");						//sector inventories proportion
 	  v[25]=V("Price_Capital_Goods");									//price of capital goods
       v[34]=VL("Sector_Productive_Capacity_Available",1);				//productive capacity available in the last period
 	  v[44]=V("Sector_Productive_Capacity_Exit");						//productive capacity exited in the current period
       v[36]=V("Sector_Avg_Price");										//sector avg price
-      v[35]=V("capital_output_ratio");									//sector capital output ratio
-      v[38]=V("depreciation_period");									//sector depreciation period
+      v[35]=V("sector_capital_output_ratio");									//sector capital output ratio
+      v[38]=V("sector_depreciation_period");									//sector depreciation period
       v[39]=V("Sector_Avg_Productivity");   							//sector avg productivity	
       v[42]=uniform_int(1, v[0]);										//randon integer number between 1 and investment period
       v[5]=COUNT("FIRMS");												//current number of firms

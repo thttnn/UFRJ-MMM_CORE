@@ -7,14 +7,14 @@ EQUATION("Sector_External_Price")
 External price of the sector's goods. 
 */
 	v[0]=VL("Sector_External_Price",1);						//external price in the last period
-	v[1]=V("external_price_growth");						//exogenous external price rate of growth
+	v[1]=V("sector_external_price_growth");						//exogenous external price rate of growth
 	if(v[1]!=0)												//if the exogenous rate is different from zero
 		v[2]=(1+v[1])*v[0];									//apply the exogenous rate of growth
 	else													//if not (endogenous rate of growth)
    	{     
 		v[3]=VL("Sector_Avg_Price",2);						//sector average price lagged 2
 		v[4]=VL("Sector_Avg_Price",1);						//sector average price lalged 1
-		v[5]=V("external_price_competitiveness");			//parameter that determines how domestic sector is competitive and affect external price
+		v[5]=V("sector_external_price_competitiveness");			//parameter that determines how domestic sector is competitive and affect external price
 		v[2]=v[0]*(1+v[5]*((v[4]-v[3])/v[3]));				//new external price will depend on the rate of growth of domestic price
    	}  
 RESULT(v[2])
@@ -28,8 +28,8 @@ Real exports are defined for each sector based on the application of an export c
 	v[1]=V("sector_exports_coefficient");					//sector especific exports coefficent				
 	v[2]=V("Sector_Avg_Price");								//sector average price			
 	v[3]=V("Sector_External_Price");						//external price
-	v[4]=V("exports_elasticity_income");					//sector specific income elasticity
-	v[5]=V("exports_elasticity_price");						//sector specific price elasticity
+	v[4]=V("sector_exports_elasticity_income");					//sector specific income elasticity
+	v[5]=V("sector_exports_elasticity_price");						//sector specific price elasticity
 	v[6]=V("Exchange_Rate");								//current exchange rate
 	v[7]=v[1]*pow((v[3]*v[6])/v[2],v[5])*pow(v[0],v[4]);	//sector exports will depend on the relative prices and external income, given the elasticities
 	v[8]=v[7]/v[2];

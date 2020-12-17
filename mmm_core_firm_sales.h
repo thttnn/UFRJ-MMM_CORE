@@ -68,12 +68,12 @@ EQUATION("Firm_Competitiveness")
 Competitiveness depends on the quality of the product, the price and the delivery delay of the firm
 */
 	v[0]=VL("Firm_Price",1);                                           //firm's price in the last period
-	v[1]=V("elasticity_price");                                        //price elasticity
+	v[1]=V("sector_elasticity_price");                                        //price elasticity
 	v[2]=VL("Firm_Quality",1);                                         //product quaility
-	v[3]=V("elasticity_quality");                                      //quality elasticity
+	v[3]=V("sector_elasticity_quality");                                      //quality elasticity
 	v[4]=VL("Firm_Competitiveness",1);                                 //firm's competitiveness in the last period
 	v[5]=VL("Firm_Delivery_Delay",1);                                  //firm's delivery delay in the last period
-	v[6]=V("elascitity_delay");                                        //delay elasticity	
+	v[6]=V("sector_elascitity_delay");                                        //delay elasticity	
    	if(v[0]!=0&&v[2]!=0)                                               //if the price was not zero neither the quality
      	v[7]=(pow(v[2],v[3]))*(1/pow(v[0],v[1]))*(1/pow(v[5],v[6]));   //firm's competitiveness will be given by the quality powered by its elasticity over the price, powered by its elasticicty, and the delivery delay, powered by its elasticicty
    	else                                                               //if either the price or the quality was zero 

@@ -12,30 +12,30 @@ It is set in a specific simple configuration: 3 sectors and 3 income classes. Ne
 Additionally, there is a strong hypothesis here: all sector are equals, except for how their demand is calculated.
 */
 
-v[0]=V("investment_period");               				
-v[1]=V("markup_period");
+v[0]=V("sector_investment_period");               				
+v[1]=V("sector_markup_period");
 v[2]=V("class_period");									
 v[3]=V("annual_period");
 v[4]=V("government_period");
-v[5]=V("depreciation_period");
+v[5]=V("sector_depreciation_period");
 
 v[6]=V("number_object_firms");
 
-v[7]=V("initial_productivity");
+v[7]=V("sector_initial_productivity");
 v[8]=V("initial_markup");
 v[9]=V("initial_wage");
-v[10]=V("initial_quality");
+v[10]=V("sector_initial_quality");
 
-v[11]=V("input_tech_coefficient");
-v[12]=V("capital_output_ratio");
+v[11]=V("sector_input_tech_coefficient");
+v[12]=V("sector_capital_output_ratio");
 
-v[13]=V("rnd_revenue_proportion");
-v[14]=V("profits_distribution_rate");
-v[15]=V("indirect_tax_rate");
+v[13]=V("sector_rnd_revenue_proportion");
+v[14]=V("sector_profits_distribution_rate");
+v[15]=V("sector_indirect_tax_rate");
 
-v[16]=V("exports_elasticity_income");
-v[17]=V("desired_inventories_proportion");	
-v[18]=V("desired_degree_capacity_utilization");
+v[16]=V("sector_exports_elasticity_income");
+v[17]=V("sector_desired_inventories_proportion");	
+v[18]=V("sector_desired_degree_capacity_utilization");
 
 
 v[20]=v[21]=v[22]=v[23]=v[24]=v[25]=0;
