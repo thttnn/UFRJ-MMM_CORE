@@ -5,35 +5,65 @@ EQUATION("Sector_Intermediate_Demand")
 /*
 Depends on the total domestic intermediate demand, if it is a intermediate goods sector.
 */
-	v[0]=V("id_intermediate_goods_sector");					    //identifies if it is intermediate goods sector
-	if(v[0]==1)													//if yes
-		v[1]=V("Total_Domestic_Intermediate_Demand");			//sector demand is equal to total intermediate demand
-	else														//if not
-		v[1]=0;													//sector demand is zero
-RESULT(v[1])
+	if(V("id_intermediate_goods_sector")==1)								//if it is intermediate goods sector
+	{
+		v[0]=0;                                                      		//initializes the value for thr CYCLE
+		CYCLES(root, cur, "SECTORS")                                        //CYCLE trought all sectors
+		{
+			v[1]=0;                                                    		//initializes the value for the CYCLE
+			CYCLES(cur, cur1, "FIRMS")                                 		//CYCLE trought all firms inside the sectors
+			{    
+				v[2]=VS(cur1, "Firm_Input_Demand_Next_Period");             //gives the demand for imputs of each firm
+				v[1]=v[1]+v[2];                                          	//sums up the demand for imputs of all firms
+			} 
+		v[0]=v[0]+v[1];                                              		//sums up the demand for imputs of all setors
+		}
+	}
+	else																	//if not
+		v[0]=0;																//sector intermediate demand is zero
+RESULT(v[0])
 
 
 EQUATION("Sector_Consumption_Demand") 
 /*
 Depends on the total domestic consumption demand, if it is a consumption goods sector.
 */
-	v[0]=V("id_consumption_goods_sector");                  	//identifies consumption goods sector
-	if(v[0]==1)                                             	//if it is a consumption good sector
-		v[1]=V("Total_Domestic_Consumption_Demand");       		//sector demand is equal to total consumption demand 
+
+	if(V("id_consumption_goods_sector")==1)                     //if it is a consumption good sector
+	{
+		v[0]=0;                                                 //initializes the CYCLE
+		CYCLES(root,cur, "CLASSES")                             //CYCLE trought all income classes
+		{
+			v[1]=VS(cur, "Class_Real_Domestic_Consumption");    //class consumption
+			v[0]=v[0]+v[1];                                     //sums up all classes consumption
+		}
+	}
 	else                                                    	//if it is not a consumption good sector 
-		v[1]=0;                                               	//domestic consumption is zero
-RESULT(v[1])
+		v[0]=0;                                               	//sector consumption demand is zero
+RESULT(v[0])
 
 
 EQUATION("Sector_Capital_Demand")
 /*
 Depends on the total domestic capital demand, if it is a capital goods sector.
 */
-	v[0]=V("id_capital_goods_sector");							//identifies capital goods sector
-	if(v[0]==1)													//if it is a capital good sector
-		v[1]=V("Total_Domestic_Capital_Goods_Demand");			//sector demand is equal to total capital demand
-	else														//if not 
-		v[1]=0;													//sector demand is zero
+
+	if(V("id_capital_goods_sector")==1)											//if it is a capital good sector
+	{
+		v[1]=0;                                                 				//initializes the CYCLE
+		CYCLES(root, cur, "SECTORS")                                   			//CYCLE trought the sectors
+		{	
+			v[2]=0;                                               				//initializes the second CYCLE
+			CYCLES(cur, cur1, "FIRMS")                            				//CYCLE trought the firms
+			{
+				v[3]=VS(cur1, "Firm_Demand_Capital_Goods");         			//gives the demand for capital goods of each firm
+				v[2]=v[2]+v[3];                                    				//sums up all capital goods demand
+			}
+			v[1]=v[1]+v[2];                                       				//sums up all firm's capital goods demand
+		}		
+	}
+	else																		//if not 
+		v[1]=0;																	//sector capital demand is zero
 RESULT(v[1])
 
 

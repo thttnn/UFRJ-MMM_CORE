@@ -370,9 +370,6 @@ Label Root
 			Var: Total_Classes_Expenses
 			Var: Total_Consumption
 			Var: Total_Distributed_Profits
-			Var: Total_Domestic_Capital_Goods_Demand
-			Var: Total_Domestic_Consumption_Demand
-			Var: Total_Domestic_Intermediate_Demand
 			Var: Total_Exports
 			Var: Total_Imports
 			Var: Total_Induced_Investment
@@ -565,9 +562,6 @@ Var: Total_Capital_Stock 0 s + n n
 Var: Total_Classes_Expenses 0 n + n n
 Var: Total_Consumption 0 s + n n
 Var: Total_Distributed_Profits 0 n + n n
-Var: Total_Domestic_Capital_Goods_Demand 0 n + n n
-Var: Total_Domestic_Consumption_Demand 0 n + n n
-Var: Total_Domestic_Intermediate_Demand 0 n + n n
 Var: Total_Exports 0 s + n n
 Var: Total_Imports 0 s + n n
 Var: Total_Induced_Investment 0 s + n n
@@ -1508,33 +1502,6 @@ END_DESCRIPTION
 
 Variable_Total_Distributed_Profits
 (no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Total_Domestic_Capital_Goods_Demand
-The demand for capital goods is calculated by summing up the demand for capital goods from all sectors with government spending on investment.
-Must be called by the sectors.
-The demand for capital goods is calculated by summing up the demand for capital goods from all sectors with government spending on investment.
-Must be called by the sectors.
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Total_Domestic_Consumption_Demand
-Calculates the domestic demand for consumption goods.
-Must be called by the sector.
-Calculates the domestic demand for consumption goods.
-Must be called by the sector.
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Total_Domestic_Intermediate_Demand
-Calculates the domestic demand for inputs.
-Must be called by the sectors.
-Calculates the domestic demand for inputs.
-Must be called by the sectors.
 _INIT_
 
 END_DESCRIPTION

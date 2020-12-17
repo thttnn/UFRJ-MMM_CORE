@@ -329,8 +329,6 @@ Label Root
 			Param: annual_period
 			Param: crisis_threshold
 			Param: initial_avg_price
-			Func: Income_Taxes_Function
-			Func: Indirect_Taxes_Function
 			Var: Annual_Growth
 			Var: Annual_Inflation
 			Var: Annual_Real_Growth
@@ -526,8 +524,6 @@ Object: MACRO C	1
 Param: annual_period 0 n + n n	4
 Param: crisis_threshold 0 n + n n	0
 Param: initial_avg_price 0 n + n n	1
-Func: Income_Taxes_Function 0 n + n n
-Func: Indirect_Taxes_Function 0 n + n n
 Var: Annual_Growth 1 n + n n	0
 Var: Annual_Inflation 1 s + n n	0
 Var: Annual_Real_Growth 1 s + n n	0
@@ -1264,18 +1260,6 @@ _INIT_
 END_DESCRIPTION
 
 Parameter_initial_avg_price
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Function_Income_Taxes_Function
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Function_Indirect_Taxes_Function
 (no description available)
 _INIT_
 
@@ -2088,6 +2072,8 @@ END_DESCRIPTION
 
 Variable_Sector_Taxation
 (no description available)
+_INIT_
+
 END_DESCRIPTION
 
 Object_FIRMS
@@ -2768,6 +2754,8 @@ END_DESCRIPTION
 
 Variable_Class_Taxation
 (no description available)
+_INIT_
+
 END_DESCRIPTION
 
 Object_GOVERNMENT
