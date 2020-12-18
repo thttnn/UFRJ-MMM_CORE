@@ -20,8 +20,17 @@ Depends on the total domestic intermediate demand, if it is a intermediate goods
 		}
 	}
 	else																	//if not
-		v[0]=0;																//sector intermediate demand is zero
-RESULT(v[0])
+		v[0]=0;																//sector intermediate demand is zero	
+		
+	v[3]=V("Government_Input_Demand");
+	cur = SEARCH_CNDS(PARENT,"id_intermediate_goods_sector", 1);
+	v[4]=VLS(cur, "Sector_Avg_Price", 1);
+	if(v[4]!=0)
+		v[5]=v[3]/v[4];
+	else
+		v[5]=0;
+	v[6]=v[0]+v[5];
+RESULT(v[6])
 
 
 EQUATION("Sector_Domestic_Consumption_Demand") 
@@ -40,7 +49,16 @@ Depends on the total domestic consumption demand, if it is a consumption goods s
 	}
 	else                                                    	//if it is not a consumption good sector 
 		v[0]=0;                                               	//sector consumption demand is zero
-RESULT(v[0])
+
+	v[2]=V("Government_Consumption_Demand");
+	cur = SEARCH_CNDS(PARENT,"id_consumption_goods_sector", 1);
+	v[3]=VLS(cur, "Sector_Avg_Price", 1);
+	if(v[3]!=0)
+		v[4]=v[2]/v[3];
+	else
+		v[4]=0;
+	v[5]=v[0]+v[4];
+RESULT(v[5])
 
 
 EQUATION("Sector_Domestic_Capital_Demand")
@@ -64,7 +82,16 @@ Depends on the total domestic capital demand, if it is a capital goods sector.
 	}
 	else																		//if not 
 		v[1]=0;																	//sector capital demand is zero
-RESULT(v[1])
+	
+	v[4]=V("Government_Capital_Demand");
+	cur = SEARCH_CNDS(PARENT,"id_capital_goods_sector", 1);
+	v[5]=VLS(cur, "Sector_Avg_Price", 1);
+	if(v[5]!=0)
+		v[6]=v[4]/v[5];
+	else
+		v[6]=0;
+	v[7]=v[1]+v[6];
+RESULT(v[7])
 
 
 EQUATION("Sector_Exports")

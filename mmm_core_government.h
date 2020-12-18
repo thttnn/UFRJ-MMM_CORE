@@ -24,19 +24,53 @@ Maximum Government expenses imposed by the surplus target fiscal rule.
 RESULT(v[6])
 
 
-EQUATION("Government_Wages")
+EQUATION("Government_Consumption_Demand")
+/*
+Government spends all with wages
+*/
+	v[0]=V("Government_Max_Expenses");  
+	v[1]=V("C_gov");
+	v[2]=v[0]*v[1];
+RESULT(v[2])
+
+
+EQUATION("Government_Capital_Demand")
+/*
+Government spends all with wages
+*/
+	v[0]=V("Government_Max_Expenses");    
+	v[1]=V("K_gov");
+	v[2]=v[0]*v[1];
+RESULT(v[2])
+
+
+EQUATION("Government_Input_Demand")
 /*
 Government spends all with wages
 */
 	v[0]=V("Government_Max_Expenses");                    
-RESULT(v[0])
+	v[1]=V("I_gov");
+	v[2]=v[0]*v[1];
+RESULT(v[2])
+
+
+EQUATION("Government_Wages")
+/*
+Government spends all with wages
+*/
+	v[0]=V("Government_Max_Expenses"); 
+	v[1]=V("C_gov");
+	v[2]=V("K_gov");
+	v[3]=V("I_gov");
+	v[4]=(1-v[1]-v[2]-v[3])*v[0];
+RESULT(v[4])
 
 
 EQUATION("Total_Income_Taxes")
-RESULT(SUM("Class_Taxation"))
+RESULT(SUMS(PARENT,"Class_Taxation"))
 
 EQUATION("Total_Indirect_Taxes")
-RESULT(SUM("Sector_Taxation"))
+RESULT(SUMS(PARENT,"Sector_Taxation"))
 
 
 EQUATION("Total_Taxes")

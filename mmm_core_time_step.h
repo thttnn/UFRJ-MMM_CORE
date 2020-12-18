@@ -10,7 +10,10 @@ V("Calibration");
 
 /*****GOVERNMENT EXPENSES (AUTONOMOUS)*****/
 V("Basic_Interest_Rate");                                  
-V("Government_Max_Expenses");                          		
+V("Government_Max_Expenses");   
+V("Government_Consumption_Demand");
+V("Government_Capital_Demand");
+V("Government_Input_Demand");                       		
 V("Government_Wages");                                 		
 
 /*****PRICE SETTING*****/
