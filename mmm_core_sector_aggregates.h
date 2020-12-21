@@ -110,6 +110,12 @@ RESULT(SUM("Firm_Market_Share"))
 EQUATION("Sector_Taxation")
 RESULT(SUM("Firm_Indirect_Tax"))
 
+EQUATION("Sector_Capital_Demand")
+RESULT(SUM("Firm_Demand_Capital_Goods"))
+
+EQUATION("Sector_Capital_Depreciated")
+RESULT(SUM("Firm_Productive_Capacity_Depreciation")*V("sector_capital_output_ratio"))
+
 
 EQUATION("Sector_Demand_Met")
 /*

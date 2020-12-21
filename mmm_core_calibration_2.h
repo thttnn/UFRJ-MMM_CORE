@@ -433,7 +433,8 @@ CYCLE(cur, "SECTORS")
 	WRITES(cur2, "capital_good_productive_capacity", 1/VS(cur, "sector_capital_output_ratio"));     					  
 	WRITES(cur2, "capital_good_productivity_initial", VS(cur, "sector_initial_productivity"));       		  				
 	WRITES(cur2, "capital_good_to_replace", 0);
-	WRITES(cur2, "id_capital_good_number", 1);                       					
+	WRITES(cur2, "id_capital_good_number", 1);  
+	WRITES(cur2, "capital_good_depreciation_period", 700);                     					
 	 			
 	//CREATING FIRMS AND CAPITALS
 	for(i=1; i<=(v[161]-1); i++)										
@@ -446,21 +447,25 @@ CYCLE(cur, "SECTORS")
 	v[181]=fmod((double) (v[180]+VS(cur,"sector_investment_period")), VS(cur,"sector_investment_period"));   
 			
 	//Begin creating capital goods and writting "capital_good_date_birth"		
-	cur2=SEARCHS(cur1, "CAPITALS");   
-	for(i=1; i<=v[164]-1; i++)                        				
-	{                                     			
-	cur3=ADDOBJ_EXLS(cur1,"CAPITALS", cur2, 0);			                       			
-	WRITES(cur3, "id_capital_good_number", i+1);									
+		cur2=SEARCHS(cur1, "CAPITALS");   
+		for(i=1; i<=v[164]-1; i++)                        				
+		{                                     			
+		cur3=ADDOBJ_EXLS(cur1,"CAPITALS", cur2, 0);			                       			
+		WRITES(cur3, "id_capital_good_number", i+1);									
+		}
+	
+	//if(VS(cur,"id_consumption_goods_sector")==1||VS(cur,"id_intermediate_goods_sector")==1)
+	//{
+		//CYCLES(cur1, cur2, "CAPITALS")
+		//{
+		//v[182]=VS(cur2, "id_capital_good_number");
+		//WRITES(cur2, "capital_good_depreciation_period", ((v[182]-1)*VS(cur,"sector_investment_period"))+v[181]);
+		//}
+	//}
+	//WRITELLS(cur1, "Firm_Productive_Capacity", SUMS(cur1,"capital_good_productive_capacity"), 0, 1);
+	//WRITELLS(cur1, "Firm_Capacity_Utilization", v[163]/SUMS(cur1,"capital_good_productive_capacity"), 0, 0);
 	}
-	CYCLES(cur1, cur5, "CAPITALS")                                            			
-	{
-	v[182]=VS(cur5, "id_capital_good_number");
-	v[183]=(-VS(cur,"sector_depreciation_period")+v[181]+1)+(v[182]-1)*VS(cur,"sector_investment_period");                                  			
-	WRITES(cur5, "capital_good_date_birth", 0);											
-//	WRITES(cur5, "capital_good_depreciation_period", (v[183]+VS(cur,"sector_depreciation_period")));
-	WRITES(cur5, "capital_good_depreciation_period", 700);
-	}
-}					
+//WRITES(cur, "sector_desired_degree_capacity_utilization", AVES(cur,"Firm_Capacity_Utilization"));					
 }		
 
 PARAMETER

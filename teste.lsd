@@ -180,6 +180,8 @@ Label Root
 				Var: Sector_Turbulence
 				Var: Sector_Unemployment
 				Var: Sector_Taxation
+				Var: Sector_Capital_Demand
+				Var: Sector_Capital_Depreciated
 
 			}
 
@@ -388,6 +390,7 @@ Label Root
 			Var: Total_Wages
 			Var: Unemployment
 			Var: Wage_Share
+			Param: switch_entry
 
 		}
 
@@ -468,11 +471,11 @@ Object: Root C	1
 
 Object: INIT C	1
 Param: C_alpha 0 n + n n	0.4
-Param: C_beta 0 n + n n	2
+Param: C_beta 0 n + n n	1
 Param: C_d 0 n + n n	0.9
-Param: C_delta 0 n + n n	40
+Param: C_delta 0 n + n n	60
 Param: C_eta 0 n + n n	20
-Param: C_exp_sh 0 n + n n	0.333333
+Param: C_exp_sh 0 n + n n	0.3
 Param: C_i_per 0 n + n n	6
 Param: C_lambda 0 n + n n	0.01
 Param: C_mk 0 n + n n	1.5
@@ -484,11 +487,11 @@ Param: C_sigma 0 n + n n	0.1
 Param: C_tau 0 n + n n	0
 Param: C_w 0 n + n n	1
 Param: I_alpha 0 n + n n	0.4
-Param: I_beta 0 n + n n	2
+Param: I_beta 0 n + n n	1
 Param: I_d 0 n + n n	0.9
-Param: I_delta 0 n + n n	40
+Param: I_delta 0 n + n n	60
 Param: I_eta 0 n + n n	20
-Param: I_exp_sh 0 n + n n	0.33333
+Param: I_exp_sh 0 n + n n	0.3
 Param: I_i_per 0 n + n n	6
 Param: I_lambda 0 n + n n	0.01
 Param: I_mk 0 n + n n	1.5
@@ -500,11 +503,11 @@ Param: I_sigma 0 n + n n	0.1
 Param: I_tau 0 n + n n	0
 Param: I_w 0 n + n n	1
 Param: K_alpha 0 n + n n	0.4
-Param: K_beta 0 n + n n	2
+Param: K_beta 0 n + n n	1
 Param: K_d 0 n + n n	0.9
-Param: K_delta 0 n + n n	40
+Param: K_delta 0 n + n n	60
 Param: K_eta 0 n + n n	20
-Param: K_exp_sh 0 n + n n	0.33333
+Param: K_exp_sh 0 n + n n	0.4
 Param: K_i_per 0 n + n n	6
 Param: K_lambda 0 n + n n	0.01
 Param: K_mk 0 n + n n	1.5
@@ -518,18 +521,18 @@ Param: K_w 0 n + n n	1
 Param: a_per 0 n + n n	4
 Param: aut_con 0 n + n n	20
 Param: c_per 0 n + n n	4
-Param: depre_per 0 n + n n	40
+Param: depre_per 0 n + n n	60
 Param: gov_per 0 n + n n	4
-Param: i_per 0 n + n n	4
+Param: i_per 0 n + n n	6
 Param: ir 0 n + n n	0
 Param: mk_per 0 n + n n	4
 Var: Calibration 0 n + n n
 Var: Time_Step 0 n + d n
-Param: C_gov 0 n + n n	0
-Param: C_kappa 0 n + n n	5
-Param: I_gov 0 n + n n	0
-Param: I_kappa 0 n + n n	5
-Param: K_gov 0 n + n n	0
+Param: C_gov 0 n + n n	0.1
+Param: C_kappa 0 n + n n	0
+Param: I_gov 0 n + n n	0.1
+Param: I_kappa 0 n + n n	0
+Param: K_gov 0 n + n n	0.2
 Param: K_kappa 0 n + n n	0
 
 Object: MACRO C	1
@@ -592,6 +595,7 @@ Var: Total_Profits 0 s + n n
 Var: Total_Wages 0 s + n n
 Var: Unemployment 5 s + n n	0.18	0.18	0.18	0.18	0.18
 Var: Wage_Share 0 s + n n
+Param: switch_entry 0 n + n n	1
 
 Object: SECTORS C	3
 Param: sector_capital_output_ratio 0 n + n n	2	2	2
@@ -629,7 +633,7 @@ Param: sector_passthrough_productivity 0 s + n n	1	1	1
 Param: sector_std_dev_innovation 0 n + n n	0.005	0.005	0.005
 Param: sector_strategic_price_weight 0 n + n n	0.5	0.5	0.5
 Param: sector_survival_period 0 n + n n	0	0	0
-Param: sector_tech_opportunity 0 n + n n	0.001	0.001	0.001
+Param: sector_tech_opportunity 0 n + n n	0.002	0.002	0.002
 Var: Sector_Avg_Competitiveness 1 n + n n	1	1	1
 Var: Sector_Avg_Debt_Rate 0 s + n n
 Var: Sector_Avg_Markup 0 s + n n
@@ -667,6 +671,8 @@ Var: Sector_Sum_Market_Share 0 n + n n
 Var: Sector_Turbulence 0 s + n n
 Var: Sector_Unemployment 0 s + n n
 Var: Sector_Taxation 0 n + n n
+Var: Sector_Capital_Demand 0 s + n n
+Var: Sector_Capital_Depreciated 0 s + n n
 
 Object: FIRMS C	1	1	1
 Param: firm_date_birth 0 n + n n	0	0	0
@@ -759,7 +765,7 @@ Var: Capital_Good_Productivity 0 n + n n
 
 Object: CLASSES C	2
 Param: class_autonomous_consumption_adjustment 0 n + n n	1	1
-Param: class_direct_tax 0 n + n n	0	0
+Param: class_direct_tax 0 n + n n	0.1	0.1
 Param: class_interest_payment_share 0 n + n n	1	0
 Param: class_max_debt_ratio 0 n + n n	1	1
 Param: class_period 0 n + n n	4	4
@@ -1256,31 +1262,31 @@ END_DESCRIPTION
 Parameter_C_gov
 (no description available)
 _INIT_
-All 1 instances equal to 0.
+All 1 instances equal to 0.1.
 END_DESCRIPTION
 
 Parameter_C_kappa
 (no description available)
 _INIT_
-All 1 instances equal to 5.
+All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_I_gov
 (no description available)
 _INIT_
-All 1 instances equal to 0.
+All 1 instances equal to 0.1.
 END_DESCRIPTION
 
 Parameter_I_kappa
 (no description available)
 _INIT_
-All 1 instances equal to 5.
+All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_K_gov
 (no description available)
 _INIT_
-All 1 instances equal to 0.
+All 1 instances equal to 0.2.
 END_DESCRIPTION
 
 Parameter_K_kappa
@@ -1650,6 +1656,12 @@ _INIT_
 
 END_DESCRIPTION
 
+Parameter_switch_entry
+(no description available)
+_INIT_
+All 1 instances equal to 1.
+END_DESCRIPTION
+
 Object_SECTORS
 (no description available )
 _INIT_
@@ -1869,7 +1881,7 @@ END_DESCRIPTION
 Parameter_sector_tech_opportunity
 (no description available)
 _INIT_
-All 1 instances equal to 0.001.
+All 3 instances equal to 0.002.
 END_DESCRIPTION
 
 Variable_Sector_Avg_Competitiveness
@@ -2092,6 +2104,18 @@ _INIT_
 END_DESCRIPTION
 
 Variable_Sector_Taxation
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Sector_Capital_Demand
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Sector_Capital_Depreciated
 (no description available)
 _INIT_
 

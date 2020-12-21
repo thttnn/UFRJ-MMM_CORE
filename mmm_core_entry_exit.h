@@ -93,6 +93,7 @@ EQUATION("Sector_Entry_Condition")
 /*
 Can only be 0 or 1, if all enter conditions are met.
 */
+	v[0]=V("switch_entry");
 	v[1]=V("sector_investment_period");
 	v[2]=VL("Sector_Effective_Orders",1);
 	v[3]=VL("Sector_Effective_Orders",2);
@@ -102,7 +103,7 @@ Can only be 0 or 1, if all enter conditions are met.
 	v[7]=(v[2]-v[3])/v[3];
 	v[8]=(v[3]-v[4])/v[4];
   
-    if(v[6]>0 && v[7]>0 && v[8]>0)
+    if(v[6]>0 && v[7]>0 && v[8]>0 && v[0]==1)
      v[9]=1;
     else
      v[9]=0;
