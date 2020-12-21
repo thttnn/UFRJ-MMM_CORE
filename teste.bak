@@ -470,7 +470,7 @@ Object: INIT C	1
 Param: C_alpha 0 n + n n	0.4
 Param: C_beta 0 n + n n	2
 Param: C_d 0 n + n n	0.9
-Param: C_delta 0 n + n n	60
+Param: C_delta 0 n + n n	40
 Param: C_eta 0 n + n n	20
 Param: C_exp_sh 0 n + n n	0.333333
 Param: C_i_per 0 n + n n	6
@@ -486,7 +486,7 @@ Param: C_w 0 n + n n	1
 Param: I_alpha 0 n + n n	0.4
 Param: I_beta 0 n + n n	2
 Param: I_d 0 n + n n	0.9
-Param: I_delta 0 n + n n	60
+Param: I_delta 0 n + n n	40
 Param: I_eta 0 n + n n	20
 Param: I_exp_sh 0 n + n n	0.33333
 Param: I_i_per 0 n + n n	6
@@ -502,7 +502,7 @@ Param: I_w 0 n + n n	1
 Param: K_alpha 0 n + n n	0.4
 Param: K_beta 0 n + n n	2
 Param: K_d 0 n + n n	0.9
-Param: K_delta 0 n + n n	60
+Param: K_delta 0 n + n n	40
 Param: K_eta 0 n + n n	20
 Param: K_exp_sh 0 n + n n	0.33333
 Param: K_i_per 0 n + n n	6
@@ -518,9 +518,9 @@ Param: K_w 0 n + n n	1
 Param: a_per 0 n + n n	4
 Param: aut_con 0 n + n n	20
 Param: c_per 0 n + n n	4
-Param: depre_per 0 n + n n	60
+Param: depre_per 0 n + n n	40
 Param: gov_per 0 n + n n	4
-Param: i_per 0 n + n n	6
+Param: i_per 0 n + n n	4
 Param: ir 0 n + n n	0
 Param: mk_per 0 n + n n	4
 Var: Calibration 0 n + n n
@@ -528,7 +528,7 @@ Var: Time_Step 0 n + d n
 Param: C_gov 0 n + n n	0
 Param: C_kappa 0 n + n n	5
 Param: I_gov 0 n + n n	0
-Param: I_kappa 0 n + n n	5
+Param: I_kappa 0 n + n n	0
 Param: K_gov 0 n + n n	0
 Param: K_kappa 0 n + n n	0
 
@@ -1274,7 +1274,7 @@ END_DESCRIPTION
 Parameter_I_kappa
 (no description available)
 _INIT_
-All 1 instances equal to 5.
+All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_K_gov
