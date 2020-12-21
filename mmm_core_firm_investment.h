@@ -43,7 +43,9 @@ The sectors update their productive capacity from year to year, time it takes fo
 		}
 	else                                            		//if the average effective orders of the six periods prior to the last six is zero
 		v[11]=0;                                      		//expected orders for the next six periods will be zero
+
 RESULT(v[11])
+
 
 
 EQUATION("Firm_Desired_Expansion_Investment_Expenses")

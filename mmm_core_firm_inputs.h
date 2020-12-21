@@ -46,6 +46,7 @@ The intermediate goods sectors demand exactly the amount they will need to produ
 	
 	v[7]=(v[0]*v[1])*(v[6]);    							//gives the amount of imputs necessary for the next period, multiplying the current planned production plus the desired amount of investories by the exptected growth rate and by the imput techinical relanshionship, and subtracting the current stock of imputs, already discounting the amount to be used in current production
 	v[8]=max(v[7],0);                               		//the demand of imputs for the next period can never be negative
+	
 RESULT(v[8])
 
 
