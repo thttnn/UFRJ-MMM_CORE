@@ -118,21 +118,21 @@ v[103]=(v[50]/v[44]) + v[59]*(1-v[65])*v[101];													//C sector effective 
 v[104]=(v[51]/v[45]) + v[60]*(1-v[66])*v[102];													//K sector effective wage margin over production including RND
 v[105]=(v[52]/v[46]) + v[61]*(1-v[67])*v[100];													//I sector effective wage margin over production including RND
 
-v[106]=v[101]*(1-v[65])*(1-v[59])-((v[50]/v[44]) + v[53]*v[100]);								//C sector effective profit margin over production
-v[107]=v[102]*(1-v[66])*(1-v[60])-((v[51]/v[45]) + v[54]*v[100]);								//K sector effective profit margin over production
-v[108]=v[100]*(1-v[67])*(1-v[61])-((v[52]/v[46]) + v[55]*v[100]);								//I sector effective profit margin over production
+v[106]=(v[101]*(1-v[65])*(1-v[59])-((v[50]/v[44]) + v[53]*v[100]));								//C sector effective profit margin over production
+v[107]=(v[102]*(1-v[66])*(1-v[60])-((v[51]/v[45]) + v[54]*v[100]));								//K sector effective profit margin over production
+v[108]=(v[100]*(1-v[67])*(1-v[61])-((v[52]/v[46]) + v[55]*v[100]));								//I sector effective profit margin over production
 
-v[109]=(v[101]*v[65] +v[22]*v[106] + v[23]*v[103])/(1-v[23]*v[96]);								//C sector effective tax-public expenses over production
-v[110]=(v[102]*v[66] +v[22]*v[107] + v[23]*v[104])/(1-v[23]*v[96]);								//K sector effective tax-public expenses over production
-v[111]=(v[100]*v[67] +v[22]*v[108] + v[23]*v[105])/(1-v[23]*v[96]);								//I sector effective tax-public expenses over production
+v[109]=(v[101]*v[65] +v[22]*v[106]*v[62] + v[23]*v[103])/(1-v[23]*v[96]);								//C sector effective tax-public expenses over production
+v[110]=(v[102]*v[66] +v[22]*v[107]*v[63] + v[23]*v[104])/(1-v[23]*v[96]);								//K sector effective tax-public expenses over production
+v[111]=(v[100]*v[67] +v[22]*v[108]*v[64] + v[23]*v[105])/(1-v[23]*v[96]);								//I sector effective tax-public expenses over production
 
-v[112]=(v[103]+v[96]*v[109])*v[24] + v[106]*v[25];												//C sector effective imports propensity
-v[113]=(v[104]+v[96]*v[110])*v[24] + v[107]*v[25];												//K sector effective imports propensity
-v[114]=(v[105]+v[96]*v[111])*v[24] + v[108]*v[25];												//I sector effective imports propensity
+v[112]=(v[103]+v[96]*v[109])*v[24] + v[106]*v[25]*v[62];												//C sector effective imports propensity
+v[113]=(v[104]+v[96]*v[110])*v[24] + v[107]*v[25]*v[63];												//K sector effective imports propensity
+v[114]=(v[105]+v[96]*v[111])*v[24] + v[108]*v[25]*v[64];												//I sector effective imports propensity
 
-v[115]=(v[20]*v[103]+v[20]*v[96]*v[109]+v[21]*v[106]+v[93]*v[109]+v[75]*v[112])/v[101];			//C sector effective consumption propensity 
-v[116]=(v[20]*v[104]+v[20]*v[96]*v[110]+v[21]*v[107]+v[93]*v[110]+v[75]*v[113])/v[101];			//K sector effective consumption propensity
-v[117]=(v[20]*v[105]+v[20]*v[96]*v[111]+v[21]*v[108]+v[93]*v[111]+v[75]*v[114])/v[101];			//I sector effective consumption propensity 
+v[115]=(v[20]*v[103]+v[20]*v[96]*v[109]+v[21]*v[106]*v[62]+v[93]*v[109]+v[75]*v[112])/v[101];			//C sector effective consumption propensity 
+v[116]=(v[20]*v[104]+v[20]*v[96]*v[110]+v[21]*v[107]*v[63]+v[93]*v[110]+v[75]*v[113])/v[101];			//K sector effective consumption propensity
+v[117]=(v[20]*v[105]+v[20]*v[96]*v[111]+v[21]*v[108]*v[64]+v[93]*v[111]+v[75]*v[114])/v[101];			//I sector effective consumption propensity 
 
 v[118]=(v[100]*v[53]+v[95]*v[109]+v[77]*v[112])/v[100];											//C sector input tech coefficient 
 v[119]=(v[100]*v[54]+v[95]*v[110]+v[77]*v[113])/v[100];											//K sector input tech coefficient 
@@ -245,7 +245,7 @@ WRITELLS(cur, "External_Income", v[150], 0, 1);								//writes initial external
 cur = SEARCH("GOVERNMENT");										
 WRITELLS(cur,"Total_Taxes", v[144], 0, 1);									//write initial total taxes
 WRITELLS(cur,"Government_Max_Expenses", v[144], 0, 1);        				//initial max government expenses equals total taxes calculated in the calibration
-WRITELLS(cur,"Government_Wages", v[144], 0, 1);		            			//initial government expenses is only wages, which thereafter will grow depending on inflation and average productivity		
+WRITELLS(cur,"Government_Wages", v[144]*v[96], 0, 1);		            	//initial government expenses is only wages, which thereafter will grow depending on inflation and average productivity		
 for (i=1 ; i<=V("gov_per");  i++)		              						//for (government_period) lags	
 	WRITELLS(cur,"Government_Debt", 0, 0, i);                  				//no debt initially	
 WRITELLS(cur,"Basic_Interest_Rate", V("ir"), 0, 1);							//writes interest rate
@@ -388,6 +388,7 @@ CYCLE(cur, "SECTORS")
 	//WRITTING FIRM VARIABLES
 	for (i=1 ; i<=VS(cur,"sector_investment_period") ; i++) 
 		{	
+		WRITELLS(cur1, "Firm_Demand_Productive_Capacity_Expansion", 0, 0, i);	
 	  	WRITELLS(cur1, "Firm_Demand_Productive_Capacity_Replacement", 0, 0, i);							
 	  	WRITELLS(cur1, "Firm_Debt_Rate", 0, 0, i);															
 	  	WRITELLS(cur1, "Firm_Demand_Capital_Goods", 0, 0, i);
@@ -448,7 +449,7 @@ CYCLE(cur, "SECTORS")
 			
 	//Begin creating capital goods and writting "capital_good_date_birth"		
 		cur2=SEARCHS(cur1, "CAPITALS");   
-		for(i=1; i<=v[164]-1; i++)                        				
+		for(i=1; i<=v[164]; i++)                        				
 		{                                     			
 		cur3=ADDOBJ_EXLS(cur1,"CAPITALS", cur2, 0);			                       			
 		WRITES(cur3, "id_capital_good_number", i+1);									
@@ -456,14 +457,14 @@ CYCLE(cur, "SECTORS")
 	
 	//if(VS(cur,"id_consumption_goods_sector")==1||VS(cur,"id_intermediate_goods_sector")==1)
 	//{
-		//CYCLES(cur1, cur2, "CAPITALS")
-		//{
-		//v[182]=VS(cur2, "id_capital_good_number");
+		CYCLES(cur1, cur2, "CAPITALS")
+		{
+		v[182]=VS(cur2, "id_capital_good_number");
 		//WRITES(cur2, "capital_good_depreciation_period", ((v[182]-1)*VS(cur,"sector_investment_period"))+v[181]);
-		//}
+		}
 	//}
-	//WRITELLS(cur1, "Firm_Productive_Capacity", SUMS(cur1,"capital_good_productive_capacity"), 0, 1);
-	//WRITELLS(cur1, "Firm_Capacity_Utilization", v[163]/SUMS(cur1,"capital_good_productive_capacity"), 0, 0);
+	WRITELLS(cur1, "Firm_Productive_Capacity", SUMS(cur1,"capital_good_productive_capacity"), 0, 1);
+	WRITELLS(cur1, "Firm_Capacity_Utilization", v[163]/SUMS(cur1,"capital_good_productive_capacity"), 0, 0);
 	}
 //WRITES(cur, "sector_desired_degree_capacity_utilization", AVES(cur,"Firm_Capacity_Utilization"));					
 }		

@@ -92,13 +92,12 @@ Class real imports is based on average past real income and on the class' propen
   	v[5]=V("class_propensity_to_import");           					//class propensity to import
   	v[6]=v[4]*v[5];
   
-  	cur=SEARCHS(root, "EXTERNAL_SECTOR");								//search the external sector object
-	v[7]=VLS(cur, "International_Reserves", 1);							//level of international reserves in the last period
-	if (v[7]>0)															//if the amount of reserves is positive 
-		v[8]=v[6];														//effective level of imports is equal to desired
-	else																//if there are no international reserves																						
-		v[8]=0;															//effective level of imports is zero, as well extra imports	
-RESULT(v[8])
+ 	v[7]=V("Exchange_Rate");                                            //exchange rate
+	cur=SEARCH_CNDS(root, "id_consumption_goods_sector", 1);     		//identifies the consumption goods sector
+	v[8]=VS(cur, "Sector_External_Price");                              //sector external price
+	v[9]=VL("International_Reserves", 1);								//level of international reserves in the last period
+	v[10]=min((v[9]/(v[8]*v[7])),v[6]);
+RESULT(v[10])
 
 
 EQUATION("Class_Effective_Domestic_Consumption")

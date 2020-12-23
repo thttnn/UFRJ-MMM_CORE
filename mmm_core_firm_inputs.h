@@ -25,6 +25,13 @@ This variable defines the ratio between available inputs and inputs demanded for
 RESULT(v[3])
 
 
+EQUATION("Firm_Input_Capacity")
+v[0]=V("sector_input_tech_coefficient");
+v[1]=VL("Firm_Stock_Inputs",1);
+v[2]=v[1]/v[0];
+RESULT(v[2])
+
+
 EQUATION("Firm_Input_Demand_Next_Period")
 /*
 The demand for inputs of each sector of intermediate goods, which should be produced during current period and to be used in the next period, is calculated based on the necessity of programed production, in which a expected growth rate is applied and the remaing stock is discounted. 

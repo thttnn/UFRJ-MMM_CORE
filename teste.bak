@@ -104,6 +104,7 @@ Label Root
 					Var: Firm_Effective_Capital_Goods_Replacement
 					Var: Firm_Imitation_Quality
 					Var: Firm_Innovation_Quality
+					Var: Firm_Input_Capacity
 
 				}
 
@@ -182,6 +183,7 @@ Label Root
 				Var: Sector_Taxation
 				Var: Sector_Capital_Demand
 				Var: Sector_Capital_Depreciated
+				Param: sector_payback_period
 
 			}
 
@@ -249,13 +251,14 @@ Label Root
 			Son: EXTERNAL_SECTOR
 			Label EXTERNAL_SECTOR
 			{
-				Param: International_Reserves
+				Var: International_Reserves
 				Param: exchange_rate_growth
 				Param: external_income_fixed_growth
 				Param: external_income_growth_adjustment
 				Var: Exchange_Rate
 				Var: External_Income
 				Var: Trade_Balance
+				Param: external_income_sd
 
 			}
 
@@ -475,13 +478,13 @@ Param: C_beta 0 n + n n	1
 Param: C_d 0 n + n n	0.9
 Param: C_delta 0 n + n n	60
 Param: C_eta 0 n + n n	20
-Param: C_exp_sh 0 n + n n	0.3
+Param: C_exp_sh 0 n + n n	0.2
 Param: C_i_per 0 n + n n	6
 Param: C_lambda 0 n + n n	0.01
 Param: C_mk 0 n + n n	1.5
 Param: C_mk_per 0 n + n n	2
 Param: C_phi 0 n + n n	1
-Param: C_psi 0 n + n n	0.9
+Param: C_psi 0 n + n n	0.8
 Param: C_q 0 n + n n	1
 Param: C_sigma 0 n + n n	0.1
 Param: C_tau 0 n + n n	0
@@ -491,13 +494,13 @@ Param: I_beta 0 n + n n	1
 Param: I_d 0 n + n n	0.9
 Param: I_delta 0 n + n n	60
 Param: I_eta 0 n + n n	20
-Param: I_exp_sh 0 n + n n	0.3
+Param: I_exp_sh 0 n + n n	0.2
 Param: I_i_per 0 n + n n	6
 Param: I_lambda 0 n + n n	0.01
 Param: I_mk 0 n + n n	1.5
 Param: I_mk_per 0 n + n n	2
 Param: I_phi 0 n + n n	1
-Param: I_psi 0 n + n n	0.9
+Param: I_psi 0 n + n n	0.8
 Param: I_q 0 n + n n	1
 Param: I_sigma 0 n + n n	0.1
 Param: I_tau 0 n + n n	0
@@ -506,14 +509,14 @@ Param: K_alpha 0 n + n n	0.4
 Param: K_beta 0 n + n n	1
 Param: K_d 0 n + n n	0.9
 Param: K_delta 0 n + n n	60
-Param: K_eta 0 n + n n	20
-Param: K_exp_sh 0 n + n n	0.4
+Param: K_eta 0 n + n n	5
+Param: K_exp_sh 0 n + n n	0.6
 Param: K_i_per 0 n + n n	6
 Param: K_lambda 0 n + n n	0.01
 Param: K_mk 0 n + n n	1.5
 Param: K_mk_per 0 n + n n	2
 Param: K_phi 0 n + n n	1
-Param: K_psi 0 n + n n	0.9
+Param: K_psi 0 n + n n	0.8
 Param: K_q 0 n + n n	1
 Param: K_sigma 0 n + n n	0.1
 Param: K_tau 0 n + n n	0
@@ -526,7 +529,7 @@ Param: gov_per 0 n + n n	4
 Param: i_per 0 n + n n	6
 Param: ir 0 n + n n	0
 Param: mk_per 0 n + n n	4
-Var: Calibration 0 n + n n
+Var: Calibration 0 n + d n
 Var: Time_Step 0 n + d n
 Param: C_gov 0 n + n n	0.1
 Param: C_kappa 0 n + n n	0
@@ -598,7 +601,7 @@ Var: Wage_Share 0 s + n n
 Param: switch_entry 0 n + n n	1
 
 Object: SECTORS C	3
-Param: sector_capital_output_ratio 0 n + n n	2	2	2
+Param: sector_capital_output_ratio 0 n + n n	1	1	1
 Param: sector_depreciation_period 0 n + n n	60	60	60
 Param: sector_desired_debt_rate 0 n + n n	0.5	0.5	0.5
 Param: sector_desired_degree_capacity_utilization 0 n + n n	0.9	0.9	0.9
@@ -607,7 +610,7 @@ Param: sector_desired_inventories_proportion 0 n + n n	0.1	0.1	0.1
 Param: sector_elascitity_delay 0 n + n n	0.25	0.25	0.25
 Param: sector_elasticity_price 0 n + n n	1	1	1
 Param: sector_elasticity_quality 0 n + n n	0.5	0.5	0.5
-Param: sector_expectations 0 n + n n	0.2	0.2	0.2
+Param: sector_expectations 0 n + n n	0.3	0.3	0.3
 Param: sector_exports_elasticity_income 0 n + n n	1	1	1
 Param: sector_exports_elasticity_price 0 n + n n	0.5	0.5	0.5
 Param: sector_external_price_competitiveness 0 n + n n	1	1	1
@@ -673,6 +676,7 @@ Var: Sector_Unemployment 0 s + n n
 Var: Sector_Taxation 0 n + n n
 Var: Sector_Capital_Demand 0 s + n n
 Var: Sector_Capital_Depreciated 0 s + n n
+Param: sector_payback_period 0 n + n n	50	50	50
 
 Object: FIRMS C	1	1	1
 Param: firm_date_birth 0 n + n n	0	0	0
@@ -697,9 +701,9 @@ Var: Firm_Effective_Market_Share 1 n + n n	0	0	0
 Var: Firm_Effective_Markup 0 n + n n
 Var: Firm_Effective_Orders 12 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Effective_Orders_Capital_Goods 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Var: Firm_Effective_Production 0 n + n n
+Var: Firm_Effective_Production 0 s + n n
 Var: Firm_Effective_Productive_Capacity_Variation 0 n + n n
-Var: Firm_Expected_Sales 0 n + n n
+Var: Firm_Expected_Sales 0 s + n n
 Var: Firm_Expected_Sales_Long_Term 0 n + n n
 Var: Firm_Avg_Debt_Rate 1 n + n n	0	0	0
 Var: Firm_Avg_Market_Share 1 n + n n	0	0	0
@@ -722,10 +726,10 @@ Var: Firm_Market_Share 7 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Max_Productivity 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Firm_Net_Profits 0 n + n n
 Var: Firm_Net_Revenue 0 n + n n
-Var: Firm_Planned_Production 0 n + n n
+Var: Firm_Planned_Production 0 s + n n
 Var: Firm_Potential_Markup 7 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Price 1 n + n n	1	1	1
-Var: Firm_Productive_Capacity 1 n + n n	0	0	0
+Var: Firm_Productive_Capacity 1 s + n n	0	0	0
 Var: Firm_Distributed_Profits 0 n + n n
 Var: Firm_RND_Expenses 0 n + n n
 Var: Firm_Demand_Productive_Capacity_Replacement 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -750,6 +754,7 @@ Var: Firm_Effective_Capital_Goods_Expansion 0 n + n n
 Var: Firm_Effective_Capital_Goods_Replacement 0 n + n n
 Var: Firm_Imitation_Quality 0 n + n n
 Var: Firm_Innovation_Quality 0 n + n n
+Var: Firm_Input_Capacity 0 s + n n
 
 Object: CAPITALS C	1	1	1
 Param: capital_good_date_birth 0 n + n n	0	0	0
@@ -763,30 +768,30 @@ Var: Capital_Good_Acumulated_Production 1 n + n n	0	0	0
 Var: Capital_Good_Production 0 n + n n
 Var: Capital_Good_Productivity 0 n + n n
 
-Object: CLASSES C	2
-Param: class_autonomous_consumption_adjustment 0 n + n n	1	1
-Param: class_direct_tax 0 n + n n	0.1	0.1
-Param: class_interest_payment_share 0 n + n n	1	0
-Param: class_max_debt_ratio 0 n + n n	1	1
-Param: class_period 0 n + n n	4	4
-Param: class_profit_share 0 n + n n	0.9	0.1
-Param: class_propensity_to_consume 0 n + n n	0.8	0.9
-Param: class_propensity_to_import 0 n + n n	0.05	0.05
-Param: class_wage_share 0 n + n n	0.1	0.9
-Var: Class_Autonomous_Consumption 1 s + n n	5	4
-Var: Class_Debt 1 s + n n	0	0
-Var: Class_Debt_Payment 1 n + n n	0	0
+Object: CLASSES C	1
+Param: class_autonomous_consumption_adjustment 0 n + n n	1
+Param: class_direct_tax 0 n + n n	0.1
+Param: class_interest_payment_share 0 n + n n	1
+Param: class_max_debt_ratio 0 n + n n	1
+Param: class_period 0 n + n n	4
+Param: class_profit_share 0 n + n n	1
+Param: class_propensity_to_consume 0 n + n n	0.8
+Param: class_propensity_to_import 0 n + n n	0.05
+Param: class_wage_share 0 n + n n	1
+Var: Class_Autonomous_Consumption 1 s + n n	5
+Var: Class_Debt 1 s + n n	0
+Var: Class_Debt_Payment 1 n + n n	0
 Var: Class_Debt_Ratio 0 s + n n
 Var: Class_Effective_Domestic_Consumption 0 n + n n
 Var: Class_Effective_Imports 0 n + n n
 Var: Class_Expenses 0 s + n n
 Var: Class_Financial_Asset_Return 0 n + n n
-Var: Class_Financial_Assets 4 s + n n	0	0	0	0	0	0	0	0
+Var: Class_Financial_Assets 4 s + n n	0	0	0	0
 Var: Class_Government_Interest_Payment 0 n + n n
-Var: Class_Nominal_Income 4 s + n n	0	0	0	0	0	0	0	0
-Var: Class_Real_Domestic_Consumption 0 n + n n
-Var: Class_Real_Imports 0 n + n n
-Var: Class_Real_Income 4 n + n n	0	0	0	0	0	0	0	0
+Var: Class_Nominal_Income 4 s + n n	0	0	0	0
+Var: Class_Real_Domestic_Consumption 0 s + n n
+Var: Class_Real_Imports 0 s + n n
+Var: Class_Real_Income 4 n + n n	0	0	0	0
 Var: Class_Savings 0 s + n n
 Var: Class_Taxation 0 n + n n
 
@@ -808,22 +813,23 @@ Var: Government_Deficit 0 n + n n
 Var: Government_Interest_Payment 0 n + n n
 Var: Government_Max_Expenses 1 n + n n	0
 Var: Government_Primary_Surplus 0 n + n n
-Var: Government_Wages 1 n + n n	0
+Var: Government_Wages 1 s + n n	0
 Var: Total_Income_Taxes 0 n + n n
 Var: Total_Indirect_Taxes 0 n + n n
-Var: Total_Taxes 1 n + n n	0
-Var: Government_Capital_Demand 0 n + n n
-Var: Government_Consumption_Demand 0 n + n n
-Var: Government_Input_Demand 0 n + n n
+Var: Total_Taxes 1 s + n n	0
+Var: Government_Capital_Demand 0 s + n n
+Var: Government_Consumption_Demand 0 s + n n
+Var: Government_Input_Demand 0 s + n n
 
 Object: EXTERNAL_SECTOR C	1
-Param: International_Reserves 1 n + n n	100000
+Var: International_Reserves 1 s + n n	10000000
 Param: exchange_rate_growth 0 n + n n	0
-Param: external_income_fixed_growth 0 n + n n	0.01
-Param: external_income_growth_adjustment 0 n + n n	0
+Param: external_income_fixed_growth 0 n + n n	0
+Param: external_income_growth_adjustment 0 n + n n	1
 Var: Exchange_Rate 1 n + n n	1
 Var: External_Income 1 s + n n	100
 Var: Trade_Balance 0 s + n n
+Param: external_income_sd 0 n + n n	0
 
 Object: ANALYSIS C	1
 Var: C 0 s + n n
@@ -944,7 +950,7 @@ END_DESCRIPTION
 Parameter_C_exp_sh
 (no description available)
 _INIT_
-All 1 instances equal to 0.333333.
+All 1 instances equal to 0.2.
 END_DESCRIPTION
 
 Parameter_C_i_per
@@ -1040,7 +1046,7 @@ END_DESCRIPTION
 Parameter_I_exp_sh
 (no description available)
 _INIT_
-All 1 instances equal to 0.33333.
+All 1 instances equal to 0.2.
 END_DESCRIPTION
 
 Parameter_I_i_per
@@ -1130,13 +1136,13 @@ END_DESCRIPTION
 Parameter_K_eta
 (no description available)
 _INIT_
-All 1 instances equal to 20.
+All 1 instances equal to 5.
 END_DESCRIPTION
 
 Parameter_K_exp_sh
 (no description available)
 _INIT_
-All 1 instances equal to 0.33333.
+All 1 instances equal to 0.6.
 END_DESCRIPTION
 
 Parameter_K_i_per
@@ -1707,25 +1713,25 @@ END_DESCRIPTION
 Parameter_sector_elascitity_delay
 (no description available)
 _INIT_
-
+All 3 instances equal to 0.25.
 END_DESCRIPTION
 
 Parameter_sector_elasticity_price
 (no description available)
 _INIT_
-All 4 instances equal to 1.
+All 3 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_sector_elasticity_quality
 (no description available)
 _INIT_
-All 3 instances equal to 0.25.
+All 3 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_sector_expectations
 (no description available)
 _INIT_
-All 1 instances equal to 0.2.
+All 3 instances equal to 0.3.
 END_DESCRIPTION
 
 Parameter_sector_exports_elasticity_income
@@ -1815,7 +1821,7 @@ END_DESCRIPTION
 Parameter_sector_market_share_expansion
 (no description available)
 _INIT_
-All 1 instances equal to 0.5.
+All 3 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_sector_markup_apropriation
@@ -2119,6 +2125,12 @@ Variable_Sector_Capital_Depreciated
 (no description available)
 _INIT_
 
+END_DESCRIPTION
+
+Parameter_sector_payback_period
+(no description available)
+_INIT_
+All 3 instances equal to 50.
 END_DESCRIPTION
 
 Object_FIRMS
@@ -2581,6 +2593,12 @@ _INIT_
 
 END_DESCRIPTION
 
+Variable_Firm_Input_Capacity
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
 Object_CAPITALS
 (no description available)
 _INIT_
@@ -2656,13 +2674,13 @@ END_DESCRIPTION
 Parameter_class_autonomous_consumption_adjustment
 (no description available)
 _INIT_
-All 1 instances equal to 2.
+All 2 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_class_direct_tax
 (no description available)
 _INIT_
-All 2 instances equal to 0.1.
+All 1 instances equal to 0.1.
 END_DESCRIPTION
 
 Parameter_class_interest_payment_share
@@ -2698,7 +2716,7 @@ END_DESCRIPTION
 Parameter_class_propensity_to_import
 (no description available)
 _INIT_
-All 2 instances equal to 0.05.
+All 1 instances equal to 0.05.
 END_DESCRIPTION
 
 Parameter_class_wage_share
@@ -2959,10 +2977,10 @@ _INIT_
 
 END_DESCRIPTION
 
-Parameter_International_Reserves
+Variable_International_Reserves
 (no description available)
 _INIT_
-All 1 instances equal to 100000.
+All 1 instances equal to 1e+007.
 END_DESCRIPTION
 
 Parameter_exchange_rate_growth
@@ -2974,13 +2992,13 @@ END_DESCRIPTION
 Parameter_external_income_fixed_growth
 (no description available)
 _INIT_
-All 1 instances equal to 0.01.
+All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_external_income_growth_adjustment
 (no description available)
 _INIT_
-All 1 instances equal to 0.
+All 1 instances equal to 1.
 END_DESCRIPTION
 
 Variable_Exchange_Rate
@@ -2999,6 +3017,12 @@ Variable_Trade_Balance
 (no description available)
 _INIT_
 
+END_DESCRIPTION
+
+Parameter_external_income_sd
+(no description available)
+_INIT_
+All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Object_ANALYSIS

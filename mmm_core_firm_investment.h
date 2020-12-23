@@ -136,7 +136,7 @@ New productive capacity in aquisition of new equipment to replace obsolete ones.
 	v[10]=V("Firm_Wage");
 	v[11]=V("Price_Capital_Goods");
 	v[12]=V("sector_capital_output_ratio");
-	v[13]=v[9]-v[1];
+	v[13]=V("sector_payback_period");
   				
 	if(v[3]==1)														// if it is investment period for the firm
 	{
