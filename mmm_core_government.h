@@ -28,41 +28,91 @@ EQUATION("Government_Consumption_Demand")
 /*
 Government spends all with wages
 */
-	v[0]=V("Government_Max_Expenses");  
-	v[1]=V("C_gov");
-	v[2]=v[0]*v[1];
-RESULT(v[2])
+	v[0]=V("switch_surplus_target");
+	if(v[0]==1)
+	{
+		v[1]=V("Government_Max_Expenses");  
+		v[2]=V("C_gov");
+		v[3]=v[1]*v[2];
+	}
+	else
+	{
+		v[4]=CURRENT;
+		v[5]=V("government_consumption_exogenous_growth");
+		v[3]=v[4]*(1+v[5]);
+	}	
+RESULT(v[3])
 
 
 EQUATION("Government_Capital_Demand")
 /*
 Government spends all with wages
 */
-	v[0]=V("Government_Max_Expenses");    
-	v[1]=V("K_gov");
-	v[2]=v[0]*v[1];
-RESULT(v[2])
+	v[0]=V("switch_surplus_target");
+	if(v[0]==1)
+	{
+		v[1]=V("Government_Max_Expenses");  
+		v[2]=V("K_gov");
+		v[3]=v[1]*v[2];
+	}
+	else
+	{
+		v[4]=CURRENT;
+		v[5]=V("government_capital_exogenous_growth");
+		v[3]=v[4]*(1+v[5]);
+	}	
+RESULT(v[3])
 
 
 EQUATION("Government_Input_Demand")
 /*
 Government spends all with wages
 */
-	v[0]=V("Government_Max_Expenses");                    
-	v[1]=V("I_gov");
-	v[2]=v[0]*v[1];
-RESULT(v[2])
+	v[0]=V("switch_surplus_target");
+	if(v[0]==1)
+	{
+		v[1]=V("Government_Max_Expenses");  
+		v[2]=V("I_gov");
+		v[3]=v[1]*v[2];
+	}
+	else
+	{
+		v[4]=CURRENT;
+		v[5]=V("government_input_exogenous_growth");
+		v[3]=v[4]*(1+v[5]);
+	}	
+RESULT(v[3])
 
 
 EQUATION("Government_Wages")
 /*
 Government spends all with wages
 */
-	v[0]=V("Government_Max_Expenses"); 
-	v[1]=V("C_gov");
-	v[2]=V("K_gov");
-	v[3]=V("I_gov");
-	v[4]=(1-v[1]-v[2]-v[3])*v[0];
+
+	v[0]=V("switch_surplus_target");
+	if(v[0]==1)
+	{
+		v[1]=V("C_gov");
+		v[2]=V("K_gov");
+		v[3]=V("I_gov");
+		v[4]=V("Government_Max_Expenses");  
+		v[5]=(1-v[1]-v[2]-v[3])*v[4];
+	}
+	else
+	{
+		v[6]=CURRENT;
+		v[7]=V("government_wage_exogenous_growth");
+		v[5]=v[6]*(1+v[7]);
+	}	
+RESULT(v[5])
+
+
+EQUATION("Government_Effective_Expenses")
+	v[0]=V("Government_Wages");
+	v[1]=V("Government_Consumption_Demand");
+	v[2]=V("Government_Capital_Demand");
+	v[3]=V("Government_Input_Demand");
+	v[4]=v[0]+v[1]+v[2]+v[3];
 RESULT(v[4])
 
 
@@ -87,7 +137,7 @@ EQUATION("Government_Primary_Surplus")
 /*
 Total Taxes minus Government Expenses
 */
-	v[0]=V("Government_Wages");
+	v[0]=V("Government_Effective_Expenses");
 	v[1]=V("Total_Taxes");
 	v[2]=v[1]-v[0];
 RESULT(v[2])
@@ -107,7 +157,7 @@ EQUATION("Government_Deficit")
 /*
 Government expenses minus taxes plus interest payments
 */
-	v[0]=V("Government_Wages");
+	v[0]=V("Government_Effective_Expenses");
 	v[1]=V("Total_Taxes");
 	v[2]=V("Government_Interest_Payment");
 	v[3]=v[0]-v[1]+v[2];

@@ -58,14 +58,16 @@ EQUATION("Firm_Variable_Cost")
 /*
 Variable unit cost is the wage cost (nominal wages over productivity) plus intermediate costs
 */
-	v[0]=V("Firm_Input_Cost");
+	cur=SEARCH_CND("id_intermediate_goods_sector", 1);    	//search the inputs for the one from the intermediate sector
+	v[0]=VLS(cur,"Sector_Avg_Price",1);                   	//intermediate sector average price
 	v[1]=V("Firm_Wage");
 	v[2]=VL("Firm_Avg_Productivity",1);
+	v[3]=V("sector_input_tech_coefficient");                //input technical relationship 
 	if(v[2]!=0)
-		v[3]=(v[1]/v[2])+v[0];
+		v[4]=(v[1]/v[2])+v[0]*v[3];
 	else
-		v[3]=0;
-RESULT(v[3])
+		v[4]=0;
+RESULT(v[4])
 
 
 EQUATION("Firm_Desired_Price")
@@ -75,7 +77,9 @@ Firm's desired price is a desired markup over variable costs.
 	v[0]=V("Firm_Desired_Markup");                         							//firm's desired markup
 	v[1]=V("Firm_Variable_Cost");                          							//firm's variable cost 
 	v[2]=v[0]*v[1];                                  								//firm's desired price will be the desired markup applied to labor cost plus inputs cost, labor cost defined as wages over productivity
-RESULT(v[2])
+	v[3]=CURRENT;
+	v[4]=max(v[3],v[2]);
+RESULT(v[4])
 
 
 EQUATION("Firm_Price")
@@ -100,7 +104,7 @@ Firm's effective price is a average between the desired price and the sector ave
 		v[13]=v[5];
 	else
 		v[13]=v[0];
-RESULT(v[13])
+RESULT(v[4])
 
 
 EQUATION("Sector_External_Price")

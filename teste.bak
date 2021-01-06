@@ -484,7 +484,7 @@ Param: C_lambda 0 n + n n	0.01
 Param: C_mk 0 n + n n	1.5
 Param: C_mk_per 0 n + n n	2
 Param: C_phi 0 n + n n	1
-Param: C_psi 0 n + n n	0.8
+Param: C_psi 0 n + n n	0.9
 Param: C_q 0 n + n n	1
 Param: C_sigma 0 n + n n	0.1
 Param: C_tau 0 n + n n	0
@@ -500,7 +500,7 @@ Param: I_lambda 0 n + n n	0.01
 Param: I_mk 0 n + n n	1.5
 Param: I_mk_per 0 n + n n	2
 Param: I_phi 0 n + n n	1
-Param: I_psi 0 n + n n	0.8
+Param: I_psi 0 n + n n	0.9
 Param: I_q 0 n + n n	1
 Param: I_sigma 0 n + n n	0.1
 Param: I_tau 0 n + n n	0
@@ -516,7 +516,7 @@ Param: K_lambda 0 n + n n	0.01
 Param: K_mk 0 n + n n	1.5
 Param: K_mk_per 0 n + n n	2
 Param: K_phi 0 n + n n	1
-Param: K_psi 0 n + n n	0.8
+Param: K_psi 0 n + n n	0.9
 Param: K_q 0 n + n n	1
 Param: K_sigma 0 n + n n	0.1
 Param: K_tau 0 n + n n	0

@@ -245,6 +245,9 @@ WRITELLS(cur, "External_Income", v[150], 0, 1);								//writes initial external
 cur = SEARCH("GOVERNMENT");										
 WRITELLS(cur,"Total_Taxes", v[144], 0, 1);									//write initial total taxes
 WRITELLS(cur,"Government_Max_Expenses", v[144], 0, 1);        				//initial max government expenses equals total taxes calculated in the calibration
+WRITES(cur,"Government_Consumption_Demand", v[144]*v[93]);		    		//initial government expenses is only wages, which thereafter will grow depending on inflation and average productivity		
+WRITES(cur,"Government_Capital_Demand", v[144]*v[94]);		       		 	//initial government expenses is only wages, which thereafter will grow depending on inflation and average productivity		
+WRITES(cur,"Government_Input_Demand", v[144]*v[95]);		        		//initial government expenses is only wages, which thereafter will grow depending on inflation and average productivity		
 WRITELLS(cur,"Government_Wages", v[144]*v[96], 0, 1);		            	//initial government expenses is only wages, which thereafter will grow depending on inflation and average productivity		
 for (i=1 ; i<=V("gov_per");  i++)		              						//for (government_period) lags	
 	WRITELLS(cur,"Government_Debt", 0, 0, i);                  				//no debt initially	
