@@ -126,7 +126,7 @@ In this variable a new firm enters if there is market space available and the en
       v[0]=V("sector_investment_period");								//sector investment period
       v[22]=V("sector_desired_degree_capacity_utilization");			//sector degree of capacity utilization
       v[23]=V("sector_desired_inventories_proportion");					//sector inventories proportion
-	  v[25]=V("Price_Capital_Goods");									//price of capital goods
+	  v[25]=V("Country_Price_Capital_Goods");									//price of capital goods
       v[34]=VL("Sector_Productive_Capacity_Available",1);				//productive capacity available in the last period
 	  v[44]=V("Sector_Productive_Capacity_Exit");						//productive capacity exited in the current period
       v[36]=V("Sector_Avg_Price");										//sector avg price

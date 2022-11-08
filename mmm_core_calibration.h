@@ -150,18 +150,18 @@ v[151]=(v[141]*v[101]+v[142]*v[102]+v[143]*v[100])/(v[141]+v[142]+v[143]);						
 //WRITTING MACRO VARIABLES
 cur = SEARCH("MACRO");
 WRITES(cur, "initial_avg_price", v[151]);
-WRITELLS(cur,"Likelihood_Crisis", 0, 0, 1);                  				//zero by definition
-WRITELLS(cur,"Annual_Growth", 0, 0, 1);										//zero by definition, no growth initally
-WRITELLS(cur,"Annual_Real_Growth", 0, 0, 1);                 				//zero by definition, no growth initally
+WRITELLS(cur,"Country_Likelihood_Crisis", 0, 0, 1);                  				//zero by definition
+WRITELLS(cur,"Country_Annual_Growth", 0, 0, 1);										//zero by definition, no growth initally
+WRITELLS(cur,"Country_Annual_Real_Growth", 0, 0, 1);                 				//zero by definition, no growth initally
 for (i=1 ; i<=(V("a_per")+1) ; i++)                  						//for (annual period +1) lags
 	{
-	WRITELLS(cur,"Price_Index", v[151], 0, i);								//writes Price_Index
-	WRITELLS(cur,"Consumer_Price_Index", v[101], 0,i);          			//writes Consumper_Price_Index
+	WRITELLS(cur,"Country_Price_Index", v[151], 0, i);								//writes Price_Index
+	WRITELLS(cur,"Country_Consumer_Price_Index", v[101], 0,i);          			//writes Consumper_Price_Index
 	}
 for (i=1 ; i<=2*V("a_per") ; i++)                  							//for (2*annual_period) lags
 	{	
-	WRITELLS(cur,"GDP", v[150], 0, i);                     	 				//writes GDP
-	WRITELLS(cur,"Real_GDP", (v[150]/v[151]), 0, i);                		//writes GDP Real 
+	WRITELLS(cur,"Country_GDP", v[150], 0, i);                     	 				//writes GDP
+	WRITELLS(cur,"Country_Real_GDP", (v[150]/v[151]), 0, i);                		//writes GDP Real 
 	}
 
 //WRITTING EXTERNAL SECTOR VARIABLES

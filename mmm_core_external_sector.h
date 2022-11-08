@@ -10,7 +10,7 @@ Nominal value of external income.
 	v[2]= fmod((double) t,v[1]);                				//divides the time period by annual adjustment period (adjust annualy)
 	if(v[2]==0)                               					//if the rest of the division is zero (adjust external income)
 		{
-		v[3]=VL("Annual_Growth", 1);							//nominal growth in the last year
+		v[3]=VL("Country_Annual_Growth", 1);							//nominal growth in the last year
 		v[4]=norm(v[3], abs(v[3]));								//random draw from a normal distribution with average equals to past growth and standard deviation equals to past growth in absolute value
 		v[5]=V("external_income_growth_adjustment");			//exogenous parameter that amplifies external growth
 		if(v[5]!=0)
@@ -30,8 +30,8 @@ EQUATION("Trade_Balance")
 /*
 The trade balance is obtained by the difference between total exports and total imports.
 */
-	v[0]=V("Total_Exports");
-	v[1]=V("Total_Imports");
+	v[0]=V("Country_Exports");
+	v[1]=V("Country_Imports");
 	v[2]=v[0]-v[1];
 RESULT(v[2])
 

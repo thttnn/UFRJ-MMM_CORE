@@ -5,8 +5,8 @@ EQUATION("Class_Nominal_Income")
 /*
 Class nominal income shall be calculated by summing the ratio of the total surplus to the proportion of the net salary that is allocated to the class plus the payment of government interest on the domestic public debt.
 */
-	v[0]=V("Total_Distributed_Profits");                         		//total distributed profits
-	v[1]=V("Total_Wages");                                 				//total wages
+	v[0]=V("Country_Distributed_Profits");                         		//total distributed profits
+	v[1]=V("Country_Wages");                                 				//total wages
 	v[2]=V("class_profit_share");                          				//profit share of each class
 	v[3]=V("class_wage_share");                            				//wage share of each class
 	v[4]=V("class_direct_tax");                            				//income tax percentage for each class
@@ -24,7 +24,7 @@ EQUATION("Class_Real_Income")
 Class real income is the nominal income divided by the class price index
 */
 	v[0]=V("Class_Nominal_Income");
-	v[1]=V("Consumer_Price_Index");
+	v[1]=V("Country_Consumer_Price_Index");
 	v[2]=v[0]/v[1];
 RESULT(v[2])
 

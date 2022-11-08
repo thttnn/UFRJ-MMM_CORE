@@ -78,7 +78,7 @@ Nominal value of desired new capital goods.
 		v[4]=((v[0])/v[3])- v[1] + v[10];							//desired productive capacity will be the amount needed based on expected sales minus existing plus what will depreciate in the next investment period
    		v[5]=max(0,v[4]);											//cannot be negative
    		
-		v[6]=V("Price_Capital_Goods");								//price of capital goods
+		v[6]=V("Country_Price_Capital_Goods");								//price of capital goods
 		v[7]=V("sector_capital_output_ratio");						//capital output ratio
    		v[8]=v[5]*v[6]*v[7];										//desired expansion expenses is the nominal value of the capital goods to meet desired productive capacity
    		}
@@ -110,7 +110,7 @@ EQUATION("Firm_Demand_Productive_Capacity_Expansion")
 Effective productive capacity demanded, in real values 
 */
 	v[0]=V("Firm_Effective_Expansion_Investment_Expenses");
-	v[1]=V("Price_Capital_Goods");
+	v[1]=V("Country_Price_Capital_Goods");
 	v[2]=V("sector_capital_output_ratio");
 	v[3]=(v[0]/v[1])/v[2];
 RESULT(v[3])
@@ -136,7 +136,7 @@ New productive capacity in aquisition of new equipment to replace obsolete ones.
 	v[4]=V("Firm_Frontier_Productivity");
 	v[9]=V("sector_depreciation_period");
 	v[10]=V("Firm_Wage");
-	v[11]=V("Price_Capital_Goods");
+	v[11]=V("Country_Price_Capital_Goods");
 	v[12]=V("sector_capital_output_ratio");
 	v[13]=v[9]-v[1];
   				
@@ -192,7 +192,7 @@ EQUATION("Firm_Replacement_Expenses")
 Nominal value of desired new capital goods for modernization. 
 */
 	v[1]=V("Firm_Demand_Productive_Capacity_Replacement");
-	v[2]=V("Price_Capital_Goods");
+	v[2]=V("Country_Price_Capital_Goods");
 	v[3]=V("sector_capital_output_ratio");
 	v[4]=v[1]*v[3]*v[2];
 RESULT(v[4])
@@ -214,7 +214,7 @@ EQUATION("Firm_Demand_Capital_Goods_Expansion")
 Number of capital goods demanded to expand productive capacity 
 */
 	v[0]=V("Firm_Effective_Expansion_Investment_Expenses");
-	v[1]=V("Price_Capital_Goods");
+	v[1]=V("Country_Price_Capital_Goods");
 	v[2]=v[0]/v[1];
 RESULT(v[2])
 

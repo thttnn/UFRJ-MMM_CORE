@@ -43,8 +43,8 @@ Nominal Wage of the firm. It increases year by year depending on inflation and f
 		else
 			v[4]=0;
 		v[5]=V("sector_passthrough_productivity");                                  //pass through of productivity to wages
-		v[6]=VLS(GRANDPARENT, "Consumer_Price_Index", 1);                           //price index in the last period
-		v[7]=VLS(GRANDPARENT, "Consumer_Price_Index", (v[11]+1));                   //price index five periods before
+		v[6]=VLS(GRANDPARENT, "Country_Consumer_Price_Index", 1);                           //price index in the last period
+		v[7]=VLS(GRANDPARENT, "Country_Consumer_Price_Index", (v[11]+1));                   //price index five periods before
 		v[8]=(v[6]-v[7])/v[7];                                                      //annual growth of price index (annual inflation)
 		v[9]=V("sector_passthrough_inflation");                                     //pass through of inflation to wages   	
 		v[10]=v[0]*(1+v[5]*v[4]+v[9]*v[8]);                                         //current wage will be the last period's multiplied by a rate of growth which is an expected rate on productivity plus an inflation adjustment in the wage price index

@@ -8,8 +8,8 @@ Maximum Government expenses imposed by the surplus target fiscal rule.
 	v[7]= fmod((double) t,v[8]);                                    	//divides the time period by government adjustment period (adjust annualy)
 	if(v[7]==0)                                                     	//if the rest of the division is zero (adjust maximum expenses)
 		{
-		v[0]=VL("GDP", 1);                                          	//GDP lagged 1
-		v[1]=VL("GDP", v[8]);                                       	//GDP lagged government period (4)
+		v[0]=VL("Country_GDP", 1);                                          	//GDP lagged 1
+		v[1]=VL("Country_GDP", v[8]);                                       	//GDP lagged government period (4)
 		v[2]=V("government_expectations");                              //government expectation parameter 
 		if(v[1]!=0)                                                   	//if last semiannual GDP is not zero
 			v[3]=1+v[2]*(v[0]-v[1])/v[1];                               //expected growth of gdp
@@ -98,7 +98,7 @@ Public debt over annual GDP
 	v[1]=0;
 	for (v[2]=0; v[2]<=v[0]; v[2]=v[2]+1)
 		{
-		v[3]=VL("GDP",v[2]);
+		v[3]=VL("Country_GDP",v[2]);
 		v[1]=v[1]+v[3];
 		}
 	v[4]=V("Government_Debt");
@@ -116,8 +116,8 @@ Nominal Interest rate is set by the central bank following a (possible) dual man
 	v[0]=V("interest_rate");
 	v[1]=V("inflation_target");
 	v[2]=V("unemployment_target");
-	v[3]=V("Annual_Inflation");
-	v[4]=VL("Unemployment", 1);
+	v[3]=V("Country_Annual_CPI_Inflation");
+	v[4]=VL("Country_Unemployment", 1);
 	v[5]=V("inflation_sensitivity");
 	v[6]=V("unemployment_sensitivity");
 	v[7]=v[0]+v[5]*(v[3]-v[1])-v[6]*(v[4]-v[2]);

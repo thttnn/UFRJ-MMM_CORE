@@ -87,7 +87,7 @@ In this variable, the firm receive the new capital goods ordered in the last inv
 	v[6]=COUNT("CAPITALS");
 	v[7]=V("Firm_Investment_Period");											//if it is investment period for the firm
 	v[8]=V("sector_depreciation_period");
-	v[9]=VL("Price_Capital_Goods",v[0]);
+	v[9]=VL("Country_Price_Capital_Goods",v[0]);
 	if(v[7]==1 && v[2]>0)
 		{
 		for(i=0; i<=v[2]; i++)													//for the amount of new capital goods bought
@@ -131,7 +131,7 @@ EQUATION("Firm_Capital")
 Nominal value of firm's total capital
 */
 	v[0]=V("Firm_Productive_Capacity");                       							//firm's productive capacity in the last period   
-	v[1]=V("Price_Capital_Goods");                       								//price of capital goods
+	v[1]=V("Country_Price_Capital_Goods");                       								//price of capital goods
 	v[2]=V("sector_capital_output_ratio");                      						//capital output ratio 
 	v[3]=v[0]*v[1]*v[2];                                 								//nominal value of firm's total capital
 RESULT(v[3])
