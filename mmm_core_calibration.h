@@ -147,8 +147,8 @@ v[149]=v[112]*v[141] + v[113]*v[142] + v[114]*v[143];											//total imports
 v[150]=v[146]+v[147]+v[145];																	//GDP
 v[151]=(v[141]*v[101]+v[142]*v[102]+v[143]*v[100])/(v[141]+v[142]+v[143]);						//initial price index
 
-//WRITTING MACRO VARIABLES
-cur = SEARCH("MACRO");
+//WRITTING COUNTRY VARIABLES
+cur = SEARCH("COUNTRY");
 WRITES(cur, "initial_avg_price", v[151]);
 WRITELLS(cur,"Country_Likelihood_Crisis", 0, 0, 1);                  				//zero by definition
 WRITELLS(cur,"Country_Annual_Growth", 0, 0, 1);										//zero by definition, no growth initally

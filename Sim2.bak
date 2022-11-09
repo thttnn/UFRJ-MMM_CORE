@@ -367,7 +367,7 @@ Label Root
 			Var: Country_Autonomous_Consumption
 			Var: Country_Autonomous_Investment
 			Var: Country_Capital_Stock
-			Var: Country_Classes_Expenses
+			Var: Country_Total_Classes_Expenses
 			Var: Country_Consumption
 			Var: Country_Distributed_Profits
 			Var: Country_Exports
@@ -559,7 +559,7 @@ Var: SFC_Total_Variation_Financial_Assets_Firms 0 n + n n
 Var: Country_Autonomous_Consumption 0 s + n n
 Var: Country_Autonomous_Investment 0 s + n n
 Var: Country_Capital_Stock 0 s + n n
-Var: Country_Classes_Expenses 0 n + n n
+Var: Country_Total_Classes_Expenses 0 n + n n
 Var: Country_Consumption 0 s + n n
 Var: Country_Distributed_Profits 0 n + n n
 Var: Country_Exports 0 s + n n
@@ -1404,7 +1404,7 @@ Variable_Country_Capital_Stock
 Sum up the nominal value of firms stock of capital
 END_DESCRIPTION
 
-Variable_Country_Classes_Expenses
+Variable_Country_Total_Classes_Expenses
 
 END_DESCRIPTION
 

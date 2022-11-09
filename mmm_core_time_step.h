@@ -132,7 +132,7 @@ V("Sector_Productive_Capacity_Exit");
 V("Sector_Productive_Capacity_Entry");										
 V("Sector_Productive_Capacity_Available"); 					
 
-/*****MACRO RESULTS*****/
+/*****COUNTRY RESULTS*****/
 V("Country_Inventories");                             		
 V("Country_Gross_Value_Production");                            	
 V("Country_Avg_Capacity_Utilization");               			

@@ -4,7 +4,7 @@ EQUATION("P")
 /*
 Price Index
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Price_Index");
 RESULT(v[0])
 
@@ -13,7 +13,7 @@ EQUATION("P_G")
 /*
 Inflation
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Annual_CPI_Inflation");
 RESULT(v[0])
 
@@ -22,7 +22,7 @@ EQUATION("U")
 /*
 Unemployment
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Unemployment");
 RESULT(v[0])
 
@@ -53,7 +53,7 @@ EQUATION("GDP_G")
 /*
 GDP real growth rate
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Annual_Real_Growth");
 RESULT(v[0])
 
@@ -62,7 +62,7 @@ EQUATION("G_n")
 /*
 GDP nominal growth rate
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Annual_Growth");
 RESULT(v[0])
 
@@ -71,7 +71,7 @@ EQUATION("Cri")
 /*
 Crisis counters
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Likelihood_Crisis");
 RESULT(v[0])
 
@@ -80,7 +80,7 @@ EQUATION("C")
 /*
 Quarterly Nominal Consumption
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Consumption");
 RESULT(v[0])
 
@@ -89,7 +89,7 @@ EQUATION("C_r")
 /*
 Quarterly Real Consumption
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Consumption");
 v[1]=VS(cur, "Country_Price_Index");
 v[2]=v[0]/v[1];
@@ -113,7 +113,7 @@ EQUATION("I")
 /*
 Quarterly Nominal Investment
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Investment");
 RESULT(v[0])
 
@@ -122,7 +122,7 @@ EQUATION("I_r")
 /*
 Quarterly Real Investment
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Investment");
 v[1]=VS(cur, "Country_Price_Index");
 v[2]=v[0]/v[1];
@@ -146,7 +146,7 @@ EQUATION("PROD")
 /*
 Average Productivity
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Avg_Productivity");
 RESULT(v[0])
 
@@ -168,7 +168,7 @@ EQUATION("MK")
 /*
 Average Markup
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Avg_Markup");
 RESULT(v[0])
 
@@ -190,7 +190,7 @@ EQUATION("INVE_r")
 /*
 Real Aggregate Inventories
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Inventories");
 v[1]=VS(cur, "Country_Price_Index");
 v[2]=v[0]/v[1];
@@ -214,7 +214,7 @@ EQUATION("K_r")
 /*
 Real Stock of Capital
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Capital_Stock");
 v[1]=VS(cur, "Country_Price_Index");
 v[2]=v[0]/v[1];
@@ -238,7 +238,7 @@ EQUATION("PROFITS")
 /*
 Real Surplus
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Profits");
 v[1]=VS(cur, "Country_Price_Index");
 v[2]=v[0]/v[1];
@@ -249,7 +249,7 @@ EQUATION("WAGE")
 /*
 Real Wages
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Wages");
 v[1]=VS(cur, "Country_Price_Index");
 v[2]=v[0]/v[1];
@@ -288,7 +288,7 @@ Quarterly Real Government Expenses
 */
 cur = SEARCHS(root, "GOVERNMENT");
 v[0]=VS(cur, "Government_Wages");
-cur1 = SEARCHS(root, "MACRO");
+cur1 = SEARCHS(root, "COUNTRY");
 v[1]=VS(cur1, "Country_Price_Index");
 v[2]=v[0]/v[1];
 RESULT(v[2])
@@ -333,7 +333,7 @@ EQUATION("M_r")
 /*
 Quarterly Real Imports
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Imports");
 v[1]=VS(cur, "Country_Price_Index");
 v[2]=v[0]/v[1];
@@ -357,7 +357,7 @@ EQUATION("X_r")
 /*
 Quarterly Real Exports
 */
-cur = SEARCHS(root, "MACRO");
+cur = SEARCHS(root, "COUNTRY");
 v[0]=VS(cur, "Country_Exports");
 v[1]=VS(cur, "Country_Price_Index");
 v[2]=v[0]/v[1];

@@ -1,4 +1,4 @@
-/*****MACRO VARIABLES******/
+/*****COUNTRY VARIABLES******/
 
 
 EQUATION("Country_Price_Capital_Goods")
