@@ -667,7 +667,7 @@ Var: Firm_Debt_Rate 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Delivery_Delay 1 n + n n	1	1	1
 Var: Firm_Demand_Capital_Goods 6 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Demand_Productive_Capacity_Expansion 7 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Var: Firm_Productive_Capacity_Depreciation 7 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: Firm_Productive_Capacity_Depreciation 7 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Desired_Expansion_Investment_Expenses 0 n + n n
 Var: Firm_Desired_Market_Share 1 n + n n	0	0	0
 Var: Firm_Desired_Markup 1 n + n n	0	0	0
@@ -793,7 +793,7 @@ Var: Total_Indirect_Taxes 0 n + n n
 Var: Total_Taxes 1 n + n n	0
 
 Object: EXTERNAL_SECTOR C	1
-Param: International_Reserves 1 n + n n	100000
+Param: International_Reserves 1 n + n n	10000000
 Param: exchange_rate_growth 0 n + n n	0
 Param: external_income_fixed_growth 0 n + n n	0
 Param: external_income_growth_adjustment 0 n + n n	1
@@ -878,728 +878,608 @@ MODELREPORT report_Sim1.html
 DESCRIPTION
 
 Object_Root
-(no description available)
+
 END_DESCRIPTION
 
 Object_INIT
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_C_alpha
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.4.
 END_DESCRIPTION
 
 Parameter_C_beta
-(no description available)
+
 _INIT_
 All 1 instances equal to 2.
 END_DESCRIPTION
 
 Parameter_C_d
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.9.
 END_DESCRIPTION
 
 Parameter_C_delta
-(no description available)
+
 _INIT_
 All 1 instances equal to 60.
 END_DESCRIPTION
 
 Parameter_C_eta
-(no description available)
+
 _INIT_
 All 1 instances equal to 20.
 END_DESCRIPTION
 
 Parameter_C_exp_sh
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.333333.
 END_DESCRIPTION
 
 Parameter_C_i_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 6.
 END_DESCRIPTION
 
 Parameter_C_lambda
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Parameter_C_mk
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.5.
 END_DESCRIPTION
 
 Parameter_C_mk_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Parameter_C_phi
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_C_psi
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.9.
 END_DESCRIPTION
 
 Parameter_C_q
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_C_sigma
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.1.
 END_DESCRIPTION
 
 Parameter_C_tau
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_C_w
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_I_alpha
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.4.
 END_DESCRIPTION
 
 Parameter_I_beta
-(no description available)
+
 _INIT_
 All 1 instances equal to 2.
 END_DESCRIPTION
 
 Parameter_I_d
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.9.
 END_DESCRIPTION
 
 Parameter_I_delta
-(no description available)
+
 _INIT_
 All 1 instances equal to 60.
 END_DESCRIPTION
 
 Parameter_I_eta
-(no description available)
+
 _INIT_
 All 1 instances equal to 20.
 END_DESCRIPTION
 
 Parameter_I_exp_sh
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.33333.
 END_DESCRIPTION
 
 Parameter_I_i_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 6.
 END_DESCRIPTION
 
 Parameter_I_lambda
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Parameter_I_mk
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.5.
 END_DESCRIPTION
 
 Parameter_I_mk_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Parameter_I_phi
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_I_psi
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.9.
 END_DESCRIPTION
 
 Parameter_I_q
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_I_sigma
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.1.
 END_DESCRIPTION
 
 Parameter_I_tau
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_I_w
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_K_alpha
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.4.
 END_DESCRIPTION
 
 Parameter_K_beta
-(no description available)
+
 _INIT_
 All 1 instances equal to 2.
 END_DESCRIPTION
 
 Parameter_K_d
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.9.
 END_DESCRIPTION
 
 Parameter_K_delta
-(no description available)
+
 _INIT_
 All 1 instances equal to 60.
 END_DESCRIPTION
 
 Parameter_K_eta
-(no description available)
+
 _INIT_
 All 1 instances equal to 20.
 END_DESCRIPTION
 
 Parameter_K_exp_sh
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.33333.
 END_DESCRIPTION
 
 Parameter_K_i_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 6.
 END_DESCRIPTION
 
 Parameter_K_lambda
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Parameter_K_mk
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.5.
 END_DESCRIPTION
 
 Parameter_K_mk_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Parameter_K_phi
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_K_psi
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.9.
 END_DESCRIPTION
 
 Parameter_K_q
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_K_sigma
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.1.
 END_DESCRIPTION
 
 Parameter_K_tau
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_K_w
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_a_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Parameter_aut_con
-(no description available)
+
 _INIT_
 All 1 instances equal to 20.
 END_DESCRIPTION
 
 Parameter_c_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Parameter_depre_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 60.
 END_DESCRIPTION
 
 Parameter_gov_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Parameter_i_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 6.
 END_DESCRIPTION
 
 Parameter_ir
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_mk_per
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Variable_Calibration
 Macro Parameters
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Time_Step
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Object_MACRO
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_annual_period
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Parameter_crisis_threshold
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_initial_avg_price
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Annual_Growth
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Annual_Inflation
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Annual_Real_Growth
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Avg_Markup
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Avg_Productivity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Avg_Profit_Rate
 Observed Ratio, Total Profits over Stock of Capital
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Avg_Rate_Capacity_Utilization
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Consumer_Price_Index
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Exit
 This variable counts productive capacity that exited the sector in each time step. Firm objects are deleted inside that variable due to two possibilities: small market share or high debt rate. In the second case, if entry conitions are met, the firm can be bought by a new one.
 This variable counts productive capacity that exited the sector in each time step. Firm objects are deleted inside that variable due to two possibilities: small market share or high debt rate. In the second case, if entry conitions are met, the firm can be bought by a new one.
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Exit_Defaulted_Loans
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Exit_Deposits_Distributed
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Exit_Productive_Capacity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_GDP
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_GDP_Demand
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Gross_Value_Production
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Likelihood_Crisis
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Observed_Capital_Labor_Ratio
 Observed Ratio, Stock of Capital over Total Employment
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Observed_Capital_Output_Ratio
 Observed Ratio, Stock of Capital over GDP
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Price_Capital_Goods
-(no description available)
+
 _INIT_
 All 1 instances equal to 1.
 END_DESCRIPTION
 
 Variable_Price_Index
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Profit_Share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Real_GDP
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Financial_Sector_Wealth
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Financial_Sector_Wealth_2
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Net_Rentability_Financial_Assets
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Financial_Assets_Return_Classes
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Financial_Assets_Return_Firms
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Funds
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Interest_Payments_Classes
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Interest_Payments_Firms
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Savings
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Variation_Debt_Classes
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Variation_Debt_Firms
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Variation_Financial_Assets_Classes
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_SFC_Total_Variation_Financial_Assets_Firms
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Autonomous_Consumption
 Sum up nominal value of autonomous consumption
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Total_Autonomous_Investment
 Sum up the nominal value of effective replacement investment of all firms
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Total_Capital_Stock
 Sum up the nominal value of firms stock of capital
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Total_Classes_Expenses
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Consumption
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Distributed_Profits
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Exports
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Imports
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Induced_Investment
 Sum up the nominal value of effective expansion investment of all firms
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Total_Intermediate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Inventories
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Total_Inventories_Variation
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Investment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Investment_Expenses
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Productive_Capacity_Depreciated
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Productive_Capacity_Expansion
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Productive_Capacity_Replacement
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Profits
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Wages
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Unemployment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Wage_Share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Object_SECTORS
 (no description available )
-_INIT_
-
 END_DESCRIPTION
 
 Parameter_sector_capital_output_ratio
@@ -1609,349 +1489,279 @@ All 1 instances equal to 2.
 END_DESCRIPTION
 
 Parameter_sector_depreciation_period
-(no description available)
+
 _INIT_
 All 3 instances equal to 1000.
 END_DESCRIPTION
 
 Parameter_sector_desired_debt_rate
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_sector_desired_degree_capacity_utilization
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_desired_financial_rate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_desired_inventories_proportion
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_elascitity_delay
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_elasticity_price
-(no description available)
+
 _INIT_
 All 4 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_sector_elasticity_quality
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.25.
 END_DESCRIPTION
 
 Parameter_sector_expectations
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.2.
 END_DESCRIPTION
 
 Parameter_sector_exports_elasticity_income
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_exports_elasticity_price
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_external_price_competitiveness
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_external_price_growth
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_id_capital_goods_sector
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_id_consumption_goods_sector
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_id_intermediate_goods_sector
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_indirect_tax_rate
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_sector_initial_productivity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_initial_quality
-(no description available)
+
 _INIT_
 All 3 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_sector_innovation_proportion
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_sector_input_tech_coefficient
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.45.
 END_DESCRIPTION
 
 Parameter_sector_investment_period
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_learning_adjustment
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_sector_market_share_expansion
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_sector_markup_apropriation
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_sector_markup_period
-(no description available)
+
 _INIT_
 All 3 instances equal to 2.
 END_DESCRIPTION
 
 Parameter_sector_profits_distribution_rate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_rnd_revenue_proportion
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_sector_exports_coefficient
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_sector_passthrough_inflation
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.9.
 END_DESCRIPTION
 
 Parameter_sector_passthrough_productivity
-(no description available)
+
 _INIT_
 All 3 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_sector_std_dev_innovation
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.005.
 END_DESCRIPTION
 
 Parameter_sector_strategic_price_weight
-(no description available)
+
 _INIT_
 All 50 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_sector_survival_period
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_sector_tech_opportunity
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.001.
 END_DESCRIPTION
 
 Variable_Sector_Avg_Competitiveness
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Avg_Debt_Rate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Avg_Markup
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Avg_Price
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Avg_Productivity
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Sector_Avg_Quality
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Avg_Wage
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Domestic_Capital_Demand
 Calls the Capital_Goods_Demand Function and calculates the demand of other sectors.
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Sector_Domestic_Consumption_Demand
 Stores the value of the Demand Function if it is a consumption goods sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Sector_Demand_Met
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Demand_Met_By_Imports
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Effective_Orders
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Sector_Effective_Production
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Employment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Entry_Condition
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Exports
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_External_Price
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Extra_Imports
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Domestic_Intermediate_Demand
 This stores the value of the "Dom_Intermediate_Demand_Function" for each sector.
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Sector_Inventories
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Inverse_HHI
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Max_Productivity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Max_Quality
-(no description available)
+
 _INIT_
 All 3 instances equal to 1.
 END_DESCRIPTION
@@ -1959,36 +1769,26 @@ END_DESCRIPTION
 Variable_Sector_Normalized_HHI
 Sector Variable for Analysis
 Sector Variable for Analysis
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Sector_Number_Firms
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Participation
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Potential_Employment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Productive_Capacity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Productive_Capacity_Available
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
@@ -1996,968 +1796,708 @@ END_DESCRIPTION
 Variable_Sector_Productive_Capacity_Entry
 Sector Variable
 In this variable a new firm enters if there is market space available and the entry condiion is met
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Sector_Productive_Capacity_Exit
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Quality_Growth
 Sector Avg Quality Annual Growth
 Sector Avg Quality Annual Growth
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Sector_Sales
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Sum_Market_Share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Turbulence
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Unemployment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Sector_Taxation
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Object_FIRMS
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_firm_date_birth
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_id_firm_number
-(no description available)
+
 _INIT_
 All 40 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Firm_Available_Debt
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Available_Financial_Assets
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Available_Funds_Replacement
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Available_Inputs_Ratio
-Measures the possibilities of using the stock of intermidiate goods. 
-_INIT_
-
+Measures the possibilities of using the stock of intermidiate goods.
 END_DESCRIPTION
 
 Variable_Firm_Avg_Potential_Markup
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Firm_Capital
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Competitiveness
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Debt_Rate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Delivery_Delay
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Demand_Capital_Goods
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Firm_Demand_Productive_Capacity_Expansion
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Productive_Capacity_Depreciation
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Desired_Expansion_Investment_Expenses
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Desired_Market_Share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Desired_Markup
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Desired_Price
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Effective_Market_Share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Effective_Markup
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Effective_Orders
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Effective_Orders_Capital_Goods
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Firm_Effective_Production
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Effective_Productive_Capacity_Variation
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Expected_Sales
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Expected_Sales_Long_Term
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Avg_Debt_Rate
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Firm_Avg_Market_Share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Avg_Productivity
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Firm_Financial_Assets_Return
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Debt_Flow
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Financial_Assets_Flow
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Frontier_Productivity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Total_Funds
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Imitation_Productivity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Indirect_Tax
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Innovation_Productivity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Input_Cost
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Input_Demand_Next_Period
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Interest_Rate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Stock_Inventories
 The current stock of final goods
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Firm_Inventories_Variation
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Effective_Expansion_Investment_Expenses
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Market_Share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Max_Productivity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Net_Profits
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Net_Revenue
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Planned_Production
 Planed Production, calculated based on expected sales subject to the productive capacity restriction, expect for capital goods, wich define their planed production based on current orders.
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Firm_Potential_Markup
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Price
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Productive_Capacity
 Capacity of production
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Firm_Distributed_Profits
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_RND_Expenses
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Demand_Productive_Capacity_Replacement
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Required_Inputs
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Retained_Profits
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Revenue
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Sales
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Stock_Debt
-(no description available)
+
 _INIT_
 All 50 instances equal to 3.2.
 END_DESCRIPTION
 
 Variable_Firm_Stock_Financial_Assets
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Stock_Inputs
 The stock of intermidiate goods available for next period.
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Firm_Variable_Cost
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Replacement_Expenses
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Available_Funds_After_Replacement
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Wage
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Quality
-(no description available)
+
 _INIT_
 All 3 instances equal to 1.
 END_DESCRIPTION
 
 Variable_Firm_Investment_Period
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Modernization_Rate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Capacity_Utilization
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Demand_Capital_Goods_Expansion
 Number of capital goods demanded to expand productive capacity 
-Number of capital goods demanded to expand productive capacity 
+Number of capital goods demanded to expand productive capacity
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Firm_Demand_Capital_Goods_Replacement
 Number of capital goods demanded to modernie productive capacity 
-Number of capital goods demanded to modernie productive capacity 
+Number of capital goods demanded to modernie productive capacity
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Firm_Effective_Capital_Goods_Expansion
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Effective_Capital_Goods_Replacement
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Firm_Imitation_Quality
 Imitation process. The sucess depends on the amount of recources alocated to imitation. Firms search for best quality of the sector, trying to copy if succeded.
 Imitation process. The sucess depends on the amount of recources alocated to imitation. Firms search for best quality of the sector, trying to copy if succeded.
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Firm_Innovation_Quality
 Innovation process. The sucess depends on the amount ou recources alocated to innovation. Firms search for new quality and the result depends on a random distribution with exonegous parameters.
 Innovation process. The sucess depends on the amount ou recources alocated to innovation. Firms search for new quality and the result depends on a random distribution with exonegous parameters.
-_INIT_
-
 END_DESCRIPTION
 
 Object_CAPITALS
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_capital_good_date_birth
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_capital_good_depreciation_period
-(no description available)
+
 _INIT_
 All 3 instances equal to 1000.
 END_DESCRIPTION
 
 Parameter_capital_good_productive_capacity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_capital_good_productivity_initial
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_capital_good_to_depreciate
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_capital_good_to_replace
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_id_capital_good_number
-(no description available)
+
 _INIT_
 All 3 instances equal to 1.
 END_DESCRIPTION
 
 Variable_Capital_Good_Acumulated_Production
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Capital_Good_Production
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Capital_Good_Productivity
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Object_CLASSES
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_class_autonomous_consumption_adjustment
-(no description available)
+
 _INIT_
 All 1 instances equal to 2.
 END_DESCRIPTION
 
 Parameter_class_direct_tax
-(no description available)
+
 _INIT_
 All 2 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_class_interest_payment_share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_class_max_debt_ratio
-(no description available)
+
 _INIT_
 All 2 instances equal to 1.
 END_DESCRIPTION
 
 Parameter_class_period
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_class_profit_share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_class_propensity_to_consume
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_class_propensity_to_import
-(no description available)
+
 _INIT_
 All 2 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_class_wage_share
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Autonomous_Consumption
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Debt
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Debt_Payment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Debt_Ratio
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Effective_Domestic_Consumption
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Effective_Imports
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Expenses
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Financial_Asset_Return
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Financial_Assets
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Government_Interest_Payment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Nominal_Income
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Class_Real_Domestic_Consumption
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Real_Imports
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Real_Income
-(no description available)
+
 _INIT_
 All 3 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Class_Savings
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Class_Taxation
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Object_GOVERNMENT
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_basic_percent_spread
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.5.
 END_DESCRIPTION
 
 Parameter_government_expectations
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_government_period
-(no description available)
+
 _INIT_
 All 1 instances equal to 4.
 END_DESCRIPTION
 
 Parameter_government_surplus_rate_target
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_inflation_sensitivity
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Parameter_inflation_target
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.005.
 END_DESCRIPTION
 
 Parameter_interest_rate
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_interest_rate_adjustment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_unemployment_sensitivity
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Parameter_unemployment_target
-(no description available)
+
 _INIT_
 All 4 instances equal to 0.16.
 END_DESCRIPTION
 
 Variable_Basic_Interest_Rate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Government_Debt
 Public Debt
-_INIT_
-
 END_DESCRIPTION
 
 Variable_Government_Debt_GDP_Ratio
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Government_Deficit
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Government_Interest_Payment
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Government_Max_Expenses
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Government_Primary_Surplus
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Government_Wages
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Income_Taxes
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Indirect_Taxes
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Total_Taxes
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Object_EXTERNAL_SECTOR
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_International_Reserves
-(no description available)
+
 _INIT_
-All 1 instances equal to 100000.
+All 1 instances equal to 1e+07
 END_DESCRIPTION
 
 Parameter_exchange_rate_growth
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Parameter_external_income_fixed_growth
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.01.
 END_DESCRIPTION
 
 Parameter_external_income_growth_adjustment
-(no description available)
+
 _INIT_
 All 1 instances equal to 0.
 END_DESCRIPTION
 
 Variable_Exchange_Rate
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_External_Income
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Trade_Balance
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Object_ANALYSIS
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_C
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_CGDP
 Real Consumption share of GDP
 Real Consumption share of GDP
-_INIT_
-
 END_DESCRIPTION
 
 Variable_CON_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_C_r
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_Cri
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_DEBT_C
 Average Debt Rate of Consumption good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_DEBT_I
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_DEBT_K
 Average Debt Rate of Capital good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_EMP
@@ -2969,127 +2509,87 @@ END_DESCRIPTION
 Variable_EMP_G
 Quarterly Employment Growth rate
 Quarterly Employment Growth rate
-_INIT_
-
 END_DESCRIPTION
 
 Variable_GDP_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_GGDP
 Real Government Expenses share of GDP
 Real Government Expenses share of GDP
-_INIT_
-
 END_DESCRIPTION
 
 Variable_GOV_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_G_n
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_G_r
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_HHI_C
 Inverse HHI of Consumption good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_HHI_I
 Inverse HHI of Intermediate good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_HHI_K
 Inverse HHI of Capital good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_I
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_IGDP
 Real Investment share of GDP
 Real Investment share of GDP
-_INIT_
-
 END_DESCRIPTION
 
 Variable_INVE_G
 Real Aggregate Inventories Growth
-_INIT_
-
 END_DESCRIPTION
 
 Variable_INVE_r
 Real Aggregate Inventories
-_INIT_
-
 END_DESCRIPTION
 
 Variable_INVGDP
 Real inventories share of GDP
 Real inventories share of GDP
-_INIT_
-
 END_DESCRIPTION
 
 Variable_INV_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_I_r
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_KGDP
 Real stock of capital share of GDP, or capital-output ratio
 Real stock of capital share of GDP, or capital-output ratio
-_INIT_
-
 END_DESCRIPTION
 
 Variable_KL
 Capital labour ratio
 Capital labour ratio
-_INIT_
-
 END_DESCRIPTION
 
 Variable_K_G
 Real Stock of Capital Growth
-_INIT_
-
 END_DESCRIPTION
 
 Variable_K_r
 Real Stock of Capital
-_INIT_
-
 END_DESCRIPTION
 
 Variable_MK
@@ -3100,221 +2600,149 @@ END_DESCRIPTION
 
 Variable_MK_C
 Average Markup of Consumption good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_MK_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_MK_I
 Average Markup of Intermediate good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_MK_K
 Average Markup of Capital good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_M_G
 Quarterly Real Imports Growth rate
-_INIT_
-
 END_DESCRIPTION
 
 Variable_M_r
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_NXGDP
 Real net exports share of GDP
 Real net exports share of GDP
-_INIT_
-
 END_DESCRIPTION
 
 Variable_NX_G
 Quarterly Real Net Exports Growth rate
-_INIT_
-
 END_DESCRIPTION
 
 Variable_NX_r
 Quarterly Real Net Exports
-_INIT_
-
 END_DESCRIPTION
 
 Variable_P
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_PCU
 Productive Capacity Utilization Rate
 Productive Capacity Utilization Rate
-_INIT_
-
 END_DESCRIPTION
 
 Variable_PDEBT
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_PDEBT_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_PR
 Profit Rate
 Profit Rate
-_INIT_
-
 END_DESCRIPTION
 
 Variable_PROD
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_PROD_C
 Average Productivity of Consumption good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_PROD_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_PROD_I
 Average Productivity of Intermediate good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_PROD_K
 Average Productivity of Capital good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_PROFITS
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_PROFITS_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_P_C
 Average Price of Consumption good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_P_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_P_I
 Average Price of Intermediate good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_P_K
 Average Price of Capital good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_U
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_U_C
 Unemployment Rate of Consumption good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_U_I
 Unemployment Rate of Intermediate good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_U_K
 Unemployment Rate of Capital good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_WAGE
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_WAGE_G
-(no description available)
-_INIT_
 
 END_DESCRIPTION
 
 Variable_W_C
 Average Wage of Consumption good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_W_I
 Average Price of Intermediate good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_W_K
 Average Price of Capital good sector
-_INIT_
-
 END_DESCRIPTION
 
 Variable_X_G
 Quarterly Real Exports Growth rate
-_INIT_
-
 END_DESCRIPTION
 
 Variable_X_r
 Quarterly Real Exports
-_INIT_
-
 END_DESCRIPTION
 
 
