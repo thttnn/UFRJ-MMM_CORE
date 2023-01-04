@@ -218,5 +218,26 @@ RESULT(MAX("Firm_Quality"))
 EQUATION("Sector_Avg_Quality")
 RESULT(WHTAVE("Firm_Quality", "Firm_Market_Share"))
 
+EQUATION("Sector_Emissions")
+RESULT(V("Sector_Carbon_Intensity")*V("Sector_Effective_Production"))
+
+
+EQUATION("Sector_Carbon_Intensity")
+		v[0]=CURRENT;
+		cur = SEARCH_CNDS(root, "id_intermediate_goods_sector", 1);		//search intermediate good sector
+		v[3]=VLS(cur, "Sector_Avg_Quality",1);     						//sector average quality in the last period                        
+		v[4]=VLS(cur, "Sector_Avg_Quality",2); 					        //sector average quality in the last adjustment period                          
+		if(v[4]!=0)														//if initial average quality is not zero                                                                              
+			v[5]=(v[3]-v[4])/v[4];          							//computate quality growth                                                  			
+		else     														//if average quality is zero                                                                               
+			v[5]=0;														//quality growth is zero
+		
+		v[6]=V("sector_carbon_intensity_adjustment");				    //energy intensity adjustment parameter
+		if(v[5]>0) 														//if quality growth was positive
+			v[7]=v[0]*(1-v[6]*v[5]); 									//increase autonomous consumption by the adjustment parameter
+		else													        //if quality grwoth was zero
+			v[7]=v[0];													//use last period autonomous consumption                                            		
+RESULT(v[7])
+
 
 

@@ -793,7 +793,7 @@ Var: Total_Indirect_Taxes 0 n + n n
 Var: Total_Taxes 1 n + n n	0
 
 Object: EXTERNAL_SECTOR C	1
-Param: International_Reserves 1 n + n n	0
+Param: International_Reserves 1 n + n n	10000000
 Param: exchange_rate_growth 0 n + n n	0
 Param: external_income_fixed_growth 0 n + n n	0
 Param: external_income_growth_adjustment 0 n + n n	1
@@ -2432,7 +2432,7 @@ END_DESCRIPTION
 Parameter_International_Reserves
 
 _INIT_
-All 1 instances equal to 0
+All 1 instances equal to 1e+07
 END_DESCRIPTION
 
 Parameter_exchange_rate_growth

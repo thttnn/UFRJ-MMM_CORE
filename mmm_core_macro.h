@@ -658,5 +658,10 @@ Sum up nominal value of autonomous consumption
 RESULT(v[2])
 
 
+EQUATION("Country_Emissions")
+RESULT(SUM("Sector_Emissions"))
+
+
+
 
 

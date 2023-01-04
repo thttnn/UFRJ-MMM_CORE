@@ -1,11 +1,14 @@
 /*************************************************************
 
-	LSD 7.2 - December 2019
+	LSD 8.0 - May 2021
 	written by Marco Valente, Universita' dell'Aquila
 	and by Marcelo Pereira, University of Campinas
 
 	Copyright Marco Valente and Marcelo Pereira
 	LSD is distributed under the GNU General Public License
+	
+	See Readme.txt for copyright information of
+	third parties' code used in LSD
 	
  *************************************************************/
 
@@ -97,7 +100,7 @@ void object::save_param( FILE *f )
 	int i, count = 0;
 	char ch, ch1, ch2;
 	bridge *cb;
-	description *cur_descr;
+	description *cd;
 	object *cur;
 	variable *cv, *cv1;
 
@@ -132,8 +135,8 @@ void object::save_param( FILE *f )
 			}
 		else
 		{	// avoid marking as to initialize for elements not worth it
-			cur_descr = search_description( cv->label );
-			cur_descr->initial = 'n';
+			cd = search_description( cv->label );
+			cd->initial = 'n';
 		}
 
 		ch1 = cv->save ? 's' : 'n';
@@ -214,7 +217,7 @@ bool object::load_param( char *file_name, int repl, FILE *f )
 		if ( fscanf( f, "\t%d", &num ) != 1 )
 			return false;
 		cur->to_compute = to_compute;
-		cur->replicate( num, 0 );
+		cur->replicate( num );
 		for ( ; go_brother( cur ) != NULL; cur = cur->next );
 	}
 
@@ -387,109 +390,74 @@ LOAD_DESCRIPTION
 ******************************************************************************/
 bool load_description( char *msg, FILE *f )
 {
-	int j;
-	char type[ 20 ], label[ MAX_ELEM_LENGTH ], str[ 10 * MAX_LINE_SIZE ], str1[ 10 * MAX_LINE_SIZE ];
-	description *app;
+	int j, type, ctype;
+	char label[ MAX_ELEM_LENGTH ], text[ 10 * MAX_LINE_SIZE + 1 ], init[ 10 * MAX_LINE_SIZE + 1 ], str[ 10 * MAX_LINE_SIZE + 1 ];
+	variable *cv;
 
 	label[ MAX_ELEM_LENGTH - 1 ] = '\0';
+	strcpy( text, "" );
+	strcpy( init, "" );
+	
 	if ( strncmp( msg, "Object", 6 ) == 0 )
 	{
-		strcpy(type, "Object");
-		strncpy(label, msg+7, MAX_ELEM_LENGTH-1);
+		type = 4;
+		strncpy( label, msg + 7, MAX_ELEM_LENGTH - 1 );
 	} 
 	else
-		if (strncmp( msg, "Variable", 8) == 0 )
+		if ( strncmp( msg, "Variable", 8 ) == 0 )
 		{
-			strcpy( type, "Variable" );
+			type = 0;
 			strncpy( label, msg + 9, MAX_ELEM_LENGTH - 1 );
 		} 
 		else
 			if ( strncmp( msg, "Parameter", 9 ) == 0 )
 			{
-				strcpy( type, "Parameter" );
+				type = 1;
 				strncpy( label, msg + 10, MAX_ELEM_LENGTH - 1 );
 			} 
 			else
 				if ( strncmp( msg, "Function", 6 ) == 0 )
 				{
-					strcpy( type, "Function" );
+					type = 2;
 					strncpy( label, msg + 9, MAX_ELEM_LENGTH - 1 );
 				} 
 				else
 					return false;
-	 
-	if ( descr == NULL )
-		app = descr = new description;
-	else  
-	{
-		for ( app = descr; app->next != NULL; app = app->next );
-		app->next = new description;
-		app = app->next;
-	} 
+				
+	// check correct type and ignore orphan entries			
+	if ( root->search( label ) != NULL )
+		ctype = 4;
+	else
+		if ( ( cv = root->search_var( NULL, label ) ) != NULL )
+			ctype = cv->param;
+		else
+			ctype = -1;
 	
-	app->next = NULL;
-	app->text = app->init = NULL;
-	app->label = new char[ strlen( label ) + 1 ];
-	strcpy( app->label, label );
-	app->type = new char[ strlen( type ) + 1 ];
-	strcpy( app->type, type );
-
-	strcpy( str1, "" );
+	if ( ctype < 0 )
+		return true;			// ignore orphan (old LSD bug)
+	else
+		type = ctype;			// silently fix wrong type (old LSD bug)
+	 
 	fgets( str, MAX_LINE_SIZE, f );		// skip first newline character
-	for ( j = 0 ; fgets( str, MAX_LINE_SIZE, f ) != NULL && strncmp( str, "END_DESCRIPTION", 15 ) && strncmp( str, "_INIT_", 6 ) && strlen( str1 ) < 9 *MAX_LINE_SIZE && j < MAX_FILE_TRY ; ++j )
-		strcat( str1, str );
+	for ( j = 0 ; fgets( str, MAX_LINE_SIZE, f ) != NULL && strncmp( str, END_DESCR, strlen( END_DESCR ) ) && strncmp( str, BEG_INIT, strlen( BEG_INIT ) ) && strlen( text ) <= 9 * MAX_LINE_SIZE && j < MAX_FILE_TRY ; ++j )
+		strcat( text, str );
 
-	if ( strncmp( str, "END_DESCRIPTION", 15 ) && strncmp( str, "_INIT_", 6 ) )
+	if ( strncmp( str, END_DESCR, strlen( END_DESCR ) ) && strncmp( str, BEG_INIT, strlen( BEG_INIT ) ) )
 		return false;
 
-	kill_trailing_newline( str1 );
-
-	app->text = new char[ strlen( str1 ) + 1 ];
-	strcpy( app->text, str1 );
-
-	if ( ! strncmp( str, "_INIT_", 6 ) )
+	if ( ! strncmp( str, BEG_INIT, strlen( BEG_INIT ) ) )
 	{
-		strcpy( str1, "" );
-		for ( j = 0 ; fgets( str, MAX_LINE_SIZE, f ) != NULL && strncmp( str, "END_DESCRIPTION", 15 ) && strlen( str1 ) < 9 * MAX_LINE_SIZE && j < MAX_FILE_TRY ; ++j )
-			strcat( str1, str );
+		for ( j = 0 ; fgets( str, MAX_LINE_SIZE, f ) != NULL && strncmp( str, END_DESCR, strlen( END_DESCR ) ) && strlen( init ) <= 9 * MAX_LINE_SIZE && j < MAX_FILE_TRY ; ++j )
+			strcat( init, str );
 
-		if ( strncmp( str, "END_DESCRIPTION", 15 ) )
+		if ( strncmp( str, END_DESCR, strlen( END_DESCR ) ) )
 			return false;
-
-		kill_trailing_newline( str1 );
-		app->init = new char[ strlen( str1 ) + 1 ];
-		strcpy( app->init, str1 );
 	}
-	else
-	{
-		app->init = new char[ 1 ];
-		strcpy( app->init, "" );
-	}
-	app->initial = 'n';
-	app->observe = 'n';  
 
+	add_description( label, type, text, init );
+	
 	return true;
 } 
-
-
-/*****************************************************************************
-EMPTY_DESCR
-******************************************************************************/
-void empty_description( void )
-{
-	description *cur, *cur1;
-	
-	for ( cur1 = descr; cur1 != NULL; cur1 = cur )
-	{
-		cur = cur1->next;
-		delete [ ] cur1->label;
-		delete [ ] cur1->type;
-		delete [ ] cur1->text;
-		delete [ ] cur1->init;
-		delete cur1;
-	}
-	descr = NULL;
-}
 
 
 /*****************************************************************************
@@ -502,83 +470,25 @@ void save_description( object *r, FILE *f )
 	description *cd;
 
 	cd = search_description( r->label );
-	if ( cd == NULL )
-	{
-		add_description( r->label, "Object", "(no description available)" );
-		plog( "\nWarning: description for '%s' not found. New one created.", "", r->label );
-		cd = search_description( r->label );
-	} 
 
-	if ( cd->init == NULL )     
-		fprintf( f, "%s_%s\n%s\nEND_DESCRIPTION\n\n", cd->type, cd->label, cd->text );
+	if ( strwsp( cd->init ) )     
+		fprintf( f, "%s_%s\n%s\n%s\n\n", cd->type, cd->label, cd->text, END_DESCR );
 	else
-		fprintf( f, "%s_%s\n%s\n_INIT_\n%s\nEND_DESCRIPTION\n\n", cd->type, cd->label, cd->text, cd->init );
+		fprintf( f, "%s_%s\n%s\n%s\n%s\n%s\n\n", cd->type, cd->label, cd->text, BEG_INIT, cd->init, END_DESCR );
 
 	for ( cv = r->v; cv != NULL; cv = cv->next )
 	{
 		cd = search_description( cv->label );
-		if ( cd == NULL )
-		{
-			if ( cv->param == 0 )
-				add_description( cv->label, "Variable", "(no description available)" );
-			if ( cv->param == 1 )
-				add_description( cv->label, "Parameter", "(no description available)" );  
-			if ( cv->param == 2 )
-				add_description( cv->label, "Function", "(no description available)" );
-			
-			add_description( cv->label, "Object", "(no description available)" );
-			plog( "\nWarning: description for '%s' not found. New one created.", "", cv->label );
-			cd = search_description( cv->label );
-		} 
 
-		if ( cd->init == NULL )     
-			fprintf( f, "%s_%s\n%s\nEND_DESCRIPTION\n\n", cd->type, cd->label, cd->text );
+		if ( ( cv->param != 1 && cv->num_lag == 0 ) || strwsp( cd->init ) )     
+			fprintf( f, "%s_%s\n%s\n%s\n\n", cd->type, cd->label, cd->text, END_DESCR );
 		else
-			fprintf( f, "%s_%s\n%s\n_INIT_\n%s\nEND_DESCRIPTION\n\n", cd->type, cd->label, cd->text, cd->init );
-	   
+			fprintf( f, "%s_%s\n%s\n%s\n%s\n%s\n\n", cd->type, cd->label, cd->text, BEG_INIT, cd->init, END_DESCR );
 	}
 
 	for ( cb = r->b; cb != NULL; cb = cb->next )
 		if ( cb->head != NULL )
 			save_description( cb->head, f );
-}
-
-
-/*****************************************************************************
-SET_BLUEPRINT
-	copy the naked structure of the model into another object, called blueprint, 
-	to be used for adding objects without example
-******************************************************************************/
-void set_blueprint( object *container, object *r )
-{
-	bridge *cb, *cb1;
-	object *cur, *cur1;
-	variable *cv;
-	
-	if ( r == NULL )
-		return;
-
-	for ( cv = r->v; cv != NULL; cv = cv->next )
-		container->add_var_from_example( cv );
-	
-	delete [ ] container->label;
-	
-	container->label = new char[ strlen( r->label ) + 1 ];
-	strcpy( container->label, r->label );
-
-	for ( cb = r->b; cb != NULL; cb = cb->next )
-	{
-		if ( cb->head == NULL )
-			continue;
-		
-		cur1 = cb->head;
-		container->add_obj( cur1->label, 1, 0 );
-		
-		for ( cb1 = container->b; strcmp( cb1->blabel, cb->blabel ); cb1 = cb1->next );
-		
-		cur = cb1->head;
-		set_blueprint( cur, cur1 );
-	}
 }
 
 
@@ -593,8 +503,8 @@ int load_configuration( bool reload, bool quick )
 	int i, j = 0, load = 0;
 	char msg[ MAX_LINE_SIZE ], name[ MAX_PATH_LENGTH ], full_name[ 2 * MAX_PATH_LENGTH ];
 	object *cur;
-	variable *cur_var, *cur_var1;
-	description *cur_descr;
+	variable *cv, *cv1;
+	description *cd;
 	FILE *f, *g;
 	
 	unload_configuration( false );				// unload current
@@ -696,6 +606,7 @@ int load_configuration( bool reload, bool quick )
 		goto endLoad;
 	}  
 	
+	empty_description( );						// remove existing descriptions
 	i = fscanf( f, "%999s", msg );				// should be the first description   
 	for ( j = 0; strcmp( msg, "DOCUOBSERVE" ) && i == 1 && j < MAX_FILE_TRY; ++j )
 	{ 
@@ -713,17 +624,17 @@ int load_configuration( bool reload, bool quick )
 	fscanf( f, "%999s", msg );  
 	for ( j = 0; strcmp( msg, "END_DOCUOBSERVE" ) && j < MAX_FILE_TRY; ++j )
 	{
-		cur_descr = search_description( msg );
-		if ( cur_descr != NULL )
+		cd = search_description( msg );
+		if ( cd != NULL )
 		{
-			cur_descr->observe = 'y';
-			cur_var = root->search_var( NULL, msg );
-			if ( cur_var != NULL )
-				for ( cur = cur_var->up; cur != NULL; cur = cur->hyper_next( cur_var->up->label ) )
+			cd->observe = 'y';
+			cv = root->search_var( NULL, msg );
+			if ( cv != NULL )
+				for ( cur = cv->up; cur != NULL; cur = cur->hyper_next( cv->up->label ) )
 				{
-					cur_var1 = cur->search_var( NULL, cur_var->label );
-					if ( cur_var1 != NULL )
-						cur_var1->observe = true;
+					cv1 = cur->search_var( NULL, cv->label );
+					if ( cv1 != NULL )
+						cv1->observe = true;
 				}
 		}
 		fscanf( f, "%999s", msg );
@@ -745,9 +656,9 @@ int load_configuration( bool reload, bool quick )
 	fscanf( f, "%999s", msg );  
 	for ( j = 0; strcmp( msg, "END_DOCUINITIAL" ) && j < MAX_FILE_TRY; ++j )
 	{
-		cur_descr = search_description( msg );
-		if ( cur_descr != NULL )
-			cur_descr->initial = 'y';
+		cd = search_description( msg );
+		if ( cd != NULL )
+			cd->initial = 'y';
 		fscanf( f, "%999s", msg );
 	}
 	
@@ -791,21 +702,22 @@ endLoad:
 /*****************************************************************************
 UNLOAD_CONFIGURATION
 	Unload the current configuration
-	If reload is true, just the model data is unloaded
+	If full is false, just the model data is unloaded
 	Returns: pointer to root object
 ******************************************************************************/
 void unload_configuration ( bool full )
 {
-	root->empty( );								// remove current model structure
+	empty_blueprint( );							// remove current model structure
+	root->delete_obj( );
+	root = new object;
 	root->init( NULL, "Root" );
-	empty_description( );
-	add_description( "Root", "Object", "(no description available)" );      
-	blueprint->empty( );
-	blueprint->init( NULL, "Root" );
+	add_description( "Root" );      
+	reset_blueprint( NULL );
 
 	empty_cemetery( );							// garbage collection
 	empty_sensitivity( rsense ); 				// discard sensitivity analysis data
 	
+	save_ok = true;								// valid structure to save
 	unsavedData = false;						// no unsaved simulation results
 	unsavedSense = false;						// no sensitivity data to save
 	rsense = NULL;								// no sense data 
@@ -814,22 +726,20 @@ void unload_configuration ( bool full )
 	findexSens = 0;								// reset sensitivity serial number
 	nodesSerial = 0;							// reset network node serial number
 	
-#ifndef NO_WINDOW
+#ifndef NW
 	currObj = NULL;								// no current object pointer
 	unsaved_change( false );					// signal no unsaved change
 	cmd( "destroytop .lat" );					// remove lattice window
 	cmd( "unset -nocomplain modObj modElem modVar modPar modFun" );	// no elements in model structure
 	
 	if ( ! running )
-	{
-		cmd( "set a [ split [ winfo children . ] ]" );	// remove run-time plot windows
-		cmd( "foreach i $a { if [ string match .plt* $i ] { destroytop $i } }" );
-		cmd( "if { [ file exists temp.html ] } { file delete temp.html }" );	// delete temporary files
-	}
+		cmd( "destroytop .plt" );				// remove run-time plot window
 #endif
 
 	if ( full )									// full unload? (no new config?)
 	{
+		empty_description( );					// remove element descriptions
+		
 		delete [ ] path;						// reset current path
 		path = new char[ strlen( exec_path ) + 1 ];
 		strcpy( path, exec_path );
@@ -849,15 +759,15 @@ void unload_configuration ( bool full )
 		strcpy( lsd_eq_file, "" );				// reset other file names
 		sprintf( name_rep, "report_%s.html", simul_name );
 
-#ifndef NO_WINDOW
+#ifndef NW
 		cmd( "set path \"%s\"", path );
 		cmd( "set res \"%s\"", simul_name );
 		if ( strlen( path ) > 0 )
 			cmd( "cd \"$path\"" );
 		
 		cmd( "set listfocus 1; set itemfocus 0" ); 	// point for first var in listbox
-		strcpy( lastObj, "" );			// disable last object for reload
-		redrawRoot = true;				// force browser redraw
+		strcpy( lastObj, "" );					// disable last object for reload
+		redrawRoot = redrawStruc = true;		// force browser/structure redraw
 #endif
 	}
 }
@@ -871,7 +781,7 @@ void save_single( variable *v )
 	int i;
 	FILE *f;
 
-#ifdef PARALLEL_MODE
+#ifndef NP
 	// prevent concurrent use by more than one thread
 	lock_guard < mutex > lock( v->parallel_comp );
 #endif	
@@ -902,7 +812,7 @@ bool save_configuration( int findex )
 	bool save_ok = false;
 	int delta, indexDig;
 	char ch[ MAX_PATH_LENGTH ], *save_file, *bak_file = NULL;
-	description *cur_descr;
+	description *cd;
 	FILE *f; 
 	
 	delta = ( findex > 0 ) ? sim_num * ( findex - 1 ) : 0;
@@ -964,15 +874,15 @@ bool save_configuration( int findex )
 	save_description( root, f );
 	
 	fprintf( f, "\nDOCUOBSERVE\n" );
-	for ( cur_descr = descr; cur_descr != NULL; cur_descr = cur_descr->next )
-		if ( cur_descr->observe == 'y' )   
-			fprintf( f, "%s\n", cur_descr->label );
+	for ( cd = descr; cd != NULL; cd = cd->next )
+		if ( cd->observe == 'y' )   
+			fprintf( f, "%s\n", cd->label );
 	fprintf( f, "\nEND_DOCUOBSERVE\n\n" );
 	
 	fprintf( f, "\nDOCUINITIAL\n" );
-	for ( cur_descr = descr; cur_descr != NULL; cur_descr = cur_descr->next )
-		if ( cur_descr->initial == 'y' )     
-			fprintf( f, "%s\n", cur_descr->label );
+	for ( cd = descr; cd != NULL; cd = cd->next )
+		if ( cd->initial == 'y' )     
+			fprintf( f, "%s\n", cd->label );
 	fprintf( f, "\nEND_DOCUINITIAL\n\n" );
 	
 	save_eqfile( f );
@@ -1077,23 +987,23 @@ int load_sensitivity( FILE *f )
 	// error handling
 	error1:
 		if ( cv != NULL )
-			cmd( "tk_messageBox -parent . -title Error -icon error -type ok -message \"Invalid lag selected\" -detail \"Variable '%s' has no lags set.\"", lab );
+			cmd( "ttk::messageBox -parent . -title Error -icon error -type ok -message \"Invalid lag selected\" -detail \"Variable '%s' has no lags set.\"", lab );
 		i = 1;
 		goto error;
 	error2:
-		cmd( "tk_messageBox -parent . -title Error -icon error -type ok -message \"Invalid range\" -detail \"Element '%s' has less than two values to test.\"", lab );
+		cmd( "ttk::messageBox -parent . -title Error -icon error -type ok -message \"Invalid range\" -detail \"Element '%s' has less than two values to test.\"", lab );
 		i = 2;
 		goto error;
 	error3:
-		cmd( "tk_messageBox -parent . -title Error -icon error -type ok -message \"Invalid element type\" -detail \"Element '%s' has an invalid value set.\"", lab );
+		cmd( "ttk::messageBox -parent . -title Error -icon error -type ok -message \"Invalid element type\" -detail \"Element '%s' has an invalid value set.\"", lab );
 		i = 3;
 		goto error;
 	error4:
-		cmd( "tk_messageBox -parent . -title Error -icon error -type ok -message \"Missing separator\" -detail \"Element '%s' has no separator character (':').\"", lab );
+		cmd( "ttk::messageBox -parent . -title Error -icon error -type ok -message \"Missing separator\" -detail \"Element '%s' has no separator character (':').\"", lab );
 		i = 4;
 		goto error;
 	error5:
-		cmd( "tk_messageBox -parent . -title Error -icon error -type ok -message \"Invalid range value\" -detail \"Element '%s' has non-numeric range values.\"", lab );
+		cmd( "ttk::messageBox -parent . -title Error -icon error -type ok -message \"Invalid range value\" -detail \"Element '%s' has non-numeric range values.\"", lab );
 		i = 5;
 		goto error;
 		
@@ -1116,7 +1026,7 @@ void empty_sensitivity( sense *cs )
 	
 	if ( cs->next != NULL )	// recursively start from the end of the list
 		empty_sensitivity( cs->next );
-#ifndef NO_WINDOW
+#ifndef NW
 	else
 		NOLH_clear( );		// deallocate DoE (last object only)
 #endif
@@ -1151,4 +1061,483 @@ bool save_sensitivity( FILE *f )
 	}
 	
 	return ! ferror( f );
+}
+
+
+/****************************************************
+GET_SAVED
+****************************************************/
+void get_saved( object *n, FILE *out, const char *sep, bool all_var )
+{
+	int i, sl;
+	char *lab;
+	bridge *cb;
+	description *cd;
+	object *co;
+	variable *cv;
+
+	for ( cv = n->v; cv != NULL; cv = cv->next )
+		if ( cv->save || all_var )
+		{
+			// get element description
+			cd = search_description( cv->label, false );
+			if ( cd != NULL && cd->text != NULL && ( sl = strlen( cd->text ) ) > 0 )
+			{
+				// select just the first description line
+				lab = new char[ sl + 1 ];
+				strcpy( lab, cd->text );
+				for ( i = 0; i < sl; ++i )
+					if ( lab[ i ] == '\n' || lab[ i ] == '\r' )
+					{
+						lab[ i ] = '\0';
+						break;
+					}
+			}
+			else
+				lab = NULL;
+		
+			fprintf( out, "%s%s%s%s%s%s%s\n", cv->label, sep, cv->param ? "parameter" : "variable", sep, n->label, sep, lab != NULL ? lab : "" );
+		}
+
+	for ( cb = n->b; cb != NULL; cb = cb->next )
+	{
+		if ( cb->head == NULL )
+			co = blueprint->search( cb->blabel );
+		else
+			co = cb->head; 
+		get_saved( co, out, sep, all_var );
+	}
+}
+
+
+/****************************************************
+GET_SA_LIMITS
+****************************************************/
+void get_sa_limits( object *r, FILE *out, const char *sep )
+{
+	int i, sl;
+	char *lab;
+	variable *cv;
+	description *cd;
+	sense *cs;
+	
+	for ( cs = rsense; cs != NULL; cs = cs->next )
+	{
+		// get current value (first object)
+		cv = r->search_var( NULL, cs->label );
+		
+		// get element description
+		cd = search_description( cs->label, false );
+		if ( cd != NULL && cd->text != NULL && ( sl = strlen( cd->text ) ) > 0 )
+		{
+			// select just the first description line
+			lab = new char[ sl + 1 ];
+			strcpy( lab, cd->text );
+			for ( i = 0; i < sl; ++i )
+				if ( lab[ i ] == '\n' || lab[ i ] == '\r' )
+				{
+					lab[ i ] = '\0';
+					break;
+				}
+		}
+		else
+			lab = NULL;
+		
+		// find max and min values
+		double min = HUGE_VAL, max = - HUGE_VAL;
+		for ( i = 0; cs->v != NULL &&  i < cs->nvalues; ++i )
+			if ( cs->v[ i ] < min )
+				min = cs->v[ i ];
+			else
+				if ( cs->v[ i ] > max )
+					max = cs->v[ i ];
+
+		fprintf( out, "%s%s%s%s%d%s%s%s%g%s%g%s%g%s\"%s\"\n", cs->label, sep, cs->param == 1 ? "parameter" : "variable", sep, cs->param == 1 ? 0 : cs->lag + 1, sep, cs->integer ? "integer" : "real", sep, cv != NULL ? cv->val[ cs->lag ] : NAN, sep, min, sep, max, sep, lab != NULL ? lab : "" );	
+		
+		delete [ ] lab;
+	}
+}
+
+
+/***************************************************
+SAVE_EQFILE
+***************************************************/
+void save_eqfile( FILE *f )
+{
+	if ( strlen( lsd_eq_file ) == 0 )
+		strcpy( lsd_eq_file, eq_file );
+	 
+	fprintf( f, "\nEQ_FILE\n" );
+	fprintf( f, "%s", lsd_eq_file );
+	fprintf( f, "\nEND_EQ_FILE\n" );
+}
+
+
+#ifndef NW
+
+/***************************************************
+READ_EQ_FILENAME
+***************************************************/
+void read_eq_filename( char *s )
+{
+	char lab[ MAX_PATH_LENGTH ];
+	FILE *f;
+
+	sprintf( lab, "%s/%s", exec_path, MODEL_OPTIONS );
+	f = fopen( lab, "r" );
+	
+	if ( f == NULL )
+	{
+		cmd( "ttk::messageBox -parent . -title Error -icon error -type ok -message \"File not found\" -detail \"File '$MODEL_OPTIONS' missing, cannot upload the equation file.\nYou may have to recreate your model configuration.\"" );
+		return;
+	}
+	
+	fscanf( f, "%499s", lab );
+	for ( int i = 0; strncmp( lab, "FUN=", 4 ) && fscanf( f, "%499s", lab ) != EOF && i < MAX_FILE_TRY; ++i );    
+	fclose( f );
+	if ( strncmp( lab, "FUN=", 4 ) != 0 )
+	{
+		cmd( "ttk::messageBox -parent . -type ok -title -title Error -icon error -message \"File corrupted\" -detail \"File '$MODEL_OPTIONS' has invalid contents, cannot upload the equation file.\nYou may have to recreate your model configuration.\"" );
+		return;
+	}
+
+	strcpy( s, lab + 4 );
+	strcat( s, ".cpp" );
+
+	return;
+}
+
+
+/***************************************************
+COMPARE_EQFILE
+***************************************************/
+int compare_eqfile( void )
+{
+	char *s, lab[ MAX_PATH_LENGTH + 1 ];
+	int i = MAX_FILE_SIZE;
+	FILE *f;
+
+	read_eq_filename( lab );
+	f = fopen( lab, "r" );
+	s = new char[ i + 1 ];
+	while ( fgets( msg, MAX_LINE_SIZE, f ) != NULL )
+	{
+		i -= strlen( msg );
+		if ( i < 0 )
+			break;
+		strcat( s, msg );
+	}
+	fclose( f );  
+	
+	if ( strcmp( s, lsd_eq_file ) == 0 )
+		i = 0;
+	else
+		i = 1;
+	delete [ ] s;
+
+	return i;
+}
+
+
+/***************************************************
+UPLOAD_EQFILE
+***************************************************/
+char *upload_eqfile( void )
+{
+	//load into the string eq_file the equation file
+	char s[ MAX_PATH_LENGTH + 1 ], *eq;
+	int i;
+	FILE *f;
+
+	Tcl_LinkVar( inter, "eqfiledim", ( char * ) &i, TCL_LINK_INT );
+
+	read_eq_filename( s );
+	cmd( "set eqfiledim [ file size %s ]", s );
+
+	Tcl_UnlinkVar( inter, "eqfiledim" );
+
+	eq = new char[ i + 1 ];
+	eq[ 0 ] = '\0';
+	f = fopen( s, "r");
+	while ( fgets( msg, MAX_LINE_SIZE, f ) != NULL )
+	{
+		i -= strlen( msg );
+		if ( i < 0 )
+			break;
+		strcat( eq, msg );
+	}
+	
+	fclose( f );
+	return eq;
+}
+
+#endif
+
+
+/***************************************************
+RESULT
+Methods for results file saving (class result)
+***************************************************/
+
+/***************************************************
+DATA
+Saves data to file in the specified period
+***************************************************/
+void result::data( object *root, int initstep, int endtstep )
+{
+	// don't include initialization (t=0) in .csv format
+	initstep = ( docsv && initstep < 1 ) ? 1 : initstep;
+	// adjust for 1 time step if needed
+	endtstep = ( endtstep == 0 ) ? initstep : endtstep;
+	
+	for ( int i = initstep; i <= endtstep; i++ )
+	{
+		firstCol = true;
+		
+		data_recursive( root, i );		// output one data line
+		
+		if ( dozip )					// and change line
+			gzprintf( fz, "\n" );
+		else
+			fprintf( f, "\n" );
+	}
+}
+
+void result::data_recursive( object *r, int i )
+{
+	bridge *cb;
+	object *cur;
+	variable *cv;
+
+	for ( cv = r->v; cv != NULL; cv = cv->next )
+	{
+		if ( cv->save == 1 )
+		{
+			if ( cv->start <= i && cv->end >= i && ! is_nan( cv->data[ i - cv->start ] ) )
+			{
+				if ( dozip )
+				{
+					if ( docsv )
+						gzprintf( fz, "%s%.*G", firstCol ? "" : CSV_SEP, SIG_DIG, cv->data[ i - cv->start ] );
+					else
+						gzprintf( fz, "%.*G\t", SIG_DIG, cv->data[ i - cv->start ] );
+				}
+				else
+				{
+					if ( docsv )
+						fprintf( f, "%s%.*G", firstCol ? "" : CSV_SEP, SIG_DIG, cv->data[ i - cv->start ] );
+					else
+						fprintf( f, "%.*G\t", SIG_DIG, cv->data[ i - cv->start ] );
+				}
+			}
+			else
+			{
+				if ( dozip )		// save NaN as n/a
+				{
+					if ( docsv )
+						gzprintf( fz, "%s%s", firstCol ? "" : CSV_SEP, nonavail );
+					else
+						gzprintf( fz, "%s\t", nonavail );
+				}
+				else
+				{
+					if ( docsv )
+						fprintf( f, "%s%s", firstCol ? "" : CSV_SEP, nonavail );
+					else
+						fprintf( f, "%s\t", nonavail );
+				}
+			}
+			
+			firstCol = false;
+		}
+	}
+	 
+	for ( cb = r->b; cb != NULL; cb = cb->next )
+	{
+		if ( cb->head == NULL )
+			continue;
+		
+		cur = cb->head;
+		if ( cur->to_compute )
+			for ( ; cur != NULL; cur = cur->next )
+				data_recursive( cur, i );
+	}
+
+	if ( r->up == NULL )
+	{
+		for ( cv = cemetery; cv != NULL; cv = cv->next )
+		{
+			if ( cv->start <= i && cv->end >= i && ! is_nan( cv->data[ i - cv->start ] ) )
+			{
+				if ( dozip )
+				{
+					if ( docsv )
+						gzprintf( fz, "%s%.*G", firstCol ? "" : CSV_SEP, SIG_DIG, cv->data[ i - cv->start ] );
+					else
+						gzprintf( fz, "%.*G\t", SIG_DIG, cv->data[ i - cv->start ] );
+				}
+				else
+				{
+					if ( docsv )
+						fprintf( f, "%s%.*G", firstCol ? "" : CSV_SEP, SIG_DIG, cv->data[ i - cv->start ] );
+					else
+						fprintf( f, "%.*G\t", SIG_DIG, cv->data[ i - cv->start ] );
+				}
+			}
+			else					// save NaN as n/a
+			{
+				if ( dozip )
+				{
+					if ( docsv )
+						gzprintf( fz, "%s%s", firstCol ? "" : CSV_SEP, nonavail );
+					else
+						gzprintf( fz, "%s\t", nonavail );
+				}
+				else
+				{
+					if ( docsv )
+						fprintf( f, "%s%s", firstCol ? "" : CSV_SEP, nonavail );
+					else
+						fprintf(f, "%s\t", nonavail );
+				}
+			}
+						
+			firstCol = false;
+		}
+	}
+}
+
+
+/***************************************************
+TITLE
+Saves header to file
+***************************************************/
+void result::title( object *root, int flag )
+{
+	firstCol = true;
+	
+	title_recursive( root, flag );		// output header
+		
+	if ( dozip )						// and change line
+		gzprintf( fz, "\n" );
+	else
+		fprintf( f, "\n" );
+}
+
+void result::title_recursive( object *r, int header )
+{
+	bool single = false;
+	bridge *cb;
+	object *cur;
+	variable *cv;
+
+	for ( cv = r->v; cv != NULL; cv = cv->next )
+	{
+		if ( cv->save == 1 )
+		{
+			set_lab_tit( cv );
+			if ( ( ! strcmp( cv->lab_tit, "1" ) || ! strcmp( cv->lab_tit, "1_1" ) || ! strcmp( cv->lab_tit, "1_1_1" ) || ! strcmp( cv->lab_tit, "1_1_1_1" ) ) && cv->up->hyper_next( ) == NULL )
+				single = true;					// prevent adding suffix to single objects
+			
+			if ( header )
+			{
+				if ( dozip )
+				{
+					if ( docsv )
+						gzprintf( fz, "%s%s%s%s", firstCol ? "" : CSV_SEP, cv->label, single ? "" : "_", single ? "" : cv->lab_tit );
+					else
+						gzprintf( fz, "%s %s (%d %d)\t", cv->label, cv->lab_tit, cv->start, cv->end );
+				}
+				else
+				{
+					if ( docsv )
+						fprintf( f, "%s%s%s%s", firstCol ? "" : CSV_SEP, cv->label, single ? "" : "_", single ? "" : cv->lab_tit );
+					else
+						fprintf( f, "%s %s (%d %d)\t", cv->label, cv->lab_tit, cv->start, cv->end );
+				}
+			}
+			else
+			{
+				if ( dozip )
+				{
+					if ( docsv )
+						gzprintf( fz, "%s%s%s%s", firstCol ? "" : CSV_SEP, cv->label, single ? "" : "_", single ? "" : cv->lab_tit );
+					else
+						gzprintf( fz, "%s %s (-1 -1)\t", cv->label, cv->lab_tit );
+				}
+				else
+				{
+					if ( docsv )
+						fprintf( f, "%s%s%s%s", firstCol ? "" : CSV_SEP, cv->label, single ? "" : "_", single ? "" : cv->lab_tit );
+					else
+						fprintf( f, "%s %s (-1 -1)\t", cv->label, cv->lab_tit );
+				}
+			}
+			
+			firstCol = false;
+		}
+	}
+	 
+	for ( cb = r->b; cb != NULL; cb = cb->next )
+	{
+		if ( cb->head == NULL )
+			continue;
+		
+		cur = cb->head;
+		if ( cur->to_compute )
+		{
+			for ( ; cur != NULL; cur = cur->next )
+			title_recursive( cur, header );
+		} 
+	} 
+
+	if ( r->up == NULL )
+	{
+		for ( cv = cemetery; cv != NULL; cv = cv->next )
+		{
+			if ( dozip )
+			{
+				if ( docsv )
+					gzprintf( fz, "%s%s%s%s", firstCol ? "" : CSV_SEP, cv->label, single ? "" : "_", single ? "" : cv->lab_tit );
+				else
+					gzprintf( fz, "%s %s (%d %d)\t", cv->label, cv->lab_tit, cv->start, cv->end );
+			}
+			else
+			{
+				if ( docsv )
+					fprintf( f, "%s%s%s%s", firstCol ? "" : CSV_SEP, cv->label, single ? "" : "_", single ? "" : cv->lab_tit );
+				else
+					fprintf( f, "%s %s (%d %d)\t", cv->label, cv->lab_tit, cv->start, cv->end );
+			}
+			
+			firstCol = false;
+		}
+	}
+}
+
+/***************************************************
+CONSTRUCTOR
+Open the appropriate file for saving the results
+***************************************************/
+result::result( char const *fname, char const *fmode, bool dozip, bool docsv )
+{
+	this->docsv = docsv;
+	this->dozip = dozip;		// save local class flag
+	if ( dozip )
+		fz = gzopen( fname, fmode );
+	else
+		f = fopen( fname, fmode );
+}
+
+
+/***************************************************
+DESTRUCTOR
+Close the results file
+***************************************************/
+result::~result( void )
+{
+	if ( dozip )
+		gzclose( fz );
+	else
+		fclose( f );
 }

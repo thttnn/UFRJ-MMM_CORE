@@ -1,102 +1,90 @@
 # Model compilation options
-TARGET=lsd
+# LSD options
+TARGET=LSD
 FUN=fun_MMM_CORE
+
+# Additional model files
 FUN_EXTRA= mmm_core_time_step.h mmm_core_analysis.h mmm_core_macro.h mmm_core_macro_sfc.h mmm_core_classes.h mmm_core_external_sector.h mmm_core_government.h  mmm_core_sector_aggregates.h mmm_core_sector_demand.h mmm_core_entry_exit.h mmm_core_firm_capital.h mmm_core_firm_finance.h mmm_core_firm_investment.h mmm_core_firm_price.h mmm_core_firm_production.h mmm_core_firm_profit.h mmm_core_firm_rnd.h mmm_core_firm_sales.h mmm_core_firm_inputs.h mmm_core_capital_goods.h mmm_core_sector_analysis.h  mmm_core_calibration.h
-SWITCH_CC=-Og -ggdb3
+
+# Compiler options
+SWITCH_CC=-O0 -ggdb3
 SWITCH_CC_LNK=
 
-
 # System compilation options
-LSDROOT=C:/Lsd
+# LSD options
+LSDROOT=C:/Users/thttn/LSD
 SRC=src
-EXT=.exe
 
 # Libraries options
 TCL_VERSION=86
-PATH_TCL_HEADER=$(LSDROOT)/gnu64/include
-PATH_TK_HEADER=$(LSDROOT)/gnu64/include
-PATH_HEADER=$(LSDROOT)/gnu64/include
-PATH_TCL_LIB=$(LSDROOT)/gnu64/lib
-PATH_TK_LIB=$(LSDROOT)/gnu64/lib
-PATH_LIB=$(LSDROOT)/gnu64/lib
-TCL_LIB=-ltcl$(TCL_VERSION)
-TK_LIB=-ltk$(TCL_VERSION)
-LIBS=-lz
+PATH_TCLTK_HEADER=$(LSDROOT)/gnu/include
+PATH_TCLTK_LIB=$(LSDROOT)/gnu/lib
+TCLTK_LIB=-ltcl$(TCL_VERSION) -ltk$(TCL_VERSION)
+PATH_HEADER=$(LSDROOT)/gnu/include
+PATH_LIB=$(LSDROOT)/gnu/lib
+LIB=-lz
 
 # Compiler options
-CC=x86_64-w64-mingw32-g++
-CC_CROSS=x86_64-w64-mingw32-
-GLOBAL_CC=-march=native -std=gnu++14 -w
+WRC=windres
+CC=g++
+GLOBAL_CC=-march=native -w
 SSWITCH_CC=-mthreads -mwindows -O3
-LSDROOT=C:/Lsd
 
-# Body of makefileNW (from src/makefile_baseNW.txt)
-# reset variables to allow for no-window version
-LSDROOT=.
-
+# Body of makefileNW (from makefile_NW.txt)
 # specify where are the sources of LSD
 SRC_DIR=$(SRC)/
 
 # location of headers
-INCLUDE=-I$(PATH_HEADER) -I$(SRC)
+INCLUDE=-I$(SRC) -I$(PATH_HEADER)
+
+# common dependencies (all source files)
+COM_DEP=$(SRC_DIR)decl.h $(SRC_DIR)common.h 
 
 # no-window specific variables
-LIBS_NW=$(LIBS) -lpthread
-CC_NW=$(CC_CROSS)g++
-SWITCH_CC_NW=$(GLOBAL_CC) $(SWITCH_CC) -O3 -g0
 SUFFIX_NW=NW
+LIB_NW=$(LIB) -lpthread
+CC_NW=$(CC_CROSS)g++
+SWITCH_CC_NW=$(GLOBAL_CC) $(SWITCH_CC) -DNW -O3 -g0
 TARGET_NW=lsd$(SUFFIX_NW)
 
+# OS command to delete files
+RM=rm -f
+
 # link executable
-$(TARGET_NW)$(EXT): $(FUN)$(SUFFIX_NW).o $(SRC_DIR)main.o $(SRC_DIR)lsdmain.o \
-$(SRC_DIR)file.o $(SRC_DIR)nets.o $(SRC_DIR)object.o $(SRC_DIR)util.o \
-$(SRC_DIR)variab.o
-	$(CC_NW) $(SWITCH_CC_NW) $(FUN)$(SUFFIX_NW).o $(SRC_DIR)main.o \
-	$(SRC_DIR)lsdmain.o $(SRC_DIR)file.o $(SRC_DIR)nets.o $(SRC_DIR)object.o \
-	$(SRC_DIR)util.o $(SRC_DIR)variab.o \
-	$(SWITCH_CC_LNK) -L$(PATH_LIB) $(LIBS_NW) -o $(TARGET_NW)
+$(TARGET_NW): $(FUN)$(SUFFIX_NW).o $(SRC_DIR)common.o $(SRC_DIR)lsdmain.o \
+$(SRC_DIR)file.o $(SRC_DIR)nets.o $(SRC_DIR)object.o \
+$(SRC_DIR)util.o $(SRC_DIR)variab.o
+	$(CC_NW) $(SWITCH_CC_NW) $(FUN)$(SUFFIX_NW).o $(SRC_DIR)common.o \
+	$(SRC_DIR)lsdmain.o $(SRC_DIR)file.o $(SRC_DIR)nets.o \
+	$(SRC_DIR)object.o $(SRC_DIR)util.o $(SRC_DIR)variab.o \
+	$(SWITCH_CC_LNK) -L$(PATH_LIB) $(LIB_NW) -o $(TARGET_NW)
 
 # compile modules
-$(FUN)$(SUFFIX_NW).o: $(FUN).cpp $(FUN_EXTRA) model_options.txt \
-$(SRC_DIR)check.h $(SRC_DIR)choose.h $(SRC_DIR)decl.h \
-$(SRC_DIR)fun_head.h $(SRC_DIR)fun_head_fast.h
-	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) \
-	-c $(FUN).cpp -o $(FUN)$(SUFFIX_NW).o
+$(FUN)$(SUFFIX_NW).o: $(FUN).cpp $(FUN_EXTRA) $(SRC_DIR)check.h \
+$(SRC_DIR)fun_head.h $(SRC_DIR)decl.h $(SRC_DIR)common.h
+	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) -c $(FUN).cpp -o $(FUN)$(SUFFIX_NW).o
 
-$(SRC_DIR)main.o: $(SRC_DIR)main.cpp \
-$(SRC_DIR)choose.h $(SRC_DIR)decl.h $(SRC_DIR)system_options.txt
-	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) \
-	-c $(SRC_DIR)main.cpp -o $(SRC_DIR)main.o
+$(SRC_DIR)common.o: $(SRC_DIR)common.cpp $(SRC_DIR)common.h
+	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) -c $(SRC_DIR)common.cpp -o $(SRC_DIR)common.o
 
-$(SRC_DIR)lsdmain.o: $(SRC_DIR)lsdmain.cpp \
-$(SRC_DIR)choose.h $(SRC_DIR)decl.h $(SRC_DIR)system_options.txt
-	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) \
-	-c $(SRC_DIR)lsdmain.cpp -o $(SRC_DIR)lsdmain.o
+$(SRC_DIR)lsdmain.o: $(SRC_DIR)lsdmain.cpp $(SRC_DIR)decl.h $(SRC_DIR)common.h
+	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) -c $(SRC_DIR)lsdmain.cpp -o $(SRC_DIR)lsdmain.o
 
-$(SRC_DIR)file.o: $(SRC_DIR)file.cpp \
-$(SRC_DIR)choose.h $(SRC_DIR)decl.h $(SRC_DIR)system_options.txt
-	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) \
-	-c $(SRC_DIR)file.cpp -o $(SRC_DIR)file.o
+$(SRC_DIR)file.o: $(SRC_DIR)file.cpp $(SRC_DIR)decl.h $(SRC_DIR)common.h
+	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) -c $(SRC_DIR)file.cpp -o $(SRC_DIR)file.o
 
-$(SRC_DIR)nets.o: $(SRC_DIR)nets.cpp \
-$(SRC_DIR)choose.h $(SRC_DIR)decl.h $(SRC_DIR)system_options.txt
-	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) \
-	-c $(SRC_DIR)nets.cpp -o $(SRC_DIR)nets.o
+$(SRC_DIR)nets.o: $(SRC_DIR)nets.cpp $(SRC_DIR)decl.h $(SRC_DIR)common.h
+	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) -c $(SRC_DIR)nets.cpp -o $(SRC_DIR)nets.o
 
-$(SRC_DIR)object.o: $(SRC_DIR)object.cpp \
-$(SRC_DIR)choose.h $(SRC_DIR)decl.h $(SRC_DIR)system_options.txt
-	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) \
-	-c $(SRC_DIR)object.cpp -o $(SRC_DIR)object.o
+$(SRC_DIR)object.o: $(SRC_DIR)object.cpp $(SRC_DIR)decl.h $(SRC_DIR)common.h
+	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) -c $(SRC_DIR)object.cpp -o $(SRC_DIR)object.o
 
-$(SRC_DIR)util.o: $(SRC_DIR)util.cpp \
-$(SRC_DIR)choose.h $(SRC_DIR)decl.h $(SRC_DIR)system_options.txt
-	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) \
-	-c $(SRC_DIR)util.cpp -o $(SRC_DIR)util.o
+$(SRC_DIR)util.o: $(SRC_DIR)util.cpp $(SRC_DIR)decl.h $(SRC_DIR)common.h
+	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) -c $(SRC_DIR)util.cpp -o $(SRC_DIR)util.o
 
-$(SRC_DIR)variab.o: $(SRC_DIR)variab.cpp \
-$(SRC_DIR)choose.h $(SRC_DIR)decl.h $(SRC_DIR)system_options.txt
-	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) \
-	-c $(SRC_DIR)variab.cpp -o $(SRC_DIR)variab.o
+$(SRC_DIR)variab.o: $(SRC_DIR)variab.cpp $(SRC_DIR)decl.h $(SRC_DIR)common.h
+	$(CC_NW) $(SWITCH_CC_NW) $(INCLUDE) -c $(SRC_DIR)variab.cpp -o $(SRC_DIR)variab.o
 	
+# remove compiled files
 clean:
-	rm $(SRC_DIR)*.o $(FUN)$(SUFFIX_NW).o $(TARGET_NW)*
+	$(RM) $(SRC_DIR)*.o $(FUN)$(SUFFIX_NW).o $(TARGET_NW)*
