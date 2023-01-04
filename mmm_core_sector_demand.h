@@ -94,7 +94,8 @@ In the sum of consumption goods, capital goods and intermediate goods, only the 
 	v[3]=v[0]+v[1]+v[2];                                        //sums up the domestic demands. For each sector, only the relevant demand will have a value and the others will be zero.
 	v[4]=V("Sector_Exports");                                   //external demand, exports of the sector 
 	v[5]=v[3]+v[4];                                             //sums up domestic and external demand
-RESULT(max(0,v[5]))
+	v[6]=V("sector_initial_demand");
+RESULT(max(v[6],v[5]))
 
 
 EQUATION("Firm_Effective_Orders_Capital_Goods")

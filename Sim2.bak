@@ -4,8 +4,8 @@ Label Root
 	Son: INIT
 	Label INIT
 	{
-		Son: MACRO
-		Label MACRO
+		Son: COUNTRY
+		Label COUNTRY
 		{
 			Son: SECTORS
 			Label SECTORS
@@ -517,7 +517,7 @@ Param: mk_per 0 n + n n	4
 Var: Calibration 0 n + n n
 Var: Time_Step 0 n + d n
 
-Object: MACRO C	1
+Object: COUNTRY C	1
 Param: annual_period 0 n + n n	4
 Param: crisis_threshold 0 n + n n	0
 Param: initial_avg_price 0 n + n n	1
@@ -1229,7 +1229,7 @@ Variable_Time_Step
 
 END_DESCRIPTION
 
-Object_MACRO
+Object_COUNTRY
 
 END_DESCRIPTION
 

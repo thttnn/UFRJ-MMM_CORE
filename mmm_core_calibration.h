@@ -218,6 +218,7 @@ CYCLE(cur, "SECTORS")
 	v[168]=V("C_mk");
 	v[169]=V("C_w");
 	v[170]=(V("C_w")/V("C_phi"))+V("C_alpha")*v[100];
+	WRITES(cur, "sector_initial_demand", v[160]);
 	WRITES(cur, "sector_exports_coefficient", v[165]);
 	WRITES(cur, "sector_capital_output_ratio", V("C_beta"));
 	WRITES(cur, "sector_depreciation_period", V("C_delta"));
@@ -246,6 +247,7 @@ CYCLE(cur, "SECTORS")
 	v[168]=V("K_mk");
 	v[169]=V("K_w");
 	v[170]=(V("K_w")/V("K_phi"))+V("K_alpha")*v[100];
+	WRITES(cur, "sector_initial_demand", v[160]);
 	WRITES(cur, "sector_exports_coefficient", v[165]);
 	WRITES(cur, "sector_capital_output_ratio", V("K_beta"));
 	WRITES(cur, "sector_depreciation_period", V("K_delta"));
@@ -274,6 +276,7 @@ CYCLE(cur, "SECTORS")
 	v[168]=V("I_mk");
 	v[169]=V("I_w");
 	v[170]=(V("I_w")/V("I_phi"))+V("I_alpha")*v[100];
+	WRITES(cur, "sector_initial_demand", v[160]);
 	WRITES(cur, "sector_exports_coefficient", v[165]);
 	WRITES(cur, "sector_capital_output_ratio", V("I_beta"));
 	WRITES(cur, "sector_depreciation_period", V("I_delta"));
@@ -384,8 +387,9 @@ CYCLE(cur, "SECTORS")
 	v[182]=VS(cur5, "id_capital_good_number");
 	v[183]=(-VS(cur,"sector_depreciation_period")+v[181]+1)+(v[182]-1)*VS(cur,"sector_investment_period");                                  			
 	WRITES(cur5, "capital_good_date_birth", 0);											
-//	WRITES(cur5, "capital_good_depreciation_period", (v[183]+VS(cur,"sector_depreciation_period")));
+	//WRITES(cur5, "capital_good_depreciation_period", (v[183]+VS(cur,"sector_depreciation_period")));
 	WRITES(cur5, "capital_good_depreciation_period", 700);
+	//WRITES(cur5, "capital_good_depreciation_period", uniform(1,100));
 	}
 }					
 }		

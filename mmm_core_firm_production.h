@@ -33,8 +33,17 @@ Programed Production is subjected to a existing capactity restriction, but it is
 		v[5]=v[1]*(1+v[3])-v[4];                            //planned production will be expected sales plus the desired proportion of investories minus the existing stock of inventories
 	else                                                  	//if it is a capital goods sector
 		{
-		v[6]=V("Firm_Effective_Orders_Capital_Goods");
-		v[5]=v[6]*(1+v[3])-v[4];
+		v[10]=V("sector_investment_period");
+		v[6]=0;
+		for(i=0;i<=(v[10]-1);i++)
+			{
+			v[11]=VL("Firm_Effective_Orders_Capital_Goods",i);
+			v[12]=v[11]/v[10];
+			v[6]=v[6]+v[12];
+			}
+		v[5]=v[6]*(1+v[3]);
+		//v[6]=V("Firm_Effective_Orders_Capital_Goods");
+		//v[5]=v[6]*(1+v[3])-v[4];
 		}
 	v[7]=max(0,v[5]);                          	//planned production can never be more then the maximum productive capacity and can never be negative
 RESULT(v[7])

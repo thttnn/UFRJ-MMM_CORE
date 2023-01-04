@@ -80,7 +80,8 @@ Unitary costs of the inputs. It's given by the domestic input price plus the ext
 	v[6]=VLS(cur,"Sector_Demand_Met",1);                  	//demand for inputs met by the domestic production in the last period
 	v[7]=VLS(cur,"Sector_Demand_Met_By_Imports", 1);
 	v[8]=v[1]*v[3]*v[6]+(1-v[6])*v[7]*v[3]*v[2]*v[5];     	//input cost will be the amount demanded domesticaly multiplied by domestic price plus the amount demanded externally miltiplied by the external price
-RESULT(v[8])
+	v[9]=v[1]*v[3]*v[6];
+RESULT(v[9])
 
 
 

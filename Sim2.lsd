@@ -180,6 +180,7 @@ Label Root
 				Var: Sector_Turbulence
 				Var: Sector_Unemployment
 				Var: Sector_Taxation
+				Param: sector_initial_demand
 
 			}
 
@@ -652,6 +653,7 @@ Var: Sector_Sum_Market_Share 0 n + n n
 Var: Sector_Turbulence 0 s + n n
 Var: Sector_Unemployment 0 s + n n
 Var: Sector_Taxation 0 n + n n
+Param: sector_initial_demand 0 n + n n	0	0	0
 
 Object: FIRMS C	1	1	1
 Param: firm_date_birth 0 n + n n	0	0	0
@@ -1825,6 +1827,12 @@ END_DESCRIPTION
 
 Variable_Sector_Taxation
 
+END_DESCRIPTION
+
+Parameter_sector_initial_demand
+
+_INIT_
+All 3 instances equal to 0
 END_DESCRIPTION
 
 Object_FIRMS
